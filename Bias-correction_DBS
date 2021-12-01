@@ -1,0 +1,322 @@
+## Precipitation bias correction using a Double Gamma distribution
+
+######
+# Generating time series for the future scenarios
+######
+import numpy as np
+import pandas as pd
+import scipy.stats as stats
+from scipy.stats import gamma
+import netCDF4 as nc 
+
+
+data_grid = pd.read_excel('GridID_pr.xlsx')# File with the cols and rows to be used
+data_grid = np.array(data_grid) # making it an array
+data_dates = pd.read_excel('datesScenarios.xlsx')# file with Month and Year values of the rcm
+data_dates = np.array(data_dates)# making it an array
+Month_rcm = data_dates[:,0] # Months from rcm
+Year_rcm = data_dates[:,2] # Years from rcm
+data_obs_dates = pd.read_excel('datesObservations.xlsx')# file with Month and Year values of the observations
+data_obs_dates = np.array(data_obs_dates)# making it an array
+Month_obs = data_obs_dates[:,0]# months from observations
+Year_obs = data_obs_dates[:,2]# years from the observations
+rcm_grids_ref = nc.Dataset('pr_EUR-11_MPI-M-MPI-ESM-LR_historical_r2i1p1_MPI-CSC-REMO2009_v1_day_19710101-20051231_DENMARK_reg.nc')# the rcm in the historical period
+rcm_pr_ref = rcm_grids_ref.variables['pr'][:,:,:]#Precipitation from the rcm
+rcm_grids_ref.close()
+rcm_pr_ref = np.array(rcm_pr_ref)
+rcm_grids_Sc = nc.Dataset('pr_EUR-11_MPI-M-MPI-ESM-LR_rcp45_r2i1p1_MPI-CSC-REMO2009_v1_day_20060101-21001231_DENMARK_reg.nc')# the rcm in the future period
+rcm_pr_Sc = rcm_grids_Sc.variables['pr'][:,:,:]#Precipitation from the rcm
+rcm_grids_Sc.close()
+rcm_pr_Sc = np.array(rcm_pr_Sc)
+len_rcm_ref = len(rcm_pr_ref)#length of the precipitation
+len_rcm_Sc = len(rcm_pr_Sc)#length of the precipitation
+rcm_pr_all = np.concatenate((rcm_pr_ref,rcm_pr_Sc)) # putting all rcm data together
+obs_grids = nc.Dataset('DMI_10kmgrid_precip_1990-2018.nc') # observation data
+obs_pr_all = obs_grids.variables['pr'][:,:,:] # gets the time series of the current cell
+obs_grids.close()
+obs_pr_all = np.array(obs_pr_all)
+len_cells = len(data_grid)#number of cells to be BC
+no_cells = np.arange(0,len_cells)#making the list to run the loop
+len_rcm = len(rcm_pr_all)#length of the precipitation
+Final_results = np.zeros([len_rcm,38,32])#storage of the BC time series
+Final_results[:]=np.nan#setting all the values to nan
+
+for cell in no_cells:
+    cell_i = data_grid[cell] # getting the values of the cell
+    cell_col = cell_i[1] # column
+    cell_row = cell_i[0] # row
+    rcm_pr = rcm_pr_all[:,cell_row,cell_col]# gets the precip time series for the current cell
+    obs_pr = obs_pr_all[:,cell_row,cell_col] # gets the time series of the current cell 
+    obs_pr = np.array(obs_pr)# making it an array
+    percentile = np.percentile(obs_pr,90)# gets the 95th percentile
+    # Setting the variables to store results
+    obsparameters_high=np.zeros([12,3])# saves the high distribution parameters of the observations
+    simparameters_high=np.zeros([12,3]) # saves the high distribution parameters of the rcm
+    wetlimit_high=np.zeros([12]) # saves the high limit (95th percentile)
+    obsparameters=np.zeros([12,3]) # saves the distribution parameters of the observations
+    simparameters=np.zeros([12,3]) # saves the distribution parameters of the rcm
+    wetlimit=np.zeros([12]) # saves the wet limit value 
+    
+    # Defining the limits of the validation period
+    ExtractValUp_obs = Year_obs > 2009 # sets the period to train the BC
+    ExtractValLow_obs = Year_obs < 1990 # sets the period to train the BC
+    # Values of 1 are given to calibration periods and 0 to validation periods
+    ExtractValLim_obs = ExtractValUp_obs + ExtractValLow_obs # sets the period to train the BC
+    # Defining the limits of the validation period
+    ExtractValUp_rcm = Year_rcm > 2009 # sets the period to train the Bc
+    ExtractValLow_rcm = Year_rcm < 1990 # sets the period to train the BC
+    # Values of 1 are given to calibration periods and 0 to validation periods
+    ExtractValLim_rcm = ExtractValUp_rcm + ExtractValLow_rcm # sets the period to train the BC
+        
+    # Extracting the RCM data for the calibration and validation periods
+    PrCal_rcm = rcm_pr
+    PrCal_rcm = PrCal_rcm[ExtractValLim_rcm == False]
+    PrCal_obs = obs_pr
+    PrCal_obs = PrCal_obs[ExtractValLim_obs == False]
+    Month_cal = Month_obs
+    Month_cal = Month_cal[ExtractValLim_obs == False]
+    BCCalPr2 = np.zeros(len(PrCal_rcm))
+        
+    MonthNo = np.linspace(1,12,12,dtype=int)
+    for m in MonthNo:
+            Month2=Month_cal
+            Pr = PrCal_obs #Observed precipitation
+            Pr2 = PrCal_rcm #simulated precipitation
+            Pr = Pr[Month2 == m] 
+            Pr2 = Pr2[Month2 == m]
+    
+            # (1) Calculate the percentage of dry days in the observations
+            p_dry = 100*sum(Pr==0)/len(Pr) # percentage of dry days
+            p_wet = 100-p_dry # percentage of wet days
+            Pr_above_ptile = Pr>percentile # days above the high precip percentile
+            p_high_wet = 100*sum(Pr_above_ptile)/len(Pr) # percentage of days 
+    
+            # calculate time index for wet days
+            wetdPr = (Pr> 0.0000)
+            wetdPr2 = (Pr2 > 0.0000)
+    
+            # (2) Calculate the wet day and extreme precipitation thresholds for RCM
+            y = np.percentile(Pr2,p_dry) # wet day threshold
+            y_high = np.percentile(Pr2,100-p_high_wet) # extreme precipitation threshold
+            
+            # (3) Set all values in Pr2 less or equal to y to 0; 
+            #also all values above the extreme percentile to 0
+            # The number of wet days are now equal in both time series
+            Pr2_cor = Pr2
+            Pr2_cor[Pr2_cor<=y]=0
+            # number of wet days in rcm and obs
+            wetdPr2_adjthresh = Pr2_cor > 0.00
+            wetdaysPr2 = sum(wetdPr2_adjthresh)
+            wetdPr = (Pr>0.00)
+            wetdaysPr=sum(wetdPr)
+    
+            # counting the days above the extreme percentile
+            Pr2_highdays = Pr2>=y_high
+            Pr2_sum_days_high = sum (Pr2_highdays)
+                   
+            #Turning to zero all values above the extreme percentile
+            Pr2_cor[Pr2_cor>=y_high]=0
+            Pr_cor=Pr
+            Pr_cor[Pr>=percentile]=0
+            
+            # Upper tail of the distribution                       
+            Pr2_high=PrCal_rcm
+            Pr2_high = Pr2_high[Month2 == m]
+            Pr2_high[Pr2_high<y_high]=0;
+            
+            Pr_high = PrCal_obs;
+            Pr_high = Pr_high[Month2 == m]
+            Pr_high[Pr_high<percentile]=0;
+            
+            # (4) remove any zeros and high percentiles from obs
+            Pr_nozero = Pr_cor[Pr_cor!=0] #Observed precipitation  
+    
+            # (5) remove any zeros and high percentiles from sims
+            Pr2_nozero = Pr2_cor[Pr2_cor!=0] #sim precipitation
+    
+            #(6) Fit the Gamma distribution to obs and sims
+            alpha_Pr, loc_Pr, scale_Pr = gamma.fit(Pr_nozero,floc=0)
+            alpha_Pr2, loc_Pr2, scale_Pr2 = gamma.fit(Pr2_nozero,floc=0)
+    
+            # (7) Define the DBS mapping function
+            n = np.linspace(0,len(Pr2_nozero)-1,len(Pr2_nozero),dtype=int)
+            #n = np.around(n)
+            x_cor_ref = np.zeros(len(Pr2_nozero))
+    
+            for aa in n:
+                #aa = int(aa) # integer (without decimal spaces)
+                #Calculate the cdf of each simulated value using the shape and scale parameters from above
+                cdfval = stats.gamma.cdf(Pr2_nozero[(aa,)],alpha_Pr2,scale=scale_Pr2)
+                    
+                #calculate the inverse of the gamma cdf using the observed shape and scale parameters
+                x_cor_ref[(aa,)] = stats.gamma.ppf(cdfval,alpha_Pr,scale=scale_Pr)
+                    
+            # (8) Doing the same as in (7) for the extreme values 
+            Pr = PrCal_obs #Observed precipitation
+            Pr2 = PrCal_rcm #simulated precipitation
+            Pr = Pr[Month2 == m] 
+            Pr2 = Pr2[Month2 == m] 
+            Pr_high_nozero = Pr
+            Pr_high_nozero = Pr_high[Pr_high!=0]
+            Pr2_high_nozero = Pr2
+            Pr2_high_nozero = Pr2_high[Pr2_high!=0]
+            
+            # Fit to the distributions
+            alpha_Pr_high, loc_Pr_high, scale_Pr_high = stats.gamma.fit(Pr_high_nozero,floc=0)
+            alpha_Pr2_high, loc_Pr2_high, scale_Pr2_high = stats.gamma.fit(Pr2_high_nozero,floc=0)        
+            
+            # cdf and invcdf
+            nn = np.linspace(0,len(Pr2_high_nozero)-1,len(Pr2_high_nozero),dtype=int)
+            x_cor_ref_high = np.zeros(len(Pr2_high_nozero))
+    
+            for bb in nn:
+                  bb = int(bb) # setting the input number to integer (without decimal spaces)
+                  #Calculate the cdf of each simulated value using the shape and scale parameters from above
+                  cdfval_high = stats.gamma.cdf(Pr2_high_nozero[(bb,)],alpha_Pr2_high,scale=scale_Pr2_high)
+                    
+                  #calculate the inverse of the gamma cdf using the observed shape and scale parameters
+                  x_cor_ref_high[(bb,)] = stats.gamma.ppf(cdfval_high,alpha_Pr_high,scale=scale_Pr_high)        
+            
+            # (9) Saving the results
+            Pr2_final = np.zeros(len(Pr2))
+            
+            # define wet/non-extreme and wet/extreme days 
+            wetdPr2_adjthresh = wetdPr2_adjthresh*1 # changing boolean array to an array of 0s and 1s
+            Pr2_highdays = Pr2_highdays*1 # changing boolean array to an array of 0s and 1s
+            wet_not_high = wetdPr2_adjthresh - Pr2_highdays
+            not_high_wetdays = wet_not_high > 0
+            
+            # Set the corrected wet days below the extreme threshold
+            Pr2_final[not_high_wetdays] = x_cor_ref
+            Pr2_highdays = Pr2>=y_high
+            Pr2_final[Pr2_highdays] = x_cor_ref_high
+                    
+            # Inserting the BC in the correct month
+            BCCalPr2[Month2==m] = Pr2_final
+            
+            #Save the parameters of the high percentles
+            obsparameters_high[int(m)-1,0]=alpha_Pr_high
+            obsparameters_high[int(m)-1,1]=loc_Pr_high
+            obsparameters_high[int(m)-1,2]=scale_Pr_high
+            simparameters_high[int(m)-1,0]=alpha_Pr2_high
+            simparameters_high[int(m)-1,1]=loc_Pr2_high
+            simparameters_high[int(m)-1,2]=scale_Pr2_high
+            wetlimit_high[int(m)-1]=y_high
+            #Save the parameters of the wet not high days
+            obsparameters[int(m)-1,0]=alpha_Pr
+            obsparameters[int(m)-1,1]=loc_Pr
+            obsparameters[int(m)-1,2]=scale_Pr
+            simparameters[int(m)-1,0]=alpha_Pr2
+            simparameters[int(m)-1,1]=loc_Pr2
+            simparameters[int(m)-1,2]=scale_Pr2
+            wetlimit[int(m)-1]=y
+     
+    # Scenarios,
+    data_dates = pd.read_excel('datesScenarios.xlsx')# file with Month and Year values of the rcm
+    data_dates = np.array(data_dates)# making it an array
+    Month_rcm = data_dates[:,0] # Months from rcm
+    Year_rcm = data_dates[:,2] # Years from rcm
+    BCValPr = np.zeros(len(Month_rcm))
+    #Read the parameters from the calibration     
+    yy = wetlimit[:]
+    oo = obsparameters[:,:]
+    zz = simparameters[:,:]
+    yyy = wetlimit_high[:]
+    ooo = obsparameters_high[:,:]
+    zzz = simparameters_high[:,:]
+    for mm in MonthNo:
+            Pr2 = rcm_pr #simulated precipitation
+            Month3 =  Month_rcm #month
+            Pr2 = Pr2[Month3 == mm]
+            #Reading the wet day limit and the gamma distribution parameters per month
+            y_val = yy[mm-1,]
+            alphaval_obs = oo[mm-1,0]
+            scaleval_obs = oo[mm-1,2]
+            alphaval_sim = zz[mm-1,0]
+            scaleval_sim = zz[mm-1,2]
+            y_val_high = yyy[mm-1,]
+            alphaval_high_obs = ooo[mm-1,0]
+            scaleval_high_obs = ooo[mm-1,2]
+            alphaval_high_sim = zzz[mm-1,0]
+            scaleval_high_sim = zzz[mm-1,2]
+            
+            # Set all values in the simulation that are less than or equal to y to 0
+            Pr_Proj_cor = Pr2
+            Pr_Proj_cor[Pr_Proj_cor<=y_val]=0
+            Pr_Proj_cor2 = Pr_Proj_cor
+            Pr_Proj_cor2[Pr_Proj_cor>y_val_high]=0
+            
+            # Count the days when sim is larger than wet day limit
+            wetd_Pr_Proj_adjthresh = Pr2 > y_val 
+            
+            # Set the extreme percentiles
+            Pr2 = rcm_pr
+            Pr2 = Pr2[Month3 == mm]
+            Pr_Proj_cor_high = Pr2
+            Pr_Proj_cor_high[Pr_Proj_cor_high<=y_val_high]=0
+            
+            # Count the days of extreme precipitatopm
+            wetd_Pr_Proj_highdays_adjthr = Pr2>y_val_high
+            
+            # Remove zeros from the projected wet not high days
+            Pr_Proj_nozero = Pr_Proj_cor2[Pr_Proj_cor2!=0]
+            
+            #Remove zeros from the projected high days
+            Pr_Proj_highdays_nozero = Pr_Proj_cor_high[Pr_Proj_cor_high!=0]
+    
+            # DBS mapping for non-extreme days
+            n = np.linspace(0,len(Pr_Proj_nozero)-1,len(Pr_Proj_nozero),dtype=int)
+            Pr_Proj_cor_norm = np.zeros(len(Pr_Proj_nozero))
+            for aaa in n:
+                cdfval = stats.gamma.cdf(Pr_Proj_nozero[(aaa,)],alphaval_sim,scale=scaleval_sim)
+                Pr_Proj_cor_norm[(aaa,)] = stats.gamma.ppf(cdfval,alphaval_obs,scale=scaleval_obs)
+            # DBS mapping for extreme days
+            nn = np.linspace(0,len(Pr_Proj_highdays_nozero)-1,len(Pr_Proj_highdays_nozero),dtype=int)
+            Pr_Proj_cor_highdays = np.zeros(len(Pr_Proj_highdays_nozero))
+            for aaaa in nn:
+                cdfval = stats.gamma.cdf(Pr_Proj_highdays_nozero[(aaaa,)],alphaval_high_sim,scale=scaleval_high_sim)
+                Pr_Proj_cor_highdays[(aaaa,)] = stats.gamma.ppf(cdfval,alphaval_high_obs,scale=scaleval_high_obs)
+            
+            #Putting the zeros back in
+            Pr_Proj_cor_final = np.zeros(len(Pr2))
+            #wetd_Pr_Proj_adjthresh = wetd_Pr_Proj_adjthresh*1 # changing boolean to one and zeros
+            Pr_Proj_cor_final[wetd_Pr_Proj_adjthresh] = Pr_Proj_cor_norm
+            Pr_Proj_cor_final[wetd_Pr_Proj_highdays_adjthr] = Pr_Proj_cor_highdays
+            
+            #Now into the time series
+            BCValPr[Month3==mm] = Pr_Proj_cor_final
+            #Months end
+  
+
+      
+    # Now, saving the validated time series in a single column
+    Final_results[:,cell_row,cell_col] = BCValPr
+
+np.save('Initial_res.npy',Final_results)
+
+rcm= np.load('Initial_res.npy')# the rcm with inf
+tt = np.ma.size(rcm, axis=0)
+xx = np.ma.size(rcm, axis=1)
+yy = np.ma.size(rcm, axis=2)
+res = np.nanmax(rcm)
+a = np.where(rcm==res)
+a = np.array(a)
+a = np.transpose(a)
+length = np.arange(0,len(a))
+
+for i in length:
+    array_data = a[i]
+    step = array_data [0]
+    row = array_data[1]
+    col = array_data[2]
+    precip = rcm[:,row,col]
+    precip_max = np.max(precip)
+    if precip_max ==res:
+        new_max = max(n for n in precip if n!=res)
+        rcm[step,row,col]=new_max
+
+
+rcm_max = np.nanmax(rcm)
+rcm_min = np.nanmin(rcm)
+
+np.save('pr_EUR-11_CCCma-CanESM2_rcp85_r1i1p1_GERICS-REMO2015_v1_day_19710101-21001231_DENMARK_BC_check.npy',rcm)
