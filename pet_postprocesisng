@@ -1,0 +1,105 @@
+import pandas as pd
+import numpy as np
+import netCDF4 as nc 
+import math
+import datetime
+import os
+import matplotlib.pyplot as plt
+
+file_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/gr/pet/raw/') if filename.startswith('raw') and filename.endswith('.npy')]
+
+dates = pd.read_excel('C:/Users/epz/Desktop/UEF/PET/Python/dates1971.xlsx')
+month = dates.Month
+year = dates.Year
+dates_no_leap = pd.read_excel('C:/Users/epz/Desktop/UEF/PET/Python/dates1971_noleap.xlsx')
+month_noleap = dates_no_leap.Month 
+year_noleap = dates_no_leap.Year
+n_years= np.arange(1971,2101)
+n_months = np.arange(1,13)
+
+monthly_pet = np.zeros([len(file_list),130,12]) #[model_method,year,month]
+
+for i in np.arange(0,len(file_list)):
+    data = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/gr/pet/raw/'+file_list[i])
+    print(file_list[i],' - max:',np.around(np.max(data),decimals=3),'min:',np.around(np.min(data),decimals=3))
+    
+    file_name = file_list[i]
+    if len(data)==  47450:
+        data_mean = np.zeros([47450,])
+        for n in np.arange(0,47450):
+            data_mean[n]=np.mean(data[n,:,:])
+        for ii in n_years:
+            data_yr = data_mean[year_noleap==ii]
+            month_yr = month_noleap[year_noleap==ii]
+            for iii in n_months:
+                data_yr_mon = data_yr[month_yr==iii]
+                monthly_pet[i,ii-1971,iii-1]=np.sum(data_yr_mon)
+    else:
+        data_mean = np.zeros([47482,])
+        for n in np.arange(0,47482):
+            data_mean[n]=np.mean(data[n,:,:])
+        for ii in n_years:
+            data_yr = data_mean[year==ii]
+            month_yr = month[year==ii]
+            for iii in n_months:
+                data_yr_mon = data_yr[month_yr==iii]
+                monthly_pet[i,ii-1971,iii-1]=np.sum(data_yr_mon)
+     
+
+# Monthly
+
+font = {'family' : 'normal',
+'weight' : 'normal',
+'size'   : 22}
+
+fig, ax = plt.subplots()
+fig= plt.figure(figsize=(20,20))
+fontsize=20
+plt.rc('font', **font)
+name_months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec']
+data_monthly_pet = np.zeros([100,12])
+for i in np.arange(0,len(file_list)):
+    plt.plot(name_months,np.mean(monthly_pet[i,:,:],axis=0),label=file_list[i],markevery=5)          
+    print(file_list[i],':',monthly_pet[i,:,:])
+    data_monthly_pet[i,] =  np.mean(monthly_pet[i,:,:],axis=0)
+
+np.save('C:/Users/epz/Desktop/UEF/PET/CMs/gr/pet/raw/monthly_pet_all.npy',data_monthly_pet)
+
+plt.grid(True)
+plt.title('Monthly accumulated PE /gr/')
+plt.xlabel('Month')
+plt.ylabel('Accumulated PE (mm/month)')
+plt.show()
+plt.savefig('C:/Users/epz/Desktop/UEF/PET/CMs/gr/pet/raw/monthly_pet_gr.png')
+
+
+# Annual
+annual_pet = np.zeros([130,len(file_list)])
+for i in np.arange(0,len(file_list)):
+    annual_pet[:,i]=np.sum(monthly_pet[i,:,:],axis=1)
+                
+font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 22}
+
+fig, ax = plt.subplots()
+fig= plt.figure(figsize=(20,20))
+fontsize=20
+plt.rc('font', **font)
+for i in np.arange(0,len(file_list)):
+    plt.plot(n_years,annual_pet[:,i],label=file_list[i],markevery=5)
+    print(file_list[i],':',annual_pet[:,i])
+    
+
+np.save('C:/Users/epz/Desktop/UEF/PET/CMs/gr/pet/raw/annual_pet_all.npy',annual_pet)
+
+plt.grid(True)
+plt.title('Annual accumulated PE /gr/')
+plt.xlabel('Year')
+plt.ylabel('Accumulated PE (mm/yr)')
+plt.show()
+plt.savefig('C:/Users/epz/Desktop/UEF/PET/CMs/gr/pet/raw/annual_pet_gr.png')
+
+ans = monthly_pet[:,:,0]
+ans =np.mean(ans,axis=1)         
+print(ans)
