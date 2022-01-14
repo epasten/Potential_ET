@@ -1,0 +1,122 @@
+"""
+DELTA CHANGE BIAS CORRECTION
+"""
+
+
+import pandas as pd
+import numpy as np
+import netCDF4 as nc 
+import math
+import datetime
+import os
+import matplotlib.pyplot as plt
+
+#Set the list of models
+
+dates = pd.read_excel('C:/Users/epz/Desktop/UEF/PET/Python/dates1971.xlsx')
+month = dates.Month
+year = dates.Year
+julian_days = dates. Julian
+julian_days = np.array(julian_days)
+dates_no_leap = pd.read_excel('C:/Users/epz/Desktop/UEF/PET/Python/dates1971_noleap.xlsx')
+month_noleap = dates_no_leap.Month 
+year_noleap = dates_no_leap.Year
+julian_days_no_leap = dates_no_leap.Julian
+y_grid = np.arange(0,6)
+x_grid = np.arange(0,6)
+julian_days_n = np.arange(0,len(julian_days))
+
+# Import data from the RCM, setting up the models
+tas_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/it/') if filename.startswith('tas_EUR') and filename.endswith('all.nc')]
+tasmax_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/it/') if filename.startswith('tasmax_EUR') and filename.endswith('all.nc')]
+tasmin_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/it/') if filename.startswith('tasmin_EUR') and filename.endswith('all.nc')]
+sfcWnd_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/it/') if filename.startswith('sfcWind_EUR') and filename.endswith('all.nc')]
+sund_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/it/') if filename.startswith('sund_EUR') and filename.endswith('all.nc')]
+hurs_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/it/') if filename.startswith('hurs_EUR') and filename.endswith('all.nc')]
+
+print('tas models:',len(tas_list))
+print('tasmax models:',len(tasmax_list))
+print('tasmin models:',len(tasmin_list))
+print('sfcWnd models:',len(sfcWnd_list))
+print('sund models:',len(sund_list))
+print('hurs models:',len(hurs_list))
+
+
+file_tas =  tas_list[i]
+rcm = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tas)# the rcm in the historical period
+lat_rcm = rcm.variables['lat'][:]
+rcm_tas = rcm.variables['tas'][:,:,:]
+rcm.close()
+len_tas = len(rcm_tas)
+len_data = np.arange(0,len_tas)
+
+
+    #### FOR EACH GRIDCELL IN THE RCM SUBDOMAIN
+    for ii in [0,1,2,3,4,5]:
+        for iii in [0,1,2,3,4,5]:
+            print(ii,',',iii)
+
+
+ref_tas_array_cells = np.empty((36,372,12))
+ref_tas_array_cells[:]=np.nan
+
+### sund """
+
+for i in np.arange(0,7):
+    file_sund = sund_list[i]
+    sund_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sund)
+    rcm_sund = sund_model.variables['sund'][:,:,:]
+    sund_model.close()
+    
+    ref_yrs = year[(year >= 1976) & (year <= 2005)]
+    sund_ref_all_cells = rcm_sund[(year >= 1976) & (year <= 2005)]
+    
+    for n in np.arange(0,len(ref_yrs)):
+        sund_ref[n]=np.mean(sund_ref_all_cells[n,:,:])
+    
+    
+    for m in np.arange(1976,2006):
+        sund_ref_annual[m-1976,i]=np.mean(sund_ref[np.where(ref_yrs==m)])
+            
+for i in np.arange(7,10):
+    file_sund = sund_list[i]
+    sund_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sund)
+    rcm_sund = sund_model.variables['sund'][:,:,:]
+    sund_model.close()
+    
+    ref_yrs = year_noleap[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    sund_ref_all_cells = rcm_sund[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    sund_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        sund_ref[n]=np.mean(sund_ref_all_cells[n,:,:])
+    
+    
+    for m in np.arange(1976,2006):
+        sund_ref_annual[m-1976,i]=np.mean(sund_ref[np.where(ref_yrs==m)])
+
+# Set the reference dataset as i and only doing the job for the remaining models
+for i in np.arange(0,10):
+    ref_tas = tas_list[i]
+    print('Ref. model:',i+1,ref_tas)
+    
+    for ii in np.arange(0,10):
+        if ref_tas==tas_list[ii]:
+            ref_tas_array=ref_tas
+        else:
+            print('Corrected model:', tas_list[ii])
+            ref_tasmin = tasmin_list[i]
+            ref_tasmax = tasmax_list[i]
+            ref_sfcWnd = sfcWnd_list[i]
+            ref_sund = sund_list[i]
+            ref_hurs = hurs_list[i]
+            cor_tas = tas_list[ii]
+            cor_tasmin = tasmin_list[ii]
+            cor_tasmax = tasmax_list[ii]
+            cor_sfcWnd = sfcWnd_list[ii]
+            cor_sund = sund_list[ii]
+            cor_hurs = hurs_list[ii]
+            
+
+            
+        
+        
