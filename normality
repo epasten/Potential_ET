@@ -1,0 +1,387 @@
+import pandas as pd
+import numpy as np
+import netCDF4 as nc 
+import math
+import datetime
+import os
+import matplotlib.pyplot as plt
+
+
+"""
+datasets are stored in:
+tas_ref_annual
+
+
+"""
+
+dates = pd.read_excel('C:/Users/epz/Desktop/UEF/PET/Python/dates1971.xlsx')
+month = dates.Month
+year = dates.Year
+julian_days = dates. Julian
+julian_days = np.array(julian_days)
+dates_no_leap = pd.read_excel('C:/Users/epz/Desktop/UEF/PET/Python/dates1971_noleap.xlsx')
+month_noleap = dates_no_leap.Month 
+year_noleap = dates_no_leap.Year
+julian_days_no_leap = dates_no_leap.Julian
+y_grid = np.arange(0,6)
+x_grid = np.arange(0,6)
+julian_days_n = np.arange(0,len(julian_days))
+
+# Import data from the RCM, setting up the models
+tas_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('tas_EUR') and filename.endswith('all.nc')]
+tasmax_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('tasmax_EUR') and filename.endswith('all.nc')]
+tasmin_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('tasmin_EUR') and filename.endswith('all.nc')]
+sfcWnd_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('sfcWind_EUR') and filename.endswith('all.nc')]
+orog_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('orog_EUR')]
+sund_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('sund_EUR') and filename.endswith('all.nc')]
+hurs_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('hurs_EUR') and filename.endswith('all.nc')]
+
+print('tas models:',len(tas_list))
+print('tasmax models:',len(tasmax_list))
+print('tasmin models:',len(tasmin_list))
+print('sfcWnd models:',len(sfcWnd_list))
+print('orog models:',len(orog_list))
+print('sund models:',len(sund_list))
+print('hurs models:',len(hurs_list))
+
+
+
+### Tas """
+tas_ref_annual=np.zeros([30,10])
+for i in np.arange(0,7):
+    file_tas = tas_list[i]
+    tas_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tas)
+    rcm_tas = tas_model.variables['tas'][:,:,:]
+    tas_model.close()
+    file_tasmax = tasmax_list[i]
+    tasmax_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmax)
+    file_tasmin = tasmin_list[i]
+    tasmin_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmin)
+    file_sfcWnd = sfcWnd_list[i]
+    sfcWnd_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sfcWnd)
+    file_sund = sund_list[i]
+    sund_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sund)
+    file_hurs = hurs_list[i]
+    hurs_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_hurs)
+    
+    ref_yrs = year[(year >= 1976) & (year <= 2005)]
+    tas_ref_all_cells = rcm_tas[(year >= 1976) & (year <= 2005)]
+    tas_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        tas_ref[n]=np.mean(tas_ref_all_cells[n,:,:]-273.15)
+    
+    
+    for m in np.arange(1976,2006):
+        tas_ref_annual[m-1976,i]=np.mean(tas_ref[np.where(ref_yrs==m)])
+            
+for i in np.arange(7,10):
+    file_tas = tas_list[i]
+    tas_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tas)
+    rcm_tas = tas_model.variables['tas'][:,:,:]
+    tas_model.close()
+    file_tasmax = tasmax_list[i]
+    tasmax_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmax)
+    file_tasmin = tasmin_list[i]
+    tasmin_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmin)
+    file_sfcWnd = sfcWnd_list[i]
+    sfcWnd_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sfcWnd)
+    file_sund = sund_list[i]
+    sund_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sund)
+    file_hurs = hurs_list[i]
+    hurs_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_hurs)
+    
+    ref_yrs = year_noleap[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    tas_ref_all_cells = rcm_tas[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    tas_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        tas_ref[n]=np.mean(tas_ref_all_cells[n,:,:]-273.15)
+    
+    
+    for m in np.arange(1976,2006):
+        tas_ref_annual[m-1976,i]=np.mean(tas_ref[np.where(ref_yrs==m)])
+
+    font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+    
+    fig= plt.figure(figsize=(7,7))
+    fontsize=20
+    plt.rc('font', **font)
+        
+    for ii in np.arange(0,10):
+        ref_yrs= np.unique(ref_yrs)
+        plt.plot(ref_yrs,tas_ref_annual[:,ii],label=tas_list[ii])
+    plt.legend(loc=7,bbox_to_anchor=(3.8, 0.6))
+    plt.grid(True)
+    plt.xlabel('Year')
+    plt.ylabel('Annual mean temperature - Celsius')
+    plt.show()
+    #plt.tight_layout
+    #plt.subplots_adjust(right=0.75) 
+    
+    
+### Tasmax """
+tasmax_ref_annual=np.zeros([30,10])
+for i in np.arange(0,7):
+    file_tasmax = tasmax_list[i]
+    tasmax_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmax)
+    rcm_tasmax = tasmax_model.variables['tasmax'][:,:,:]
+    tasmax_model.close()
+    
+    ref_yrs = year[(year >= 1976) & (year <= 2005)]
+    tasmax_ref_all_cells = rcm_tasmax[(year >= 1976) & (year <= 2005)]
+    tasmax_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        tasmax_ref[n]=np.mean(tasmax_ref_all_cells[n,:,:]-273.15)
+    
+    
+    for m in np.arange(1976,2006):
+        tasmax_ref_annual[m-1976,i]=np.mean(tasmax_ref[np.where(ref_yrs==m)])
+            
+for i in np.arange(7,10):
+    file_tasmax = tasmax_list[i]
+    tasmax_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmax)
+    rcm_tasmax = tasmax_model.variables['tasmax'][:,:,:]
+    tasmax_model.close()
+    
+    ref_yrs = year_noleap[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    tasmax_ref_all_cells = rcm_tasmax[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    tasmax_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        tasmax_ref[n]=np.mean(tasmax_ref_all_cells[n,:,:]-273.15)
+    
+    
+    for m in np.arange(1976,2006):
+        tasmax_ref_annual[m-1976,i]=np.mean(tasmax_ref[np.where(ref_yrs==m)])
+
+    font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+    
+    fig= plt.figure(figsize=(7,7))
+    fontsize=20
+    plt.rc('font', **font)
+        
+    for ii in np.arange(0,10):
+        ref_yrs= np.unique(ref_yrs)
+        plt.plot(ref_yrs,tasmax_ref_annual[:,ii],label=tasmax_list[ii])
+    plt.legend(loc=7,bbox_to_anchor=(3.8, 0.6))
+    plt.grid(True)
+    plt.xlabel('Year')
+    plt.ylabel('Annual mean Max. temperature - Celsius')
+    plt.show()
+    #plt.tight_layout
+    #plt.subplots_adjust(right=0.75) 
+    
+    
+### Tasmin """
+tasmin_ref_annual=np.zeros([30,10])
+for i in np.arange(0,7):
+    file_tasmin = tasmin_list[i]
+    tasmin_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmin)
+    rcm_tasmin = tasmin_model.variables['tasmin'][:,:,:]
+    tasmin_model.close()
+    
+    ref_yrs = year[(year >= 1976) & (year <= 2005)]
+    tasmin_ref_all_cells = rcm_tasmin[(year >= 1976) & (year <= 2005)]
+    tasmin_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        tasmin_ref[n]=np.mean(tasmin_ref_all_cells[n,:,:]-273.15)
+    
+    
+    for m in np.arange(1976,2006):
+        tasmin_ref_annual[m-1976,i]=np.mean(tasmin_ref[np.where(ref_yrs==m)])
+            
+for i in np.arange(7,10):
+    file_tasmin = tasmin_list[i]
+    tasmin_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmin)
+    rcm_tasmin = tasmin_model.variables['tasmin'][:,:,:]
+    tasmin_model.close()
+    
+    ref_yrs = year_noleap[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    tasmin_ref_all_cells = rcm_tasmin[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    tasmin_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        tasmin_ref[n]=np.mean(tasmin_ref_all_cells[n,:,:]-273.15)
+    
+    
+    for m in np.arange(1976,2006):
+        tasmin_ref_annual[m-1976,i]=np.mean(tasmin_ref[np.where(ref_yrs==m)])
+
+    font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+    
+    fig= plt.figure(figsize=(7,7))
+    fontsize=20
+    plt.rc('font', **font)
+        
+    for ii in np.arange(0,10):
+        ref_yrs= np.unique(ref_yrs)
+        plt.plot(ref_yrs,tasmin_ref_annual[:,ii],label=tasmin_list[ii])
+    plt.legend(loc=7,bbox_to_anchor=(3.8, 0.6))
+    plt.grid(True)
+    plt.xlabel('Year')
+    plt.ylabel('Annual mean Min. temperature - Celsius')
+    plt.show()
+    #plt.tight_layout
+    #plt.subplots_adjust(right=0.75) 
+
+### sfcWnd """
+sfcWnd_ref_annual=np.zeros([30,10])
+for i in np.arange(0,7):
+    file_sfcWnd = sfcWnd_list[i]
+    sfcWnd_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sfcWnd)
+    rcm_sfcWnd = sfcWnd_model.variables['sfcWind'][:,:,:]
+    sfcWnd_model.close()
+    
+    ref_yrs = year[(year >= 1976) & (year <= 2005)]
+    sfcWnd_ref_all_cells = rcm_sfcWnd[(year >= 1976) & (year <= 2005)]
+    sfcWnd_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        sfcWnd_ref[n]=np.mean(sfcWnd_ref_all_cells[n,:,:])
+    
+    
+    for m in np.arange(1976,2006):
+        sfcWnd_ref_annual[m-1976,i]=np.mean(sfcWnd_ref[np.where(ref_yrs==m)])
+            
+for i in np.arange(7,10):
+    file_sfcWnd = sfcWnd_list[i]
+    sfcWnd_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sfcWnd)
+    rcm_sfcWnd = sfcWnd_model.variables['sfcWind'][:,:,:]
+    sfcWnd_model.close()
+    
+    ref_yrs = year_noleap[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    sfcWnd_ref_all_cells = rcm_sfcWnd[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    sfcWnd_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        sfcWnd_ref[n]=np.mean(sfcWnd_ref_all_cells[n,:,:])
+    
+    
+    for m in np.arange(1976,2006):
+        sfcWnd_ref_annual[m-1976,i]=np.mean(sfcWnd_ref[np.where(ref_yrs==m)])
+
+    font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+    
+    fig= plt.figure(figsize=(7,7))
+    fontsize=20
+    plt.rc('font', **font)
+        
+    for ii in np.arange(0,10):
+        ref_yrs= np.unique(ref_yrs)
+        plt.plot(ref_yrs,sfcWnd_ref_annual[:,ii],label=sfcWnd_list[ii])
+    plt.legend(loc=7,bbox_to_anchor=(3.8, 0.6))
+    plt.grid(True)
+    plt.xlabel('Year')
+    plt.ylabel('Annual mean surface wind speed - m/s')
+    plt.show()
+    #plt.tight_layout
+    #plt.subplots_adjust(right=0.75) 
+    
+### hurs """
+hurs_ref_annual=np.zeros([30,10])
+for i in np.arange(0,7):
+    file_hurs = hurs_list[i]
+    hurs_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_hurs)
+    rcm_hurs = hurs_model.variables['hurs'][:,:,:]
+    hurs_model.close()
+    
+    ref_yrs = year[(year >= 1976) & (year <= 2005)]
+    hurs_ref_all_cells = rcm_hurs[(year >= 1976) & (year <= 2005)]
+    hurs_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        hurs_ref[n]=np.mean(hurs_ref_all_cells[n,:,:])
+    
+    
+    for m in np.arange(1976,2006):
+        hurs_ref_annual[m-1976,i]=np.mean(hurs_ref[np.where(ref_yrs==m)])
+            
+for i in np.arange(7,10):
+    file_hurs = hurs_list[i]
+    hurs_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_hurs)
+    rcm_hurs = hurs_model.variables['hurs'][:,:,:]
+    hurs_model.close()
+    
+    ref_yrs = year_noleap[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    hurs_ref_all_cells = rcm_hurs[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    hurs_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        hurs_ref[n]=np.mean(hurs_ref_all_cells[n,:,:])
+    
+    
+    for m in np.arange(1976,2006):
+        hurs_ref_annual[m-1976,i]=np.mean(hurs_ref[np.where(ref_yrs==m)])
+
+    font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+    
+    fig= plt.figure(figsize=(7,7))
+    fontsize=20
+    plt.rc('font', **font)
+        
+    for ii in np.arange(0,10):
+        ref_yrs= np.unique(ref_yrs)
+        plt.plot(ref_yrs,hurs_ref_annual[:,ii],label=hurs_list[ii])
+    plt.legend(loc=7,bbox_to_anchor=(3.8, 0.6))
+    plt.grid(True)
+    plt.xlabel('Year')
+    plt.ylabel('Annual mean relative humidity - %')
+    plt.show()
+    #plt.tight_layout
+    #plt.subplots_adjust(right=0.75) 
+    
+### sund """
+sund_ref_annual=np.zeros([30,10])
+for i in np.arange(0,7):
+    file_sund = sund_list[i]
+    sund_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sund)
+    rcm_sund = sund_model.variables['sund'][:,:,:]
+    sund_model.close()
+    
+    ref_yrs = year[(year >= 1976) & (year <= 2005)]
+    sund_ref_all_cells = rcm_sund[(year >= 1976) & (year <= 2005)]
+    sund_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        sund_ref[n]=np.mean(sund_ref_all_cells[n,:,:])
+    
+    
+    for m in np.arange(1976,2006):
+        sund_ref_annual[m-1976,i]=np.mean(sund_ref[np.where(ref_yrs==m)])
+            
+for i in np.arange(7,10):
+    file_sund = sund_list[i]
+    sund_model = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sund)
+    rcm_sund = sund_model.variables['sund'][:,:,:]
+    sund_model.close()
+    
+    ref_yrs = year_noleap[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    sund_ref_all_cells = rcm_sund[(year_noleap >= 1976) & (year_noleap <= 2005)]
+    sund_ref=np.zeros([len(ref_yrs)])
+    for n in np.arange(0,len(ref_yrs)):
+        sund_ref[n]=np.mean(sund_ref_all_cells[n,:,:])
+    
+    
+    for m in np.arange(1976,2006):
+        sund_ref_annual[m-1976,i]=np.mean(sund_ref[np.where(ref_yrs==m)])
+
+    font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+    
+    fig= plt.figure(figsize=(7,7))
+    fontsize=20
+    plt.rc('font', **font)
+        
+    for ii in np.arange(0,10):
+        ref_yrs= np.unique(ref_yrs)
+        plt.plot(ref_yrs,sund_ref_annual[:,ii],label=sund_list[ii])
+    plt.legend(loc=7,bbox_to_anchor=(3.8, 0.6))
+    plt.grid(True)
+    plt.xlabel('Year')
+    plt.ylabel('Annual mean daily hours of sunshine - hours')
+    plt.show()
+    #plt.tight_layout
+    #plt.subplots_adjust(right=0.75) 
