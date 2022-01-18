@@ -5783,7 +5783,7 @@ for i in no_yrs:
     annual_sund_sp[i,2] = np.mean(sund_sp_ichec_hirham[i,:,:])
     annual_sund_sp[i,3] = np.mean(sund_sp_ichec_racmo[i,:,:])
     annual_sund_sp[i,4] = np.mean(sund_sp_ichec_rca[i,:,:])
-    annual_sund_sp[i,5] = np.mean(sund_sp_mpi_hirham[i,:,:])*8
+    annual_sund_sp[i,5] = np.mean(sund_sp_mpi_hirham[i,:,:])*8 # based on DMI comments
     annual_sund_sp[i,6] = np.mean(sund_sp_mpi_rca[i,:,:])
     annual_sund_sp[i,7] = np.mean(sund_sp_noresm_hirham[i,:,:])
     annual_sund_sp[i,8] = np.mean(sund_sp_noresm_racmo[i,:,:])
