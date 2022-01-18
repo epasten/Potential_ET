@@ -4990,7 +4990,7 @@ for i in no_yrs:
     annual_sund_at[i,2] = np.mean(sund_at_ichec_hirham[i,:,:])
     annual_sund_at[i,3] = np.mean(sund_at_ichec_racmo[i,:,:])
     annual_sund_at[i,4] = np.mean(sund_at_ichec_rca[i,:,:])
-    annual_sund_at[i,5] = np.mean(sund_at_mpi_hirham[i,:,:])
+    annual_sund_at[i,5] = np.mean(sund_at_mpi_hirham[i,:,:])*8
     annual_sund_at[i,6] = np.mean(sund_at_mpi_rca[i,:,:])
     annual_sund_at[i,7] = np.mean(sund_at_noresm_hirham[i,:,:])
     annual_sund_at[i,8] = np.mean(sund_at_noresm_racmo[i,:,:])
@@ -5103,7 +5103,7 @@ for i in no_yrs:
     annual_sund_dk[i,2] = np.mean(sund_dk_ichec_hirham[i,:,:])
     annual_sund_dk[i,3] = np.mean(sund_dk_ichec_racmo[i,:,:])
     annual_sund_dk[i,4] = np.mean(sund_dk_ichec_rca[i,:,:])
-    annual_sund_dk[i,5] = np.mean(sund_dk_mpi_hirham[i,:,:])
+    annual_sund_dk[i,5] = np.mean(sund_dk_mpi_hirham[i,:,:])*8
     annual_sund_dk[i,6] = np.mean(sund_dk_mpi_rca[i,:,:])
     annual_sund_dk[i,7] = np.mean(sund_dk_noresm_hirham[i,:,:])
     annual_sund_dk[i,8] = np.mean(sund_dk_noresm_racmo[i,:,:])
@@ -5199,7 +5199,7 @@ for i in no_yrs:
     annual_sund_dl[i,2] = np.mean(sund_dl_ichec_hirham[i,:,:])
     annual_sund_dl[i,3] = np.mean(sund_dl_ichec_racmo[i,:,:])
     annual_sund_dl[i,4] = np.mean(sund_dl_ichec_rca[i,:,:])
-    annual_sund_dl[i,5] = np.mean(sund_dl_mpi_hirham[i,:,:])
+    annual_sund_dl[i,5] = np.mean(sund_dl_mpi_hirham[i,:,:])*8
     annual_sund_dl[i,6] = np.mean(sund_dl_mpi_rca[i,:,:])
     annual_sund_dl[i,7] = np.mean(sund_dl_noresm_hirham[i,:,:])
     annual_sund_dl[i,8] = np.mean(sund_dl_noresm_racmo[i,:,:])
@@ -5296,7 +5296,7 @@ for i in no_yrs:
     annual_sund_fi[i,2] = np.mean(sund_fi_ichec_hirham[i,:,:])
     annual_sund_fi[i,3] = np.mean(sund_fi_ichec_racmo[i,:,:])
     annual_sund_fi[i,4] = np.mean(sund_fi_ichec_rca[i,:,:])
-    annual_sund_fi[i,5] = np.mean(sund_fi_mpi_hirham[i,:,:])
+    annual_sund_fi[i,5] = np.mean(sund_fi_mpi_hirham[i,:,:])*8
     annual_sund_fi[i,6] = np.mean(sund_fi_mpi_rca[i,:,:])
     annual_sund_fi[i,7] = np.mean(sund_fi_noresm_hirham[i,:,:])
     annual_sund_fi[i,8] = np.mean(sund_fi_noresm_racmo[i,:,:])
@@ -5394,7 +5394,7 @@ for i in no_yrs:
     annual_sund_fr[i,2] = np.mean(sund_fr_ichec_hirham[i,:,:])
     annual_sund_fr[i,3] = np.mean(sund_fr_ichec_racmo[i,:,:])
     annual_sund_fr[i,4] = np.mean(sund_fr_ichec_rca[i,:,:])
-    annual_sund_fr[i,5] = np.mean(sund_fr_mpi_hirham[i,:,:])
+    annual_sund_fr[i,5] = np.mean(sund_fr_mpi_hirham[i,:,:])*8
     annual_sund_fr[i,6] = np.mean(sund_fr_mpi_rca[i,:,:])
     annual_sund_fr[i,7] = np.mean(sund_fr_noresm_hirham[i,:,:])
     annual_sund_fr[i,8] = np.mean(sund_fr_noresm_racmo[i,:,:])
@@ -5492,7 +5492,7 @@ for i in no_yrs:
     annual_sund_gr[i,2] = np.mean(sund_gr_ichec_hirham[i,:,:])
     annual_sund_gr[i,3] = np.mean(sund_gr_ichec_racmo[i,:,:])
     annual_sund_gr[i,4] = np.mean(sund_gr_ichec_rca[i,:,:])
-    annual_sund_gr[i,5] = np.mean(sund_gr_mpi_hirham[i,:,:])
+    annual_sund_gr[i,5] = np.mean(sund_gr_mpi_hirham[i,:,:])*8
     annual_sund_gr[i,6] = np.mean(sund_gr_mpi_rca[i,:,:])
     annual_sund_gr[i,7] = np.mean(sund_gr_noresm_hirham[i,:,:])
     annual_sund_gr[i,8] = np.mean(sund_gr_noresm_racmo[i,:,:])
@@ -5589,7 +5589,7 @@ for i in no_yrs:
     annual_sund_it[i,2] = np.mean(sund_it_ichec_hirham[i,:,:])
     annual_sund_it[i,3] = np.mean(sund_it_ichec_racmo[i,:,:])
     annual_sund_it[i,4] = np.mean(sund_it_ichec_rca[i,:,:])
-    annual_sund_it[i,5] = np.mean(sund_it_mpi_hirham[i,:,:])
+    annual_sund_it[i,5] = np.mean(sund_it_mpi_hirham[i,:,:])*8
     annual_sund_it[i,6] = np.mean(sund_it_mpi_rca[i,:,:])
     annual_sund_it[i,7] = np.mean(sund_it_noresm_hirham[i,:,:])
     annual_sund_it[i,8] = np.mean(sund_it_noresm_racmo[i,:,:])
@@ -5686,7 +5686,7 @@ for i in no_yrs:
     annual_sund_ro[i,2] = np.mean(sund_ro_ichec_hirham[i,:,:])
     annual_sund_ro[i,3] = np.mean(sund_ro_ichec_racmo[i,:,:])
     annual_sund_ro[i,4] = np.mean(sund_ro_ichec_rca[i,:,:])
-    annual_sund_ro[i,5] = np.mean(sund_ro_mpi_hirham[i,:,:])
+    annual_sund_ro[i,5] = np.mean(sund_ro_mpi_hirham[i,:,:])*8
     annual_sund_ro[i,6] = np.mean(sund_ro_mpi_rca[i,:,:])
     annual_sund_ro[i,7] = np.mean(sund_ro_noresm_hirham[i,:,:])
     annual_sund_ro[i,8] = np.mean(sund_ro_noresm_racmo[i,:,:])
@@ -5783,7 +5783,7 @@ for i in no_yrs:
     annual_sund_sp[i,2] = np.mean(sund_sp_ichec_hirham[i,:,:])
     annual_sund_sp[i,3] = np.mean(sund_sp_ichec_racmo[i,:,:])
     annual_sund_sp[i,4] = np.mean(sund_sp_ichec_rca[i,:,:])
-    annual_sund_sp[i,5] = np.mean(sund_sp_mpi_hirham[i,:,:])
+    annual_sund_sp[i,5] = np.mean(sund_sp_mpi_hirham[i,:,:])*8
     annual_sund_sp[i,6] = np.mean(sund_sp_mpi_rca[i,:,:])
     annual_sund_sp[i,7] = np.mean(sund_sp_noresm_hirham[i,:,:])
     annual_sund_sp[i,8] = np.mean(sund_sp_noresm_racmo[i,:,:])
@@ -5879,7 +5879,7 @@ for i in no_yrs:
     annual_sund_uk[i,2] = np.mean(sund_uk_ichec_hirham[i,:,:])
     annual_sund_uk[i,3] = np.mean(sund_uk_ichec_racmo[i,:,:])
     annual_sund_uk[i,4] = np.mean(sund_uk_ichec_rca[i,:,:])
-    annual_sund_uk[i,5] = np.mean(sund_uk_mpi_hirham[i,:,:])
+    annual_sund_uk[i,5] = np.mean(sund_uk_mpi_hirham[i,:,:])*8
     annual_sund_uk[i,6] = np.mean(sund_uk_mpi_rca[i,:,:])
     annual_sund_uk[i,7] = np.mean(sund_uk_noresm_hirham[i,:,:])
     annual_sund_uk[i,8] = np.mean(sund_uk_noresm_racmo[i,:,:])
@@ -6283,7 +6283,7 @@ axs[1,1].legend(loc='lower right',fontsize=9)
 axs[1,1].set_xlim(1970,2100)
 axs[1, 1].set_xlabel('Year')
 axs[1,1].grid(True)
-fig.savefig('C:/Users/epz/Desktop/UEF/PET/CMs/elev_bias_annual_ts_at.tiff', dpi=200) 
+fig.savefig('C:/Users/epz/Desktop/UEF/PET/CMs/elev_bias_annual_ts_at.png', dpi=200) 
 
 
 ####    DK ####
@@ -6359,7 +6359,7 @@ axs[1,1].legend(loc='lower right',fontsize=9)
 axs[1,1].set_xlim(1970,2100)
 axs[1, 1].set_xlabel('Year')
 axs[1,1].grid(True)
-fig.savefig('C:/Users/epz/Desktop/UEF/PET/CMs/elev_bias_annual_ts_dk.tiff', dpi=200) 
+fig.savefig('C:/Users/epz/Desktop/UEF/PET/CMs/elev_bias_annual_ts_dk.png', dpi=200) 
 
 
 ####    DL ####
@@ -7048,4 +7048,3 @@ annual_tas_all = np.append(annual_tas_all,annual_tas_uk_new,axis=0)
     
 
 np.savetxt('C:/Users/epz/Desktop/UEF/PET/Python/Outputs/annual_tas_all.csv',annual_tas_all, fmt='%s', delimiter=',', header=', '.join(headers), comments='')
-
