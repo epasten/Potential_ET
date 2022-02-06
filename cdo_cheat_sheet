@@ -1,0 +1,190 @@
+# CDO cheat sheet for epasten
+
+CDO loops & more
+
+You can use '&' at the end of the command line if you want to run the command in the background
+
+
+1) Get the annual time steps for the reference and future periods
+
+for file in *annual.nc;do cdo seltimestep,10/39 "$file" "1981-2010$file"; cdo seltimestep,40/69 "$file" "2011-2040$file"; cdo seltimestep,70/99 "$file" "2041-2070$file"; cdo seltimestep,100/129 "$file" "2071-2100$file"; done
+
+2) Run the 30 year mean
+
+for file in *.nc;do cdo runmean,30 "$file" "mean$file"; done
+
+3) set missing value to NaN
+
+for file in *.nc; do cdo -setmissval,NaN "$file" "result/$file"; done
+
+
+for file in *.nc; do cdo -setmissval,NaN "$file" "result/$file"; done
+
+
+
+4) Extracting the seasonal nc files from a NaN .nc
+
+cdo splitseas infile.nc outfile_name-
+
+4.1) for a group of files
+
+for file in *.nc; do cdo splitseas "$file" "seasons/$file-"; done
+
+5) changing the start date of a nc
+
+cdo setreftime,1971-01-01,00:00:00 -settaxis,1971-01-01,00:00:00 infile.nc outfile.nc
+
+for file in *.nc; do cdo setreftime,1971-01-01,00:00:00 -settaxis,1971-01-01,00:00:00 "$file" "$file-one.nc"; done
+
+6) change the name of a group of files
+
+for i in *.nc; do mv $i ${i//NaN.nc-one/NaN}; done
+
+7) Annual accum precipitation
+
+for i in *.*; do cdo yearsum "$i" "folder/$iout"; done
+
+8) Set the global attributes
+
+for i in *.nc; do cdo setattribute,comment="Bias corrected by GEUS using DBS: Double Gamma distribution with a cutoff in the 90th percentile" "$i" test1.nc; cdo setattribute,contact="tso@geus.dk; epz@geus.dk" test1.nc "atts/$i"; rm test1.nc; done
+for i in *.nc; do cdo setattribute,comment="Bias corrected by GEUS using DBS: Normal distribution" "$i" test1.nc; cdo setattribute,contact="tso@geus.dk; epz@geus.dk" test1.nc "atts/$i"; rm test1.nc; done
+
+for i in *.nc; do cdo setattribute,comment="Estimated using the Oudin formula with the climate model temperature as input" "$i" test1.nc; cdo setattribute,contact="tso@geus.dk; epz@geus.dk" test1.nc "atts/$i"; rm test1.nc; done
+
+for i in pr*.nc; do cdo setattribute,units="mm/day" $i $i; done
+
+cdo -setunit,'mm/day' file file1
+
+9) Ensemble mean
+
+cdo ensmean ifile1 ifile2 ifile3 ifile4 ifile5 ifile6 ifile7 ifile8 ifile9 ifile10 ofile
+
+
+10) Download a wget .sh file using unix from CORDEX ESGF (-H is to get the questions for login and password)
+
+cd /mnt/c/
+bash wget.sh -H
+https://esg-dn1.nsc.liu.se/esgf-idp/openid/ernestopasten
+https://esg-dn1.nsc.liu.se/esgf-idp/openid/erpaza
+
+11) changing all values below a threshold
+
+cdo -expr,'temp=(temp>270.0)?5.0:temp;' temp.nc maskedTemp.nc
+
+
+12) Cropping the netcdf file to a defined lat and lon box
+
+cdo sellonlatbox,lon1,lon2,lat1,lat2 infile outfile
+
+To have the same extent as DMI's use:
+cdo sellonlatbox,8.1526,15.1601,54.3,57.80, infile outfile
+
+And for Bornholm use:
+
+
+13) Steps to get the monthly change for the end of the century compared to the referecne periods
+
+for i in *.nc; do cdo selyear,1981/2010 $i ref/$i; cdo selyear,2071/2100 $i end_century/$i; done
+
+14) mask ensemble using mask file and savin in a certain folder (same extent from the simulation file and the mask file)
+
+for i in pr_*.nc; do cdo div $i /mnt/e/Cordex_DK/NIFA/Midtsjaelland/pr_mask_midtsjaelland.nc /mnt/e/Cordex_DK/NIFA/Midtsjaelland/masked_$i; done
+
+15) From a group of files with the monthly time series, extract the accumulated pet/precip for month in each year and stores it in an 'annual' folder, this is run from the folder above the 'monthly' folder
+
+for i in *.nc; do mkdir monthly/1_jan/annual; cdo yearsum monthly/1_jan/$i monthly/1_jan/annual/$i; 
+mkdir monthly/2_feb/annual; cdo yearsum monthly/2_feb/$i monthly/2_feb/annual/$i; 
+mkdir monthly/3_mar/annual; cdo yearsum monthly/3_mar/$i monthly/3_mar/annual/$i; 
+mkdir monthly/4_apr/annual; cdo yearsum monthly/4_apr/$i monthly/4_apr/annual/$i; 
+mkdir monthly/5_may/annual; cdo yearsum monthly/5_may/$i monthly/5_may/annual/$i; 
+mkdir monthly/6_jun/annual; cdo yearsum monthly/6_jun/$i monthly/6_jun/annual/$i;
+mkdir monthly/7_jul/annual; cdo yearsum monthly/7_jul/$i monthly/7_jul/annual/$i;
+mkdir monthly/8_aug/annual; cdo yearsum monthly/8_aug/$i monthly/8_aug/annual/$i;
+mkdir monthly/9_sep/annual; cdo yearsum monthly/9_sep/$i monthly/9_sep/annual/$i;
+mkdir monthly/10_oct/annual; cdo yearsum monthly/10_oct/$i monthly/10_oct/annual/$i;
+mkdir monthly/11_nov/annual; cdo yearsum monthly/11_nov/$i monthly/11_nov/annual/$i;
+mkdir monthly/12_dec/annual; cdo yearsum monthly/12_dec/$i monthly/12_dec/annual/$i;
+done
+
+16) Get the mean from the set of files obtained in 15)
+
+for i in *.nc; do mkdir monthly/1_jan/annual/mean; cdo runmean,30 monthly/1_jan/annual/$i monthly/1_jan/annual/mean/$i; 
+mkdir monthly/2_feb/annual/mean; cdo runmean,30 monthly/2_feb/annual/$i monthly/2_feb/annual/mean/$i; 
+mkdir monthly/3_mar/annual/mean; cdo runmean,30 monthly/3_mar/annual/$i monthly/3_mar/annual/mean/$i; 
+mkdir monthly/4_apr/annual/mean; cdo runmean,30 monthly/4_apr/annual/$i monthly/4_apr/annual/mean/$i; 
+mkdir monthly/5_may/annual/mean; cdo runmean,30 monthly/5_may/annual/$i monthly/5_may/annual/mean/$i; 
+mkdir monthly/6_jun/annual/mean; cdo runmean,30 monthly/6_jun/annual/$i monthly/6_jun/annual/mean/$i; 
+mkdir monthly/7_jul/annual/mean; cdo runmean,30 monthly/7_jul/annual/$i monthly/7_jul/annual/mean/$i; 
+mkdir monthly/8_aug/annual/mean; cdo runmean,30 monthly/8_aug/annual/$i monthly/8_aug/annual/mean/$i; 
+mkdir monthly/9_sep/annual/mean; cdo runmean,30 monthly/9_sep/annual/$i monthly/9_sep/annual/mean/$i; 
+mkdir monthly/10_oct/annual/mean; cdo runmean,30 monthly/10_oct/annual/$i monthly/10_oct/annual/mean/$i; 
+mkdir monthly/11_nov/annual/mean; cdo runmean,30 monthly/11_nov/annual/$i monthly/11_nov/annual/mean/$i; 
+mkdir monthly/12_dec/annual/mean; cdo runmean,30 monthly/12_dec/annual/$i monthly/12_dec/annual/mean/$i; 
+done
+
+17) As 16) but for MOHC models, with only 29 years
+
+for i in masked_pr_EUR-11_MOHC*.nc; do mkdir monthly/1_jan/annual/mean; cdo runmean,29 monthly/1_jan/annual/$i monthly/1_jan/annual/mean/$i; 
+mkdir monthly/2_feb/annual/mean; cdo runmean,29 monthly/2_feb/annual/$i monthly/2_feb/annual/mean/$i; 
+mkdir monthly/3_mar/annual/mean; cdo runmean,29 monthly/3_mar/annual/$i monthly/3_mar/annual/mean/$i; 
+mkdir monthly/4_apr/annual/mean; cdo runmean,29 monthly/4_apr/annual/$i monthly/4_apr/annual/mean/$i; 
+mkdir monthly/5_may/annual/mean; cdo runmean,29 monthly/5_may/annual/$i monthly/5_may/annual/mean/$i; 
+mkdir monthly/6_jun/annual/mean; cdo runmean,29 monthly/6_jun/annual/$i monthly/6_jun/annual/mean/$i; 
+mkdir monthly/7_jul/annual/mean; cdo runmean,29 monthly/7_jul/annual/$i monthly/7_jul/annual/mean/$i; 
+mkdir monthly/8_aug/annual/mean; cdo runmean,29 monthly/8_aug/annual/$i monthly/8_aug/annual/mean/$i; 
+mkdir monthly/9_sep/annual/mean; cdo runmean,29 monthly/9_sep/annual/$i monthly/9_sep/annual/mean/$i; 
+mkdir monthly/10_oct/annual/mean; cdo runmean,29 monthly/10_oct/annual/$i monthly/10_oct/annual/mean/$i; 
+mkdir monthly/11_nov/annual/mean; cdo runmean,29 monthly/11_nov/annual/$i monthly/11_nov/annual/mean/$i; 
+mkdir monthly/12_dec/annual/mean; cdo runmean,29 monthly/12_dec/annual/$i monthly/12_dec/annual/mean/$i; 
+done
+
+18) as 17) but for december and MOHC rcp45
+for i in masked masked_pr_EUR-11_MOHC-HadGEM2-ES_rcp45*.nc; do cdo runmean,28 monthly/12_dec/annual/$i monthly/12_dec/annual/mean/$i; done
+
+19) Extrancting the annual monthly data to a txt file
+
+for i in *.nc; do cdo outputtab,value -fldmean -yearmean monthly/1_jan/annual/$i > monthly/1_jan/annual/$i.txt;done
+cdo outputtab,value -fldmean -yearmean monthly/2_feb/annual/$i > monthly/2_feb/annual/$i.txt;
+cdo outputtab,value -fldmean -yearmean monthly/3_mar/annual/$i > monthly/3_mar/annual/$i.txt;
+cdo outputtab,value -fldmean -yearmean monthly/4_apr/annual/$i > monthly/4_apr/annual/$i.txt;
+cdo outputtab,value -fldmean -yearmean monthly/5_may/annual/$i > monthly/5_may/annual/$i.txt;
+cdo outputtab,value -fldmean -yearmean monthly/6_jun/annual/$i > monthly/6_jun/annual/$i.txt;
+cdo outputtab,value -fldmean -yearmean monthly/7_jul/annual/$i > monthly/7_jul/annual/$i.txt;
+cdo outputtab,value -fldmean -yearmean monthly/8_aug/annual/$i > monthly/8_aug/annual/$i.txt;
+cdo outputtab,value -fldmean -yearmean monthly/9_sep/annual/$i > monthly/9_sep/annual/$i.txt;
+cdo outputtab,value -fldmean -yearmean monthly/10_oct/annual/$i > monthly/10_oct/annual/$i.txt;
+cdo outputtab,value -fldmean -yearmean monthly/11_nov/annual/$i > monthly/11_nov/annual/$i.txt;
+cdo outputtab,value -fldmean -yearmean monthly/12_dec/annual/$i > monthly/12_dec/annual/$i.txt;
+done
+
+20) Getting the monthly sum of a timeseries in outputtabfile bbregginning from a complete timeseries
+
+cdo monsum infile outfile
+cdo ymonmean outfile outfile1
+cdo outputtab,value -fldmean outfile1 > outfile.txt
+
+21) Merging a lot of files: name the first file as 1.nc
+
+for i in tas_*.nc;
+do cdo mergetime 1.nc $i 2.nc;
+rm 1.nc;
+cp 2.nc 1.nc;
+rm 2.nc;
+done
+
+22) Steps to BC
+a) crop to area
+b) remap
+c) BC
+
+23) Getting the maximum daily precipitation from a netcdf time series
+cdo eca_rx1day infile outfile
+
+24) Estimating percentiles in a netcdf time series
+cdo timpctl,90 infile -timmin infile -timmax infile outfile
+
+25) Extracting the data from a netcdf into a txt
+cdo outputtab,value -fldmean $i > $i.txt
+
+26) Substracting
+cdo subc,273.15 file_in file_out
