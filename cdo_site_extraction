@@ -1,0 +1,85 @@
+# Extraction of the NetCDF files for each study sute
+# For use in CDO - Linux
+
+Coordinates of the extracted sites from the CM for the PET experiment
+6x6 gridcells in each of the sites
+cdo sellonlatbox,lon1,lon2,lat1,lat2, ref_map.nc output_map.nc
+
+
+Linux extraction
+
+
+for i in sund_MPI*.nc; 
+do cdo sellonlatbox,8.166,9.287,55.649,56.224 $i dk/$i;
+cdo sellonlatbox,-1.523,-0.591,51.315,51.829 $i uk/$i; 
+cdo sellonlatbox,-0.158,0.666,41.589,42.420 $i sp/$i;
+cdo sellonlatbox,-1.080,-0.178,44.915,45.477 $i fr/$i;
+cdo sellonlatbox,28.887,29.817,44.884,45.468 $i ro/$i;
+cdo sellonlatbox,12.673,13.520,46.655,47.347 $i at/$i;
+cdo sellonlatbox,7.092,8.092,47.459,48.046 $i dl/$i;
+cdo sellonlatbox,8.879,9.701,39.743,40.354 $i it/$i;
+cdo sellonlatbox,24.650,25.426,34.866,35.494 $i gr/$i;
+cdo sellonlatbox,28.363,29.664,61.248,61.867 $i fi/$i;
+done
+
+for i in sund_EUR-11_*.nc
+do cdo sellonlatbox,8.166,9.287,55.649,56.224 $i dk/$i;
+cdo sellonlatbox,-1.523,-0.591,51.315,51.829 $i uk/$i; 
+cdo sellonlatbox,-0.158,0.666,41.589,42.420 $i sp/$i;
+cdo sellonlatbox,-1.080,-0.178,44.915,45.477 $i fr/$i;
+cdo sellonlatbox,28.887,29.817,44.884,45.468 $i ro/$i;
+cdo sellonlatbox,12.673,13.520,46.655,47.347 $i at/$i;
+cdo sellonlatbox,7.092,8.092,47.459,48.046 $i dl/$i;
+cdo sellonlatbox,8.879,9.701,39.743,40.354 $i it/$i;
+cdo sellonlatbox,24.650,25.426,34.866,35.494 $i gr/$i;
+cdo sellonlatbox,28.363,29.664,61.248,61.867 $i fi/$i;
+done
+
+
+
+for france
+for i in tasmax_*.nc; do ccdo sellonlatbox,-1.080,-0.178,44.915,45.477 $i fr/$i; done &
+
+
+RegCM4-6
+for i in sfcWnd*.nc; 
+do cdo sellonlatbox,12.673,13.709,46.655,47.347 $i at/$i;
+done
+
+
+UK
+-1.523,-0.591,51.315,51.829
+
+DK
+8.166,9.287,55.649,56.224
+
+SP
+-0.158,0.666,41.589,42.420
+
+FR
+-1.080,-0.178,44.985,45.477
+
+RO
+28.887,29.817,44.884,45.468
+
+AT
+12.673,13.509,46.655,47.347
+for i in *.nc; cdo sellonlatbox,12.673,13.509,46.655,47.347 $i at/$i; done &
+
+DL
+7.092,8.092,47.459,48.046
+
+IT
+8.879,9.701,39.743,40.354
+
+GR
+24.650,25.426,34.866,35.494
+
+FI
+28.363,29.664,61.248,61.867
+
+
+
+for i in sund_EUR-11_*.nc
+do cdo sellonlatbox,7.092,8.092,47.459,48.046 $i dl/$i;
+done
