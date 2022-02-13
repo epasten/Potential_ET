@@ -41,7 +41,7 @@ if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
     
-for n_site in np.arange(4,5): 
+for n_site in np.arange(5,10): # change here based on the site to be corrected
     print('Processing data for ', sites_list[n_site])
     # Import data from the RCM, setting up the models
     tas_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/') if filename.startswith('tas_EUR') and filename.endswith('all.nc')]
@@ -196,33 +196,31 @@ for n_site in np.arange(4,5):
                     hurs_ref_month[cell_index,i,n_month-1] = (np.mean(hurs_ref_month_all[:,latg,long]))
     
     
-    # Now Using one model as reference and correcting the remaining models:
-    # delta is obtained as: model - reference
-    corrected_output_tas = np.zeros([10958,6,6])
-    corrected_output_tas_noleap = np.zeros([10950,6,6])
-    correction_deltas_tas = np.zeros([36,10,12])
-    correction_deltas_tasmax = np.zeros([36,10,12])
-    correction_deltas_tasmin = np.zeros([36,10,12])
-    correction_deltas_sfcWind = np.zeros([36,10,12])
-    correction_deltas_sund = np.zeros([36,10,12])
-    correction_deltas_hurs = np.zeros([36,10,12])
-    for ref_mod in np.arange(0,10): #reference model
-        for corr_mod in np.arange(0,10): #correcting all models
-            for n_month in np.arange(0,12):#for each month
-                correction_deltas_tas[:,corr_mod,n_month] = tas_ref_month[:,corr_mod,n_month]-tas_ref_month[:,ref_mod,n_month]
-                correction_deltas_tasmax[:,corr_mod,n_month] = tasmax_ref_month[:,corr_mod,n_month]-tasmax_ref_month[:,ref_mod,n_month]
-                correction_deltas_tasmin[:,corr_mod,n_month] = tasmin_ref_month[:,corr_mod,n_month]-tasmin_ref_month[:,ref_mod,n_month]
-                correction_deltas_sund[:,corr_mod,n_month] = sund_ref_month[:,corr_mod,n_month]-sund_ref_month[:,ref_mod,n_month]
-                correction_deltas_hurs[:,corr_mod,n_month] = hurs_ref_month[:,corr_mod,n_month]-hurs_ref_month[:,ref_mod,n_month]
-                correction_deltas_sfcWind[:,corr_mod,n_month] = sfcWind_ref_month[:,corr_mod,n_month]-sfcWind_ref_month[:,ref_mod,n_month]
-                
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/correction_deltas_tas',correction_deltas_tas)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/correction_deltas_tasmax',correction_deltas_tasmax)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/correction_deltas_tasmin',correction_deltas_tasmin)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/correction_deltas_sfcWind',correction_deltas_sfcWind)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/correction_deltas_sund',correction_deltas_sund)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/correction_deltas_hurs',correction_deltas_hurs)
-    
+        # Now Using one model as reference and correcting the remaining models:
+        # delta is obtained as: model - reference
+        correction_deltas_tas = np.zeros([36,10,12])
+        correction_deltas_tasmax = np.zeros([36,10,12])
+        correction_deltas_tasmin = np.zeros([36,10,12])
+        correction_deltas_sfcWind = np.zeros([36,10,12])
+        correction_deltas_sund = np.zeros([36,10,12])
+        correction_deltas_hurs = np.zeros([36,10,12])
+        for ref_mod in np.arange(0,10): #reference model
+            for corr_mod in np.arange(0,10): #correcting all models
+                for n_month in np.arange(0,12):#for each month
+                    correction_deltas_tas[:,corr_mod,n_month] = tas_ref_month[:,corr_mod,n_month]-tas_ref_month[:,ref_mod,n_month]
+                    correction_deltas_tasmax[:,corr_mod,n_month] = tasmax_ref_month[:,corr_mod,n_month]-tasmax_ref_month[:,ref_mod,n_month]
+                    correction_deltas_tasmin[:,corr_mod,n_month] = tasmin_ref_month[:,corr_mod,n_month]-tasmin_ref_month[:,ref_mod,n_month]
+                    correction_deltas_sund[:,corr_mod,n_month] = sund_ref_month[:,corr_mod,n_month]-sund_ref_month[:,ref_mod,n_month]
+                    correction_deltas_hurs[:,corr_mod,n_month] = hurs_ref_month[:,corr_mod,n_month]-hurs_ref_month[:,ref_mod,n_month]
+                    correction_deltas_sfcWind[:,corr_mod,n_month] = sfcWind_ref_month[:,corr_mod,n_month]-sfcWind_ref_month[:,ref_mod,n_month]
+            
+            np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/tas_correction_deltas_ref'+str(ref_mod),correction_deltas_tas)
+            np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/tasmax_correction_deltas_ref'+str(ref_mod),correction_deltas_tasmax)
+            np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/tasmin_correction_deltas_ref'+str(ref_mod),correction_deltas_tasmin)
+            np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/sfcWind_correction_deltas_ref'+str(ref_mod),correction_deltas_sfcWind)
+            np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/sund_correction_deltas_ref'+str(ref_mod),correction_deltas_sund)
+            np.save('C:/Users/epz/Desktop/UEF/PET/CMs/'+sites_list[n_site]+'/pet/delta/hurs_correction_deltas_ref'+str(ref_mod),correction_deltas_hurs)
+            
 
     print('Estimaion of correction deltas done and saved')           
                 
