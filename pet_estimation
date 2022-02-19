@@ -1,5 +1,6 @@
+"""change /fi/"""
 
-"""PET ESTIMATION using climate model variables (netcdfs) as input) 
+"""PET ESTIMATION 
 
 Definition of the variables
 
@@ -93,13 +94,13 @@ x_grid = np.arange(0,6)
 julian_days_n = np.arange(0,len(julian_days))
 
 # Import data from the RCM, setting up the models
-tas_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('tas_EUR') and filename.endswith('all.nc')]
-tasmax_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('tasmax_EUR') and filename.endswith('all.nc')]
-tasmin_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('tasmin_EUR') and filename.endswith('all.nc')]
-sfcWnd_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('sfcWind_EUR') and filename.endswith('all.nc')]
-orog_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('orog_EUR')]
-sund_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('sund_EUR') and filename.endswith('all.nc')]
-hurs_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/dk/') if filename.startswith('hurs_EUR') and filename.endswith('all.nc')]
+tas_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/fi/') if filename.startswith('tas_EUR') and filename.endswith('all.nc')]
+tasmax_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/fi/') if filename.startswith('tasmax_EUR') and filename.endswith('all.nc')]
+tasmin_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/fi/') if filename.startswith('tasmin_EUR') and filename.endswith('all.nc')]
+sfcWnd_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/fi/') if filename.startswith('sfcWind_EUR') and filename.endswith('all.nc')]
+orog_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/fi/') if filename.startswith('orog_EUR')]
+sund_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/fi/') if filename.startswith('sund_EUR') and filename.endswith('all.nc')]
+hurs_list = [filename for filename in os.listdir('C:/Users/epz/Desktop/UEF/PET/CMs/fi/') if filename.startswith('hurs_EUR') and filename.endswith('all.nc')]
 
 print('tas models:',len(tas_list))
 print('tasmax models:',len(tasmax_list))
@@ -123,6 +124,8 @@ pet_bla_cri = np.zeros([len(julian_days_n),6,6])
 pet_oudin = np.zeros([len(julian_days_n),6,6])
 pet_penman_mon = np.zeros([len(julian_days_n),6,6])
 
+df = pd.DataFrame()
+
 n_models = np.arange(0,7)
 #n_models = [0]#######################################################CHANGE THIS
 for i in n_models:
@@ -136,33 +139,33 @@ for i in n_models:
     model_name = tas_list[i]
     model_name = model_name[3:]
     file_tas =  tas_list[i]
-    rcm = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tas)# the rcm in the historical period
+    rcm = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_tas)# the rcm in the historical period
     lat_rcm = rcm.variables['lat'][:]
     rcm_tas = rcm.variables['tas'][:,:,:]
     rcm.close()
     len_tas = len(rcm_tas)
     len_data = np.arange(0,len_tas)
     file_orog = orog_list[i]
-    rcm_orog_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_orog)
+    rcm_orog_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_orog)
     rcm_orog = rcm_orog_file.variables['orog'][:,:]
     file_tasmin = tasmin_list[i]
-    rcm_tasmin_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmin)
+    rcm_tasmin_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_tasmin)
     rcm_tasmin = rcm_tasmin_file.variables['tasmin'][:,:,:]
     file_tasmax = tasmax_list[i]
-    rcm_tasmax_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmax)
+    rcm_tasmax_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_tasmax)
     rcm_tasmax = rcm_tasmax_file.variables['tasmax'][:,:,:]
     file_hurs = hurs_list[i]
-    rcm_hurs_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_hurs)
+    rcm_hurs_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_hurs)
     rcm_hurs = rcm_hurs_file.variables['hurs'][:,:,:]
     file_sund = sund_list[i]
-    rcm_sund_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sund)
+    rcm_sund_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_sund)
     rcm_sund = rcm_sund_file.variables['sund'][:,:,:]
     file_sfcWind = sfcWnd_list[i]
-    rcm_sfcWind_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sfcWind)
+    rcm_sfcWind_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_sfcWind)
     rcm_sfcWind = rcm_sfcWind_file.variables['sfcWind'][:,:,:]
 
     #### FOR EACH GRIDCELL IN THE RCM SUBDOMAIN
-    for ii in [0,1,2,3,4,5]:
+    for ii in [0,1,2,3,4]:#,5]:
         for iii in [0,1,2,3,4,5]:
             print(ii,',',iii)
             lat_dd = lat_rcm[ii,iii]
@@ -244,7 +247,7 @@ for i in n_models:
 
 # Hargreaves and Samani
                 
-                pet_harsam[nn,ii,iii] = 0.0023*math.sqrt(tasmax-tasmin)*0.408*Ra*(tas+17.8) #mm/day
+                pet_harsam[nn,ii,iii] = 0.0023*math.sqrt(abs(tasmax-tasmin))*0.408*Ra*(tas+17.8) #mm/day
 
 # Makkink
                 
@@ -255,10 +258,14 @@ for i in n_models:
                 #pet_jh[nn,ii,iii] = (0.025*(tas+3)*Ra)/lat_heat
         
 # Turc
-                if RH < 50:
-                    pet_turc[nn,ii,iii] = 0.31*(tas/(tas+15))*(Rns+2.09)*(1+(50-RH)/70)
+                if tas>-15:
+                
+                    if RH < 50:
+                        pet_turc[nn,ii,iii] = 0.31*(tas/(tas+15))*(Rns+2.09)*(1+(50-RH)/70)
+                    else:
+                        pet_turc[nn,ii,iii] =  0.31*(tas/(tas+15))*(Rns+2.09)
                 else:
-                    pet_turc[nn,ii,iii] =  0.31*(tas/(tas+15))*(Rns+2.09)
+                    pet_turc[nn,ii,iii] =  0
 # Oudin
                 if tas>-5:
                     pet_oudin[nn,ii,iii] = 1000*(Ra/(den_wat*lat_heat))*((tas+5)/100)
@@ -284,31 +291,31 @@ for i in n_models:
     pet_penman_mon[pet_penman_mon<0]=0
     
     
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_penman'+model_name+'.npy',pet_penman)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_priest_taylor'+model_name+'.npy',pet_pt)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_hargreaves'+model_name+'.npy',pet_har)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_hamon'+model_name+'.npy',pet_ham)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_har_sam'+model_name+'.npy',pet_harsam)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_makkink'+model_name+'.npy',pet_mak)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_jensen_haise'+model_name+'.npy',pet_jh)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_turc'+model_name+'.npy',pet_turc)
-    #np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_blanney_criddle'+model_name+'.npy',pet_bla_cri)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_oudin'+model_name+'.npy',pet_oudin)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_penman_mon'+model_name+'.npy',pet_penman_mon)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_penman'+model_name+'.npy',pet_penman)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_priest_taylor'+model_name+'.npy',pet_pt)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_hargreaves'+model_name+'.npy',pet_har)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_hamon'+model_name+'.npy',pet_ham)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_har_sam'+model_name+'.npy',pet_harsam)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_makkink'+model_name+'.npy',pet_mak)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_jensen_haise'+model_name+'.npy',pet_jh)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_turc'+model_name+'.npy',pet_turc)
+    #np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_blanney_criddle'+model_name+'.npy',pet_bla_cri)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_oudin'+model_name+'.npy',pet_oudin)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_penman_mon'+model_name+'.npy',pet_penman_mon)
 
 julian_days_noleap_n = np.arange(0,len(julian_days_no_leap))
 #Output arrays:
-pet_penman=np.zeros([len(julian_days_n),6,6])
-pet_pt = np.zeros([len(julian_days_n),6,6])
-pet_har = np.zeros([len(julian_days_n),6,6])
-pet_ham = np.zeros([len(julian_days_n),6,6])
-pet_harsam = np.zeros([len(julian_days_n),6,6])
-pet_mak = np.zeros([len(julian_days_n),6,6])
-pet_jh = np.zeros([len(julian_days_n),6,6])
-pet_turc = np.zeros([len(julian_days_n),6,6])
-pet_bla_cri = np.zeros([len(julian_days_n),6,6])
-pet_oudin = np.zeros([len(julian_days_n),6,6])
-pet_penman_mon = np.zeros([len(julian_days_n),6,6])
+pet_penman=np.zeros([len(julian_days_no_leap),6,6])
+pet_pt = np.zeros([len(julian_days_no_leap),6,6])
+pet_har = np.zeros([len(julian_days_no_leap),6,6])
+pet_ham = np.zeros([len(julian_days_no_leap),6,6])
+pet_harsam = np.zeros([len(julian_days_no_leap),6,6])
+pet_mak = np.zeros([len(julian_days_no_leap),6,6])
+pet_jh = np.zeros([len(julian_days_no_leap),6,6])
+pet_turc = np.zeros([len(julian_days_no_leap),6,6])
+pet_bla_cri = np.zeros([len(julian_days_no_leap),6,6])
+pet_oudin = np.zeros([len(julian_days_no_leap),6,6])
+pet_penman_mon = np.zeros([len(julian_days_no_leap),6,6])
 
 for i in [7,8,9]:
     print(tas_list[i])
@@ -321,33 +328,33 @@ for i in [7,8,9]:
     model_name = tas_list[i]
     model_name = model_name[3:]
     file_tas =  tas_list[i]
-    rcm = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tas)# the rcm in the historical period
+    rcm = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_tas)# the rcm in the historical period
     lat_rcm = rcm.variables['lat'][:]
     rcm_tas = rcm.variables['tas'][:,:,:]
     rcm.close()
     len_tas = len(rcm_tas)
     len_data = np.arange(0,len_tas)
     file_orog = orog_list[i]
-    rcm_orog_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_orog)
+    rcm_orog_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_orog)
     rcm_orog = rcm_orog_file.variables['orog'][:,:]
     file_tasmin = tasmin_list[i]
-    rcm_tasmin_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmin)
+    rcm_tasmin_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_tasmin)
     rcm_tasmin = rcm_tasmin_file.variables['tasmin'][:,:,:]
     file_tasmax = tasmax_list[i]
-    rcm_tasmax_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_tasmax)
+    rcm_tasmax_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_tasmax)
     rcm_tasmax = rcm_tasmax_file.variables['tasmax'][:,:,:]
     file_hurs = hurs_list[i]
-    rcm_hurs_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_hurs)
+    rcm_hurs_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_hurs)
     rcm_hurs = rcm_hurs_file.variables['hurs'][:,:,:]
     file_sund = sund_list[i]
-    rcm_sund_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sund)
+    rcm_sund_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_sund)
     rcm_sund = rcm_sund_file.variables['sund'][:,:,:]
     file_sfcWind = sfcWnd_list[i]
-    rcm_sfcWind_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/dk/'+file_sfcWind)
+    rcm_sfcWind_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_sfcWind)
     rcm_sfcWind = rcm_sfcWind_file.variables['sfcWind'][:,:,:]
 
     #### FOR EACH GRIDCELL IN THE RCM SUBDOMAIN
-    for ii in [0,1,2,3,4,5]:
+    for ii in [0,1,2,3,4]:#,5]:
         for iii in [0,1,2,3,4,5]:
             print(ii,',',iii)
             lat_dd = lat_rcm[ii,iii]
@@ -373,7 +380,7 @@ for i in [7,8,9]:
                 ##Wind correction
                 sfcWind = sfcWind_pre * 4.87 / math.log(678.7-5.42)
                 #print('wind speed:',sfcWind)
-                n_sun = rcm_sund[nn,ii,iii]/3600#####CHECK IF UNITS ARE OK FOR THIS ONE !!!!!!!!!!NPO
+                n_sun = rcm_sund[nn,ii,iii]/3600#changing from seconds to hours
                 #print('sund:',n_sun)
                 
                 # Constants 
@@ -430,7 +437,7 @@ for i in [7,8,9]:
 
 # Hargreaves and Samani
                
-                pet_harsam[nn,ii,iii] = 0.0023*math.sqrt(tasmax-tasmin)*0.408*Ra*(tas+17.8) #mm/day
+                pet_harsam[nn,ii,iii] = 0.0023*math.sqrt(abs(tasmax-tasmin))*0.408*Ra*(tas+17.8) #mm/day
 
 # Makkink
                 
@@ -442,11 +449,14 @@ for i in [7,8,9]:
 
         
 # Turc
+                if tas>-15:
                 
-                if RH < 50:
-                    pet_turc[nn,ii,iii] = 0.31*(tas/(tas+15))*(Rns+2.09)*(1+(50-RH)/70)
+                    if RH < 50:
+                        pet_turc[nn,ii,iii] = 0.31*(tas/(tas+15))*(Rns+2.09)*(1+(50-RH)/70)
+                    else:
+                        pet_turc[nn,ii,iii] =  0.31*(tas/(tas+15))*(Rns+2.09)
                 else:
-                    pet_turc[nn,ii,iii] =  0.31*(tas/(tas+15))*(Rns+2.09)
+                    pet_turc[nn,ii,iii] =  0
 # Oudin
                 
                 if tas>-5:
@@ -470,15 +480,15 @@ for i in [7,8,9]:
     pet_jh[pet_jh<0]=0
     pet_turc[pet_turc<0]=0
     pet_penman_mon[pet_penman_mon<0]=0
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_penman'+model_name+'.npy',pet_penman)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_priest_taylor'+model_name+'.npy',pet_pt)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_hargreaves'+model_name+'.npy',pet_har)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_hamon'+model_name+'.npy',pet_ham)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_har_sam'+model_name+'.npy',pet_harsam)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_makkink'+model_name+'.npy',pet_mak)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_jensen_haise'+model_name+'.npy',pet_jh)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_turc'+model_name+'.npy',pet_turc)
-    #np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_blanney_criddle'+model_name+'.npy',pet_bla_cri)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_oudin'+model_name+'.npy',pet_oudin)
-    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/dk/pet/raw/raw_penman_mon'+model_name+'.npy',pet_penman_mon)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_penman'+model_name+'.npy',pet_penman)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_priest_taylor'+model_name+'.npy',pet_pt)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_hargreaves'+model_name+'.npy',pet_har)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_hamon'+model_name+'.npy',pet_ham)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_har_sam'+model_name+'.npy',pet_harsam)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_makkink'+model_name+'.npy',pet_mak)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_jensen_haise'+model_name+'.npy',pet_jh)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_turc'+model_name+'.npy',pet_turc)
+    #np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_blanney_criddle'+model_name+'.npy',pet_bla_cri)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_oudin'+model_name+'.npy',pet_oudin)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_penman_mon'+model_name+'.npy',pet_penman_mon)
 
