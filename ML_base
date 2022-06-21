@@ -1,0 +1,159 @@
+
+"""ML_hydropower - base ML example
+"""
+
+# ML for hydropower generation based on observed climate
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import netCDF4 as nc 
+import math
+import datetime
+import os
+
+
+dates = pd.read_excel('C:/Users/erpasten/Documents/UEF/PET/Python/dates1971.xlsx')
+month = dates.Month
+year = dates.Year
+julian_days = dates. Julian
+julian_days = np.array(julian_days)
+dates_no_leap = pd.read_excel('C:/Users/erpasten/Documents/UEF/PET/Python/dates1971_noleap.xlsx')
+orog_order =pd.read_excel('C:/Users/erpasten/Documents/UEF/PET/Python/orog_model_read.xlsx')
+orog_i = orog_order.order
+orog_model = orog_order.orog
+month_noleap = dates_no_leap.Month 
+year_noleap = dates_no_leap.Year
+julian_days_no_leap = dates_no_leap.Julian
+y_grid = np.arange(0,6)
+x_grid = np.arange(0,6)
+julian_days_n = np.arange(0,len(julian_days))
+
+# Input data: All raw climate model data
+# Target: Estimated PET using one PET method and the climate outputs of a reference climate model
+# Approach: Use the outputs of all other climate models to reach the targeted value
+
+#Initial setup: List all models, sites, etc
+# Import data from the RCM, setting up the models
+tas_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('tas_') and filename.endswith('.npy')]
+tasmax_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('tasmax_') and filename.endswith('.npy')]
+tasmin_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('tasmin_') and filename.endswith('.npy')]
+sfcWnd_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('sfcWind_') and filename.endswith('.npy')]
+orog_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/') if filename.startswith('orog_EUR')]
+sund_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('sund_') and filename.endswith('.npy')]
+hurs_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('hurs_') and filename.endswith('.npy')]
+
+print('tas models:',len(tas_list))
+print('tasmax models:',len(tasmax_list))
+print('tasmin models:',len(tasmin_list))
+print('sfcWnd models:',len(sfcWnd_list))
+print('orog models:',len(orog_list))
+print('sund models:',len(sund_list))
+print('hurs models:',len(hurs_list))
+
+# Step 1: Load the reference data
+n_models = np.arange(0,5)
+#n_models = [0]#######################################################CHANGE THIS
+for i in n_models:
+    pet_penman=np.zeros([len(julian_days_n),6,6])
+    pet_pt = np.zeros([len(julian_days_n),6,6])
+    pet_har = np.zeros([len(julian_days_n),6,6])
+    pet_ham = np.zeros([len(julian_days_n),6,6])
+    pet_harsam = np.zeros([len(julian_days_n),6,6])
+    pet_mak = np.zeros([len(julian_days_n),6,6])
+    pet_jh = np.zeros([len(julian_days_n),6,6])
+    pet_turc = np.zeros([len(julian_days_n),6,6])
+    pet_bla_cri = np.zeros([len(julian_days_n),6,6])
+    pet_oudin = np.zeros([len(julian_days_n),6,6])
+    pet_penman_mon = np.zeros([len(julian_days_n),6,6])
+
+#Load the data
+# It has the daily climate obs, then the 3-day, 5-day and 7-day mean temp and accumulated precip
+# And the ratios of these variables, for example: 1day accumulated precip/1 day av. temp
+
+# dataset analysis
+dataset = pd.read_excel('master_climate_data.xlsx',sheet_name = "master_db_cut")
+dataset.shape
+
+dataset.head(10)
+
+dataset.columns
+
+dataset.describe()
+
+# Moving the hydropower generation to the last column
+dataset['HP_gen'] = dataset['gen']
+dataset= dataset.drop('gen',axis=1)
+
+# dropping nans
+dataset.dropna(inplace=True)
+
+# Extracting the date into an array and dropping it from the main df
+dates = dataset.date
+dataset=dataset.drop('date',axis=1)
+
+#heatmap of the correlation of the variables without obs runoff
+sns.set(font_scale=1.2)
+plt.subplots(figsize=(20,14))
+sns.heatmap(dataset.corr(), annot=True,fmt='.0%',cmap='Blues')
+
+# In order to run Box 2 of the diagram:
+# Storing the obs runoff in a new array and removing it from the df. 
+runoff = dataset.roff
+dataset=dataset.drop('roff',axis=1)
+
+# Setting the variables
+print(dataset.shape)
+X = dataset.iloc[:,0:23].values
+Y = dataset.iloc[:,23].values
+Y=Y.astype('int')
+print(dataset.iloc[:,0:23].head(10))
+print(dataset.iloc[:,23].head(10))
+
+### RANDOM FOREST REGRESSOR
+#from sklearn.model_selection import train_test_split
+#X_train, X_test, Y_train, Y_test = train_test_split(X,Y,test_size=0.25,random_state=0)
+
+from sklearn.ensemble import RandomForestRegressor
+# Instantiate model with 1000 decision trees, without crossvalidation
+# Score including roff in the matrix is 0.9822
+rf = RandomForestRegressor(n_estimators = 1000, random_state = 42)
+# Train the model on training data
+rf.fit(X_train, Y_train)
+rf.score(X_train, Y_train)
+
+# Crossvalidation without roff
+# Score including roff in the matrix is 0.862
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+#cv = KFold(n_splits=5,shuffle=True, random_state=1)
+result_forest = cross_val_score(rf, X_train, Y_train, cv=5)
+print('Score: %.3f' % result_forest.mean())
+
+# Getting the MSE from the original base, when using the mean of the Y_train array
+from sklearn.metrics import mean_squared_error
+col_list = list(dataset.columns)
+baseline_preds = np.mean(Y_test)
+base_predictions = np.ones((len(Y_test),1))
+base_predictions = base_predictions*baseline_preds
+mse_base = mean_squared_error(Y_test,base_predictions)
+print('MSE base:',np.mean(mse_base))
+
+# Getting the reduction from initial MSE compared to the model MSE
+# This compares the MSE when comparing the mean of the observed generation from all the time series
+# with the MSE from the ML experiment
+# This is just a quick check of what the ML is doing
+
+from sklearn.metrics import mean_squared_error
+predictions = rf.predict(X_test)
+mse_pred = mean_squared_error(Y_test,predictions)
+print('MSE base:',mse_base)
+print('MSE model',mse_pred)
+print('Reduction from initial error:',round(100*(1-mse_pred/mse_base),2),'%')
+
+###IMPORTANCE OF THE INPUT VARIABLES
+# when including roff in the matrix, roff is the most important (0.82), then pr_1d (0.04) and then pr_5d and pr_7d (both 0.02)
+importances = list(rf.feature_importances_)
+feature_importances = [(feature, round(importance, 2)) for feature, importance in zip(col_list, importances)]# Relates both importance and variable
+feature_importances = sorted(feature_importances, key = lambda x: x[1], reverse = True) # orders the importance high to low
+[print('Variable: {:20} Importance: {}'.format(*pair)) for pair in feature_importances];# prints output
