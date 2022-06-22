@@ -34,14 +34,40 @@ julian_days_n = np.arange(0,len(julian_days))
 # Approach: Use the outputs of all other climate models to reach the targeted value
 
 #Initial setup: List all models, sites, etc
-# Import data from the RCM, setting up the models
-tas_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('tas_') and filename.endswith('.npy')]
-tasmax_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('tasmax_') and filename.endswith('.npy')]
-tasmin_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('tasmin_') and filename.endswith('.npy')]
-sfcWnd_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('sfcWind_') and filename.endswith('.npy')]
+#Import climate data from the RCM, setting up the models
+tas_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/') if filename.startswith('tas_') and filename.endswith('.nc')]
+tasmax_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/') if filename.startswith('tasmax_') and filename.endswith('.nc')]
+tasmin_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/') if filename.startswith('tasmin_') and filename.endswith('.nc')]
+sfcWnd_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/') if filename.startswith('sfcWind_') and filename.endswith('.nc')]
 orog_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/') if filename.startswith('orog_EUR')]
-sund_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('sund_') and filename.endswith('.npy')]
-hurs_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/delta/corrected/') if filename.startswith('hurs_') and filename.endswith('.npy')]
+sund_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/') if filename.startswith('sund_') and filename.endswith('.nc')]
+hurs_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/') if filename.startswith('hurs_') and filename.endswith('.nc')]
+
+
+#Import estimated PET from the raw climate models
+raw_hamon_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/raw/') if filename.startswith('raw_hamon') and filename.endswith('.npy')]
+raw_har_sam_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/raw/') if filename.startswith('raw_har_sam') and filename.endswith('.npy')]
+raw_hargreaves_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/raw/') if filename.startswith('raw_hargre') and filename.endswith('.npy')]
+raw_jensen_haise_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/raw/') if filename.startswith('raw_jensen') and filename.endswith('.npy')]
+raw_makkink_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/raw/') if filename.startswith('raw_makkink') and filename.endswith('.npy')]
+raw_oudin_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/raw/') if filename.startswith('raw_oudin') and filename.endswith('.npy')]
+raw_penman_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/raw/') if filename.startswith('raw_penman_E') and filename.endswith('.npy')]
+raw_penman_mon_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/raw/') if filename.startswith('raw_penman_mon') and filename.endswith('.npy')]
+raw_priest_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/raw/') if filename.startswith('raw_priest') and filename.endswith('.npy')]
+raw_turc_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/raw/') if filename.startswith('raw_turc') and filename.endswith('.npy')]
+
+
+print('raw Hamon estimations:',len(raw_hamon_list))
+print('raw Hargreaves Samani estimations:',len(raw_har_sam_list))
+print('raw Hargreaves estimations:',len(raw_hargreaves_list))
+print('raw Jensen Haise estimations:',len(raw_jensen_haise_list))
+print('raw Makkink estimations:',len(raw_makkink_list))
+print('raw Oudin estimations:',len(raw_oudin_list))
+print('raw Penman estimations:',len(raw_penman_list))
+print('raw Penman Monteith estimations:',len(raw_penman_mon_list))
+print('raw Priestly Taylor estimations:',len(raw_priest_list))
+print('raw Turc estimations:',len(raw_turc_list))
+
 
 print('tas models:',len(tas_list))
 print('tasmax models:',len(tasmax_list))
@@ -50,6 +76,253 @@ print('sfcWnd models:',len(sfcWnd_list))
 print('orog models:',len(orog_list))
 print('sund models:',len(sund_list))
 print('hurs models:',len(hurs_list))
+
+leap_yrs = [1972,1976,1980,1984,1988,1992,1996,2000,2004,2008,2012,2016,2020,2024,2028,2032,2036,2040,2044,2048,2052,2056,2060,2064,2068,2072,2076,2080,2084,2088,2092,2096,2100]
+
+
+
+
+
+leap_index = np.zeros([33,])
+for i in np.arange(0,33):
+    leap_index[i] = int(365+58+i*1460)
+
+leap_index = leap_index.astype(int)    
+
+for m in np.arange(7,10):
+    print(raw_hamon_list[m])
+
+for i in np.arange(0,33):
+    print(dates_no_leap.iloc[leap_index[i]+i])
+    print(dates_no_leap.iloc[leap_index[i]+1+i])
+    print(dates.iloc[leap_index[i]+i])
+    print(dates.iloc[leap_index[i]+1+i])
+
+
+    
+
+    
+
+
+
+
+
+
+
+
+for mm in leap_yrs:
+    print(mm)
+    julian_leap_for_yr = julian_days_no_leap[year_noleap==mm]
+
+for m in np.arange(0,10):
+        data_file = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/pet/raw/'+raw_hamon_list[m])
+        print(len(data_file))
+
+
+#Output arrays:
+pet_penman=np.zeros([len(julian_days_n),6,6])
+pet_pt = np.zeros([len(julian_days_n),6,6])
+pet_har = np.zeros([len(julian_days_n),6,6])
+pet_ham = np.zeros([len(julian_days_n),6,6])
+pet_harsam = np.zeros([len(julian_days_n),6,6])
+pet_mak = np.zeros([len(julian_days_n),6,6])
+pet_jh = np.zeros([len(julian_days_n),6,6])
+pet_turc = np.zeros([len(julian_days_n),6,6])
+pet_bla_cri = np.zeros([len(julian_days_n),6,6])
+pet_oudin = np.zeros([len(julian_days_n),6,6])
+pet_penman_mon = np.zeros([len(julian_days_n),6,6])
+
+df = pd.DataFrame()
+n_models = np.arange(0,7)
+for i in n_models:
+    print(tas_list[i])
+    print(tasmax_list[i])
+    print(tasmin_list[i])
+    print(sfcWnd_list[i])
+    print(orog_list[i])
+    print(sund_list[i])
+    print(hurs_list[i])
+    model_name = tas_list[i]
+    model_name = model_name[3:]
+    file_tas =  tas_list[i]
+    # Reading the files with the climate data
+    rcm = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_tas)# the rcm in the historical period
+    lat_rcm = rcm.variables['lat'][:]
+    rcm_tas = rcm.variables['tas'][:,:,:]
+    rcm.close()
+    len_tas = len(rcm_tas)
+    len_data = np.arange(0,len_tas)
+    file_orog = orog_list[i]
+    rcm_orog_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_orog)
+    rcm_orog = rcm_orog_file.variables['orog'][:,:]
+    file_tasmin = tasmin_list[i]
+    rcm_tasmin_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_tasmin)
+    rcm_tasmin = rcm_tasmin_file.variables['tasmin'][:,:,:]
+    file_tasmax = tasmax_list[i]
+    rcm_tasmax_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_tasmax)
+    rcm_tasmax = rcm_tasmax_file.variables['tasmax'][:,:,:]
+    file_hurs = hurs_list[i]
+    rcm_hurs_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_hurs)
+    rcm_hurs = rcm_hurs_file.variables['hurs'][:,:,:]
+    file_sund = sund_list[i]
+    rcm_sund_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_sund)
+    rcm_sund = rcm_sund_file.variables['sund'][:,:,:]
+    file_sfcWind = sfcWnd_list[i]
+    rcm_sfcWind_file = nc.Dataset('C:/Users/epz/Desktop/UEF/PET/CMs/fi/'+file_sfcWind)
+    rcm_sfcWind = rcm_sfcWind_file.variables['sfcWind'][:,:,:]
+
+    #### FOR EACH GRIDCELL IN THE RCM SUBDOMAIN
+    for ii in [0,1,2,3,4]:#,5]:
+        for iii in [0,1,2,3,4,5]:
+            print(ii,',',iii)
+            lat_dd = lat_rcm[ii,iii]
+            lat_rad = lat_dd * math.pi/180
+            z = rcm_orog[ii,iii]
+            
+            
+            
+            
+            for nn in julian_days_n:
+                julian=julian_days[nn]
+                ### EXTRACTING THE DAILY CLIMATE DATA
+                print('Processing day ',nn+1,' out of ', len(julian_days),' for gridcell [',ii,',',iii,'] for model', i+1, 'out of 10')
+                RH = rcm_hurs[nn,ii,iii]
+                #print('RH:',RH)
+                tas =  rcm_tas[nn,ii,iii]-273.15
+                #print('tas:',tas)
+                tasmin = rcm_tasmin[nn,ii,iii]-273.15
+                #print('tasmin:',tasmin)
+                tasmax = rcm_tasmax[nn,ii,iii]-273.15
+                #print('tasmax:',tasmax)
+                sfcWind_pre = rcm_sfcWind[nn,ii,iii]
+                ##Wind correction
+                sfcWind = sfcWind_pre * 4.87 / math.log(678.7-5.42)
+                #print('wind speed:',sfcWind)
+                n_sun = rcm_sund[nn,ii,iii]/3600#####CHECK IF UNITS ARE OK FOR THIS ONE !!!!!!!!!!NPO
+                #print('sund:',n_sun)
+                
+                # Constants 
+                den_wat = 1000
+                Cp = 1.013*10**(-3)
+                E = 0.622
+                lat_heat = 2.45
+                alpha = 1.26
+                As = 0.25
+                Bs = 0.5
+                alb = 0.23 # from Guo et al 2017
+                stef_boltz = 4.903*10**-9
+                rs = 69 #m/s, from Oudin et al 2015
+
+                # Common estimations
+                patm = 101.3*((293-0.0065*z)/293)**5.26
+                sol_decl = 0.409*math.sin(((2*math.pi*julian)/365)-1.39)
+                ws = math.acos(-math.tan(lat_rad)*math.tan(sol_decl))
+                dr = 1 + 0.033*math.cos((math.pi*2*julian)/365)
+                psyco = (Cp*patm)/(E*lat_heat)
+                N = 24*ws/math.pi 
+                slope = 4098*(0.6108*math.exp((17.27*tas)/(tas+237.3)))/((tas+237.3)**2)
+                eTmin = 0.6108*math.exp((17.27*tasmin/(237.3+tasmin)))
+                eTmax = 0.6108*math.exp((17.27*tasmax/(237.3+tasmax)))
+                es = (eTmax + eTmin)/2
+                ea = (RH/100)*((eTmax+eTmin)/2)
+                Ra = ((24*60)/math.pi)*0.082*dr*(ws*math.sin(lat_rad)*math.sin(sol_decl)+math.cos(lat_rad)*math.cos(sol_decl)*math.sin(ws))
+                Rs = Ra *(As+Bs*(n_sun/N))
+                Rso = (0.75+2*10**(-5)*z)*Ra
+                Rns = (1-alb) * Rs
+                Rnl =  ((((stef_boltz *(tasmax+273.16)**4))+(stef_boltz *(tasmin+273.16)**4))/2)*(0.34-0.14*math.sqrt(ea))*(1.35*(Rs/Rso)-0.35)
+                Rn = Rns-Rnl               
+        
+# PET Equations 
+
+#Penman
+                
+                pet_penman[nn,ii,iii] = (slope/(slope+psyco))*(Rn/lat_heat)+(psyco/(slope+psyco))*((6.43*(1+0.536*sfcWind)*(es-ea))/lat_heat)
+                
+
+# Priestley-Taylor
+                
+                pet_pt[nn,ii,iii] = alpha*(slope/(slope+psyco))*(Rn/lat_heat)                
+
+
+#Hargreaves
+                
+                pet_har[nn,ii,iii] = 0.0135*(tas+17.8)*Rs/lat_heat
+
+# Hamon
+                
+                pet_ham[nn,ii,iii] = ((N/12)**2)*math.exp(tas/16)
+
+# Hargreaves and Samani
+                
+                pet_harsam[nn,ii,iii] = 0.0023*math.sqrt(abs(tasmax-tasmin))*0.408*Ra*(tas+17.8) #mm/day
+
+# Makkink
+                
+                pet_mak[nn,ii,iii] = (0.61*(slope/(slope+psyco))*(Rs/lat_heat))-0.12
+
+# Jensen Haise
+                pet_jh[nn,ii,iii] = 25.4 * (0.016*tas + 0.186)*(0.000673*(Rs/0.041868))
+                #pet_jh[nn,ii,iii] = (0.025*(tas+3)*Ra)/lat_heat
+        
+# Turc
+                if tas>-15:
+                
+                    if RH < 50:
+                        pet_turc[nn,ii,iii] = 0.31*(tas/(tas+15))*(Rns+2.09)*(1+(50-RH)/70)
+                    else:
+                        pet_turc[nn,ii,iii] =  0.31*(tas/(tas+15))*(Rns+2.09)
+                else:
+                    pet_turc[nn,ii,iii] =  0
+# Oudin
+                if tas>-5:
+                    pet_oudin[nn,ii,iii] = 1000*(Ra/(den_wat*lat_heat))*((tas+5)/100)
+                else:
+                    pet_oudin[nn,ii,iii] = 0
+
+
+
+# Penman-Monteith
+                
+                #FAO56 Penman-Monteith from Liu et al. 2017
+                pet_penman_mon[nn,ii,iii] = (0.408*slope*Rn+psyco*(900/(tas+273))*sfcWind*(es-ea))/(slope+psyco*(1+0.34*sfcWind))
+                #pet_penman_mon[nn,ii,iii] = (slope*Rn+1013*(ea-es)/(208/sfcWind))/(lat_heat*1000*(slope+psyco*(1+(rs/(208/sfcWind)))))
+                
+    pet_penman[pet_penman<0]=0
+    pet_pt[pet_pt<0]=0
+    pet_har[pet_har<0]=0
+    pet_ham[pet_ham<0]=0
+    pet_harsam[pet_harsam<0]=0
+    pet_mak[pet_mak<0]=0
+    pet_jh[pet_jh<0]=0
+    pet_turc[pet_turc<0]=0
+    pet_penman_mon[pet_penman_mon<0]=0
+    
+    
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_penman'+model_name+'.npy',pet_penman)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_priest_taylor'+model_name+'.npy',pet_pt)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_hargreaves'+model_name+'.npy',pet_har)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_hamon'+model_name+'.npy',pet_ham)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_har_sam'+model_name+'.npy',pet_harsam)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_makkink'+model_name+'.npy',pet_mak)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_jensen_haise'+model_name+'.npy',pet_jh)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_turc'+model_name+'.npy',pet_turc)
+    #np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_blanney_criddle'+model_name+'.npy',pet_bla_cri)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_oudin'+model_name+'.npy',pet_oudin)
+    np.save('C:/Users/epz/Desktop/UEF/PET/CMs/fi/pet/raw/raw_penman_mon'+model_name+'.npy',pet_penman_mon)
+
+julian_days_noleap_n = np.arange(0,len(julian_days_no_leap))
+#Output arrays:
+pet_penman=np.zeros([len(julian_days_no_leap),6,6])
+pet_pt = np.zeros([len(julian_days_no_leap),6,6])
+pet_har = np.zeros([len(julian_days_no_leap),6,6])
+pet_ham = np.zeros([len(julian_days_no_leap),6,6])
+pet_harsam = np.zeros([len(julian_days_no_leap),6,6])
+pet_mak = np.zeros([len(julian_days_no_leap),6,6])
+pet_jh = np.zeros([len(julian_days_no_leap),6,6])
+pet_turc = np.zeros([len(julian_days_no_leap),6,6])
+pet_bla_cri = np.zeros([len(julian_days_no_leap),6,6])
+pet_oudin = np.zeros([len(julian_days_no_leap),6,6])
+pet_penman_mon = np.zeros([len(julian_days_no_leap),6,6])
 
 # Step 1: Load the reference data
 n_models = np.arange(0,5)
@@ -66,6 +339,26 @@ for i in n_models:
     pet_bla_cri = np.zeros([len(julian_days_n),6,6])
     pet_oudin = np.zeros([len(julian_days_n),6,6])
     pet_penman_mon = np.zeros([len(julian_days_n),6,6])
+    
+    xx = orog_model[i]
+    print(tas_list[i])
+    print(tasmax_list[i])
+    print(tasmin_list[i])
+    print(sfcWnd_list[i])
+    print(orog_list[xx])
+    print(sund_list[i])
+    print(hurs_list[i])
+    model_name = tas_list[i]
+    model_name = model_name[3:]
+    file_tas =  tas_list[i]
+    file_tasmin = tasmin_list[i]
+    file_tasmax = tasmax_list[i]
+    file_hurs = hurs_list[i]
+    file_sund = sund_list[i]
+    file_sfcWind = sfcWnd_list[i]
+    
+    rcm_tas = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/gr/'+file_tas,allow_pickle=True)
+    len_tas = len(rcm_tas)
 
 #Load the data
 # It has the daily climate obs, then the 3-day, 5-day and 7-day mean temp and accumulated precip
