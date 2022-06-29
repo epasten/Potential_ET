@@ -22,76 +22,100 @@ n_months = np.arange(1,13)
 df_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/dataframes/') if filename.startswith('df') and filename.endswith('.csv')]
 
 site_list = ['at','dk','dl','fi','fr','gr','it','ro','sp','uk']
-for site_n in site_list:    
+for i in np.arange(0,10):    
     # Extraction of the corrected files
-    file_list_hamon = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/') if filename.startswith('delta_hamon') and filename.endswith('.npy')]
-    file_list_har_sam = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/') if filename.startswith('delta_har_sam') and filename.endswith('.npy')]
-    file_list_hargreaves = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/') if filename.startswith('delta_harg') and filename.endswith('.npy')]
-    file_list_jen_hai = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/') if filename.startswith('delta_jensen') and filename.endswith('.npy')]
-    file_list_makkink = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/') if filename.startswith('delta_makkink') and filename.endswith('.npy')]
-    file_list_oudin = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/') if filename.startswith('delta_oudin') and filename.endswith('.npy')]
-    file_list_penman = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/') if filename.startswith('delta_penman_bc') and filename.endswith('.npy')]
-    file_list_penman_monteith = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/') if filename.startswith('delta_penman_mon_') and filename.endswith('.npy')]
-    file_list_pri_tay = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/') if filename.startswith('delta_priest') and filename.endswith('.npy')]
-    file_list_turc = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/') if filename.startswith('delta_turc') and filename.endswith('.npy')]
-    file_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/') if filename.startswith('delta_') and filename.endswith('.npy')] 
+    file_list_hamon = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_hamon') and filename.endswith('.npy')]
+    file_list_har_sam = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_har_sam') and filename.endswith('.npy')]
+    file_list_hargreaves = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_harg') and filename.endswith('.npy')]
+    file_list_jen_hai = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_jensen') and filename.endswith('.npy')]
+    file_list_makkink = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_makkink') and filename.endswith('.npy')]
+    file_list_oudin = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_oudin') and filename.endswith('.npy')]
+    file_list_penman = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_penman_bc') and filename.endswith('.npy')]
+    file_list_penman_monteith = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_penman_mon_') and filename.endswith('.npy')]
+    file_list_pri_tay = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_priest') and filename.endswith('.npy')]
+    file_list_turc = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_turc') and filename.endswith('.npy')]
+    file_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_') and filename.endswith('.npy')] 
     
     # Extraction of the reference files
-    file_ref_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/') if filename.startswith('raw_') and filename.endswith('.npy')] 
-    file_ref_list_hamon = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/') if filename.startswith('raw_hamon') and filename.endswith('.npy')] 
-    file_ref_list_har_sam = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/') if filename.startswith('raw_har_sam') and filename.endswith('.npy')] 
-    file_ref_list_hargreaves = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/') if filename.startswith('raw_hargreaves') and filename.endswith('.npy')] 
-    file_ref_list_hen_hai = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/') if filename.startswith('raw_jensen_') and filename.endswith('.npy')] 
-    file_ref_list_makkink = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/') if filename.startswith('raw_makkink') and filename.endswith('.npy')] 
-    file_ref_list_oudin = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/') if filename.startswith('raw_oudin') and filename.endswith('.npy')] 
-    file_ref_list_penman = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/') if filename.startswith('raw_penman_EUR') and filename.endswith('.npy')] 
-    file_ref_list_penman_monteith = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/') if filename.startswith('raw_penman_mon') and filename.endswith('.npy')] 
-    file_ref_list_pri_tay = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/') if filename.startswith('raw_priest') and filename.endswith('.npy')] 
-    file_ref_list_turc = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/') if filename.startswith('raw_turc') and filename.endswith('.npy')] 
+    file_ref_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_') and filename.endswith('.npy')] 
+    file_ref_list_hamon = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_hamon') and filename.endswith('.npy')] 
+    file_ref_list_har_sam = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_har_sam') and filename.endswith('.npy')] 
+    file_ref_list_hargreaves = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_hargreaves') and filename.endswith('.npy')] 
+    file_ref_list_hen_hai = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_jensen_') and filename.endswith('.npy')] 
+    file_ref_list_makkink = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_makkink') and filename.endswith('.npy')] 
+    file_ref_list_oudin = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_oudin') and filename.endswith('.npy')] 
+    file_ref_list_penman = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_penman_EUR') and filename.endswith('.npy')] 
+    file_ref_list_penman_monteith = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_penman_mon') and filename.endswith('.npy')] 
+    file_ref_list_pri_tay = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_priest') and filename.endswith('.npy')] 
+    file_ref_list_turc = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_turc') and filename.endswith('.npy')] 
+ 
     
-print(file_list)    
-print(file_ref_list)
+ 
+    #df = pd.read_csv('C:/Users/erpasten/Documents/UEF/PET/dataframes/'+df_list[i])    
 
+#print(file_list)    
+#print(file_ref_list)
 
-
-for df_list_n in df_list:
-    df = pd.read_csv('C:/Users/erpasten/Documents/UEF/PET/dataframes/'+df_list_n)
-
-
-# Analysis for the Hamon PET'
-pet_annual_ref_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
-pet_annual_ref_sum_all_cms_hamon_refereence = np.zeros([30,10])
-pet_annual_near_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
-pet_annual_near_sum_all_cms_hamon_refereence = np.zeros([30,10])
-pet_annual_mid_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
-pet_annual_mid_sum_all_cms_hamon_refereence = np.zeros([30,10])
-pet_annual_far_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
-pet_annual_far_sum_all_cms_hamon_refereence = np.zeros([30,10])
-
-
-
-for i in np.arange(0,10):
-    ref_file = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/raw/'+file_ref_list_hamon[i])
+    # Analysis for the Hamon PET'
+    pet_annual_ref_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
+    pet_annual_ref_sum_all_cms_hamon_refereence = np.zeros([30,10])
+    pet_annual_near_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
+    pet_annual_near_sum_all_cms_hamon_refereence = np.zeros([30,10])
+    pet_annual_mid_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
+    pet_annual_mid_sum_all_cms_hamon_refereence = np.zeros([30,10])
+    pet_annual_far_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
+    pet_annual_far_sum_all_cms_hamon_refereence = np.zeros([30,10])
+    
+    
+    for ii in np.arange(0,10):
+        ref_file = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_ref_list_hamon[ii])
     
     #Reference period 
     for yy in np.arange(1971,2001): ## yy as in year
         
-        df_yy = df.loc[df.Year==yy]
-        df_cm=df_yy.loc[df_yy.CM==unique_CMs[cm_i]]
-        pet_annual_ref_sum_all_cms_hamon[yy-1971,cm_i] = np.sum(df_cm.Hamon)
     
-    
-    
-    
-    
-    for ii in np.arange(0,90):
-        cor_file = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/'+file_list_hamon[ii])
+        for iii in np.arange(0,90):
+            cor_file = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_hamon[iii])
+            font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+            
+            fig, ax = plt.subplots()
+            fig= plt.figure(figsize=(40,20))
+            fontsize=20
+            plt.rc('font', **font)
+            for n in np.arange(0,10): # Hamon files
+                data = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_hamon[n])
+                data_mean = np.zeros([len(data),])
+                for nn in np.arange(0,len(data)):
+                    data_mean[nn]=np.mean(data[nn,:,:])
+                plt.plot(data_mean)
+                plt.title('Daily PET estimation timeseries - Delta BC, Hamon - '+site_n)
+                plt.ylim(0,25)
+                plt.ylabel('Monthly PET (mm/month)')
+                plt.xlabel('Days since 1971')
+                plt.legend()
+                       
+            [(year >= 1976) & (year <= 2005)])    
         
-        print('Analysing corrected model:',file_list_hamon[ii],'for reference model:',file_ref_list_hamon[i])
+        
+            
+            
+            
+            print('Analysing corrected model:',file_list_hamon[iii],'for reference model:',file_ref_list_hamon[ii])
         
           
         #Reference period 
         for yy in np.arange(1971,2001): ## yy as in year
+        
+        
+        
+        
+        
+        
+        
+        
+        
             
             df_yy = df.loc[df.Year==yy]
             df_cm=df_yy.loc[df_yy.CM==unique_CMs[cm_i]]
