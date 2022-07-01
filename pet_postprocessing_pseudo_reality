@@ -22,7 +22,8 @@ n_months = np.arange(1,13)
 df_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/dataframes/') if filename.startswith('df') and filename.endswith('.csv')]
 
 site_list = ['at','dk','dl','fi','fr','gr','it','ro','sp','uk']
-for i in np.arange(0,10):    
+for i in np.arange(0,10): 
+    site_n=site_list[i]
     # Extraction of the corrected files
     file_list_hamon = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_hamon') and filename.endswith('.npy')]
     file_list_har_sam = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_har_sam') and filename.endswith('.npy')]
@@ -36,46 +37,367 @@ for i in np.arange(0,10):
     file_list_turc = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_turc') and filename.endswith('.npy')]
     file_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_') and filename.endswith('.npy')] 
     
-    # Extraction of the reference files
-    file_ref_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_') and filename.endswith('.npy')] 
-    file_ref_list_hamon = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_hamon') and filename.endswith('.npy')] 
-    file_ref_list_har_sam = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_har_sam') and filename.endswith('.npy')] 
-    file_ref_list_hargreaves = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_hargreaves') and filename.endswith('.npy')] 
-    file_ref_list_hen_hai = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_jensen_') and filename.endswith('.npy')] 
-    file_ref_list_makkink = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_makkink') and filename.endswith('.npy')] 
-    file_ref_list_oudin = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_oudin') and filename.endswith('.npy')] 
-    file_ref_list_penman = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_penman_EUR') and filename.endswith('.npy')] 
-    file_ref_list_penman_monteith = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_penman_mon') and filename.endswith('.npy')] 
-    file_ref_list_pri_tay = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_priest') and filename.endswith('.npy')] 
-    file_ref_list_turc = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_turc') and filename.endswith('.npy')] 
- 
-    
- 
-    #df = pd.read_csv('C:/Users/erpasten/Documents/UEF/PET/dataframes/'+df_list[i])    
+    # Extraction of the benchmark
+    file_bch_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_') and filename.endswith('.npy')] 
+    file_bch_list_hamon = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_hamon') and filename.endswith('.npy')] 
+    file_bch_list_har_sam = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_har_sam') and filename.endswith('.npy')] 
+    file_bch_list_hargreaves = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_hargreaves') and filename.endswith('.npy')] 
+    file_bch_list_jen_hai = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_jensen_') and filename.endswith('.npy')] 
+    file_bch_list_makkink = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_makkink') and filename.endswith('.npy')] 
+    file_bch_list_oudin = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_oudin') and filename.endswith('.npy')] 
+    file_bch_list_penman = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_penman_EUR') and filename.endswith('.npy')] 
+    file_bch_list_penman_monteith = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_penman_mon') and filename.endswith('.npy')] 
+    file_bch_list_pri_tay = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_priest') and filename.endswith('.npy')] 
+    file_bch_list_turc = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/') if filename.startswith('raw_turc') and filename.endswith('.npy')] 
 
-#print(file_list)    
-#print(file_ref_list)
+# Analysis for PET methods at different time scales
+pet_annual_ref_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
+pet_annual_ref_sum_all_cms_hamon_benchmark = np.zeros([30,10])
+pet_annual_near_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
+pet_annual_near_sum_all_cms_hamon_benchmark = np.zeros([30,10])
+pet_annual_mid_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
+pet_annual_mid_sum_all_cms_hamon_benchmark = np.zeros([30,10])
+pet_annual_far_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
+pet_annual_far_sum_all_cms_hamon_benchmark = np.zeros([30,10])
 
-    # Analysis for the Hamon PET'
-    pet_annual_ref_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
-    pet_annual_ref_sum_all_cms_hamon_refereence = np.zeros([30,10])
-    pet_annual_near_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
-    pet_annual_near_sum_all_cms_hamon_refereence = np.zeros([30,10])
-    pet_annual_mid_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
-    pet_annual_mid_sum_all_cms_hamon_refereence = np.zeros([30,10])
-    pet_annual_far_sum_all_cms_hamon_corrected = np.zeros([30,10,10])
-    pet_annual_far_sum_all_cms_hamon_refereence = np.zeros([30,10])
+pet_annual_ref_sum_all_cms_har_sam_corrected = np.zeros([30,10,10])
+pet_annual_ref_sum_all_cms_har_sam_benchmark = np.zeros([30,10])
+pet_annual_near_sum_all_cms_har_sam_corrected = np.zeros([30,10,10])
+pet_annual_near_sum_all_cms_har_sam_benchmark = np.zeros([30,10])
+pet_annual_mid_sum_all_cms_har_sam_corrected = np.zeros([30,10,10])
+pet_annual_mid_sum_all_cms_har_sam_benchmark = np.zeros([30,10])
+pet_annual_far_sum_all_cms_har_sam_corrected = np.zeros([30,10,10])
+pet_annual_far_sum_all_cms_har_sam_benchmark = np.zeros([30,10])
+
+pet_annual_ref_sum_all_cms_hargreaves_corrected = np.zeros([30,10,10])
+pet_annual_ref_sum_all_cms_hargreaves_benchmark = np.zeros([30,10])
+pet_annual_near_sum_all_cms_hargreaves_corrected = np.zeros([30,10,10])
+pet_annual_near_sum_all_cms_hargreaves_benchmark = np.zeros([30,10])
+pet_annual_mid_sum_all_cms_hargreaves_corrected = np.zeros([30,10,10])
+pet_annual_mid_sum_all_cms_hargreaves_benchmark = np.zeros([30,10])
+pet_annual_far_sum_all_cms_hargreaves_corrected = np.zeros([30,10,10])
+pet_annual_far_sum_all_cms_hargreaves_benchmark = np.zeros([30,10])
+
+pet_annual_ref_sum_all_cms_jen_hai_corrected = np.zeros([30,10,10])
+pet_annual_ref_sum_all_cms_jen_hai_benchmark = np.zeros([30,10])
+pet_annual_near_sum_all_cms_jen_hai_corrected = np.zeros([30,10,10])
+pet_annual_near_sum_all_cms_jen_hai_benchmark = np.zeros([30,10])
+pet_annual_mid_sum_all_cms_jen_hai_corrected = np.zeros([30,10,10])
+pet_annual_mid_sum_all_cms_jen_hai_benchmark = np.zeros([30,10])
+pet_annual_far_sum_all_cms_jen_hai_corrected = np.zeros([30,10,10])
+pet_annual_far_sum_all_cms_jen_hai_benchmark = np.zeros([30,10])
+
+pet_annual_ref_sum_all_cms_makkink_corrected = np.zeros([30,10,10])
+pet_annual_ref_sum_all_cms_makkink_benchmark = np.zeros([30,10])
+pet_annual_near_sum_all_cms_makkink_corrected = np.zeros([30,10,10])
+pet_annual_near_sum_all_cms_makkink_benchmark = np.zeros([30,10])
+pet_annual_mid_sum_all_cms_makkink_corrected = np.zeros([30,10,10])
+pet_annual_mid_sum_all_cms_makkink_benchmark = np.zeros([30,10])
+pet_annual_far_sum_all_cms_makkink_corrected = np.zeros([30,10,10])
+pet_annual_far_sum_all_cms_makkink_benchmark = np.zeros([30,10])
+
+pet_annual_ref_sum_all_cms_oudin_corrected = np.zeros([30,10,10])
+pet_annual_ref_sum_all_cms_oudin_benchmark = np.zeros([30,10])
+pet_annual_near_sum_all_cms_oudin_corrected = np.zeros([30,10,10])
+pet_annual_near_sum_all_cms_oudin_benchmark = np.zeros([30,10])
+pet_annual_mid_sum_all_cms_oudin_corrected = np.zeros([30,10,10])
+pet_annual_mid_sum_all_cms_oudin_benchmark = np.zeros([30,10])
+pet_annual_far_sum_all_cms_oudin_corrected = np.zeros([30,10,10])
+pet_annual_far_sum_all_cms_oudin_benchmark = np.zeros([30,10])
+
+pet_annual_ref_sum_all_cms_penman_corrected = np.zeros([30,10,10])
+pet_annual_ref_sum_all_cms_penman_benchmark = np.zeros([30,10])
+pet_annual_near_sum_all_cms_penman_corrected = np.zeros([30,10,10])
+pet_annual_near_sum_all_cms_penman_benchmark = np.zeros([30,10])
+pet_annual_mid_sum_all_cms_penman_corrected = np.zeros([30,10,10])
+pet_annual_mid_sum_all_cms_penman_benchmark = np.zeros([30,10])
+pet_annual_far_sum_all_cms_penman_corrected = np.zeros([30,10,10])
+pet_annual_far_sum_all_cms_penman_benchmark = np.zeros([30,10])
+
+pet_annual_ref_sum_all_cms_penman_monteith_corrected = np.zeros([30,10,10])
+pet_annual_ref_sum_all_cms_penman_monteith_benchmark = np.zeros([30,10])
+pet_annual_near_sum_all_cms_penman_monteith_corrected = np.zeros([30,10,10])
+pet_annual_near_sum_all_cms_penman_monteith_benchmark = np.zeros([30,10])
+pet_annual_mid_sum_all_cms_penman_monteith_corrected = np.zeros([30,10,10])
+pet_annual_mid_sum_all_cms_penman_monteith_benchmark = np.zeros([30,10])
+pet_annual_far_sum_all_cms_penman_monteith_corrected = np.zeros([30,10,10])
+pet_annual_far_sum_all_cms_penman_monteith_benchmark = np.zeros([30,10])
+
+pet_annual_ref_sum_all_cms_pri_tay_corrected = np.zeros([30,10,10])
+pet_annual_ref_sum_all_cms_pri_tay_benchmark = np.zeros([30,10])
+pet_annual_near_sum_all_cms_pri_tay_corrected = np.zeros([30,10,10])
+pet_annual_near_sum_all_cms_pri_tay_benchmark = np.zeros([30,10])
+pet_annual_mid_sum_all_cms_pri_tay_corrected = np.zeros([30,10,10])
+pet_annual_mid_sum_all_cms_pri_tay_benchmark = np.zeros([30,10])
+pet_annual_far_sum_all_cms_pri_tay_corrected = np.zeros([30,10,10])
+pet_annual_far_sum_all_cms_pri_tay_benchmark = np.zeros([30,10])
+
+pet_annual_ref_sum_all_cms_turc_corrected = np.zeros([30,10,10])
+pet_annual_ref_sum_all_cms_turc_benchmark = np.zeros([30,10])
+pet_annual_near_sum_all_cms_turc_corrected = np.zeros([30,10,10])
+pet_annual_near_sum_all_cms_turc_benchmark = np.zeros([30,10])
+pet_annual_mid_sum_all_cms_turc_corrected = np.zeros([30,10,10])
+pet_annual_mid_sum_all_cms_turc_benchmark = np.zeros([30,10])
+pet_annual_far_sum_all_cms_turc_corrected = np.zeros([30,10,10])
+pet_annual_far_sum_all_cms_turc_benchmark = np.zeros([30,10])
     
-    
-    for ii in np.arange(0,10):
-        ref_file = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_ref_list_hamon[ii])
-    
-    #Reference period 
-    for yy in np.arange(1971,2001): ## yy as in year
+
+
+
+for ii in np.arange(0,10):
+    bch_file_hamon = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_bch_list_hamon[ii])
+    bch_file_har_sam = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_bch_list_har_sam[ii])
+    bch_file_hargreaves = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_bch_list_hargreaves[ii])
+    bch_file_jen_hai = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_bch_list_jen_hai[ii])
+    bch_file_makkink = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_bch_list_makkink[ii])
+    bch_file_oudin = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_bch_list_oudin[ii])
+    bch_file_penman = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_bch_list_penman[ii])
+    bch_file_penman_monteith = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_bch_list_penman_monteith[ii])
+    bch_file_pri_tay = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_bch_list_pri_tay[ii])
+    bch_file_turc = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_bch_list_turc[ii])
+    print(file_bch_list_hamon[ii])
+    if ii<7:
+        #Reference
+        bch_clip_hamon_ref = bch_file_hamon[(year >= 1976) & (year <= 2005)]  
+        bch_clip_har_sam_ref = bch_file_har_sam[(year >= 1976) & (year <= 2005)]
+        bch_clip_hargreaves_ref = bch_file_hargreaves[(year >= 1976) & (year <= 2005)]
+        bch_clip_jen_hai_ref = bch_file_jen_hai[(year >= 1976) & (year <= 2005)]
+        bch_clip_makkink_ref = bch_file_makkink[(year >= 1976) & (year <= 2005)]
+        bch_clip_oudin_ref = bch_file_oudin[(year >= 1976) & (year <= 2005)]
+        bch_clip_penman_ref = bch_file_penman[(year >= 1976) & (year <= 2005)]
+        bch_clip_penman_monteith_ref = bch_file_penman_monteith[(year >= 1976) & (year <= 2005)]
+        bch_clip_pri_tay_ref = bch_file_pri_tay[(year >= 1976) & (year <= 2005)]
+        bch_clip_turc_ref = bch_file_turc[(year >= 1976) & (year <= 2005)]
+        bch_year_clip_ref=year[(year >= 1976) & (year <= 2005)]  
+        len_clip=len(bch_clip_hamon_ref)
+        """
+        #Near
+        near_clip_hamon = near_file_hamon[(year >= 2011) & (year <= 2040)]  
+        near_clip_har_sam = near_file_har_sam[(year >= 2011) & (year <= 2040)]
+        near_clip_hargreaves = near_file_hargreaves[(year >= 2011) & (year <= 2040)]
+        near_clip_jen_hai = near_file_jen_hai[(year >= 2011) & (year <= 2040)]
+        near_clip_makkink = near_file_makkink[(year >= 2011) & (year <= 2040)]
+        near_clip_oudin = near_file_oudin[(year >= 2011) & (year <= 2040)]
+        near_clip_penman = near_file_penman[(year >= 2011) & (year <= 2040)]
+        near_clip_penman_monteith = near_file_penman_monteith[(year >= 2011) & (year <= 2040)]
+        near_clip_pri_tay = near_file_pri_tay[(year >= 2011) & (year <= 2040)]
+        near_clip_turc = near_file_turc[(year >= 2011) & (year <= 2040)]
+        near_year_clip=year[(year >= 2011) & (year <= 2040)]
+        #Mid
+        mid_clip_hamon = mid_file_hamon[(year >= 2041) & (year <= 2070)]  
+        mid_clip_har_sam = mid_file_har_sam[(year >= 2041) & (year <= 2070)]
+        mid_clip_hargreaves = mid_file_hargreaves[(year >= 2041) & (year <= 2070)]
+        mid_clip_jen_hai = mid_file_jen_hai[(year >= 2041) & (year <= 2070)]
+        mid_clip_makkink = mid_file_makkink[(year >= 2041) & (year <= 2070)]
+        mid_clip_oudin = mid_file_oudin[(year >= 2041) & (year <= 2070)]
+        mid_clip_penman = mid_file_penman[(year >= 2041) & (year <= 2070)]
+        mid_clip_penman_monteith = mid_file_penman_monteith[(year >= 2041) & (year <= 2070)]
+        mid_clip_pri_tay = mid_file_pri_tay[(year >= 2041) & (year <= 2070)]
+        mid_clip_turc = mid_file_turc[(year >= 2041) & (year <= 2070)]
+        mid_year_clip=year[(year >= 2041) & (year <= 2070)]
+        #Far
+        far_clip_hamon = far_file_hamon[(year >= 2071) & (year <= 2100)]  
+        far_clip_har_sam = far_file_har_sam[(year >= 2071) & (year <= 2100)]
+        far_clip_hargreaves = far_file_hargreaves[(year >= 2071) & (year <= 2100)]
+        far_clip_jen_hai = far_file_jen_hai[(year >= 2071) & (year <= 2100)]
+        far_clip_makkink = far_file_makkink[(year >= 2071) & (year <= 2100)]
+        far_clip_oudin = far_file_oudin[(year >= 2071) & (year <= 2100)]
+        far_clip_penman = far_file_penman[(year >= 2071) & (year <= 2100)]
+        far_clip_penman_monteith = far_file_penman_monteith[(year >= 2071) & (year <= 2100)]
+        far_clip_pri_tay = far_file_pri_tay[(year >= 2071) & (year <= 2100)]
+        far_clip_turc = far_file_turc[(year >= 2071) & (year <= 2100)]
+        far_year_clip=year[(year >= 2071) & (year <= 2100)]
+       
+        """
+        #Ref
+        bch_daily_clip_ts_hamon = np.zeros([len_clip])
+        bch_daily_clip_ts_har_sam = np.zeros([len_clip])
+        bch_daily_clip_ts_hargreaves = np.zeros([len_clip])
+        bch_daily_clip_ts_jen_hai = np.zeros([len_clip])
+        bch_daily_clip_ts_makkink = np.zeros([len_clip])
+        bch_daily_clip_ts_oudin = np.zeros([len_clip])
+        bch_daily_clip_ts_penman = np.zeros([len_clip])
+        bch_daily_clip_ts_penman_monteith = np.zeros([len_clip])
+        bch_daily_clip_ts_pri_tay = np.zeros([len_clip])
+        bch_daily_clip_ts_turc = np.zeros([len_clip])
+        """
+        #Near
+        near_daily_clip_ts_hamon = np.zeros([len_clip])
+        near_daily_clip_ts_har_sam = np.zeros([len_clip])
+        near_daily_clip_ts_hargreaves = np.zeros([len_clip])
+        near_daily_clip_ts_jen_hai = np.zeros([len_clip])
+        near_daily_clip_ts_makkink = np.zeros([len_clip])
+        near_daily_clip_ts_oudin = np.zeros([len_clip])
+        near_daily_clip_ts_penman = np.zeros([len_clip])
+        near_daily_clip_ts_penman_monteith = np.zeros([len_clip])
+        near_daily_clip_ts_pri_tay = np.zeros([len_clip])
+        near_daily_clip_ts_turc = np.zeros([len_clip])
+        #mid
+        mid_daily_clip_ts_hamon = np.zeros([len_clip])
+        mid_daily_clip_ts_har_sam = np.zeros([len_clip])
+        mid_daily_clip_ts_hargreaves = np.zeros([len_clip])
+        mid_daily_clip_ts_jen_hai = np.zeros([len_clip])
+        mid_daily_clip_ts_makkink = np.zeros([len_clip])
+        mid_daily_clip_ts_oudin = np.zeros([len_clip])
+        mid_daily_clip_ts_penman = np.zeros([len_clip])
+        mid_daily_clip_ts_penman_monteith = np.zeros([len_clip])
+        mid_daily_clip_ts_pri_tay = np.zeros([len_clip])
+        mid_daily_clip_ts_turc = np.zeros([len_clip])
+        #Far
+        far_daily_clip_ts_hamon = np.zeros([len_clip])
+        far_daily_clip_ts_har_sam = np.zeros([len_clip])
+        far_daily_clip_ts_hargreaves = np.zeros([len_clip])
+        far_daily_clip_ts_jen_hai = np.zeros([len_clip])
+        far_daily_clip_ts_makkink = np.zeros([len_clip])
+        far_daily_clip_ts_oudin = np.zeros([len_clip])
+        far_daily_clip_ts_penman = np.zeros([len_clip])
+        far_daily_clip_ts_penman_monteith = np.zeros([len_clip])
+        far_daily_clip_ts_pri_tay = np.zeros([len_clip])
+        far_daily_clip_ts_turc = np.zeros([len_clip])
+        """
+        for iii in np.arange(0,len_clip):
+            #Ref
+            bch_daily_clip_ts_hamon[iii] = np.mean(bch_clip_hamon[iii,:,:])
+            bch_daily_clip_ts_har_sam[iii] = np.mean(bch_clip_har_sam[iii,:,:])
+            bch_daily_clip_ts_hargreaves[iii] = np.mean(bch_clip_hargreaves[iii,:,:])
+            bch_daily_clip_ts_jen_hai[iii] = np.mean(bch_clip_jen_hai[iii,:,:])
+            bch_daily_clip_ts_makkink[iii] = np.mean(bch_clip_makkink[iii,:,:])
+            bch_daily_clip_ts_oudin[iii] = np.mean(bch_clip_oudin[iii,:,:])
+            bch_daily_clip_ts_penman[iii] = np.mean(bch_clip_penman[iii,:,:])
+            bch_daily_clip_ts_penman_monteith[iii] = np.mean(bch_clip_penman_monteith[iii,:,:])
+            bch_daily_clip_ts_pri_tay[iii] = np.mean(bch_clip_pri_tay[iii,:,:])
+            bch_daily_clip_ts_turc[iii] = np.mean(bch_clip_turc[iii,:,:])
+            """
+            #Near
+            near_daily_clip_ts_hamon[iii] = np.mean(near_clip_hamon[iii,:,:])
+            near_daily_clip_ts_har_sam[iii] = np.mean(near_clip_har_sam[iii,:,:])
+            near_daily_clip_ts_hargreaves[iii] = np.mean(near_clip_hargreaves[iii,:,:])
+            near_daily_clip_ts_jen_hai[iii] = np.mean(near_clip_jen_hai[iii,:,:])
+            near_daily_clip_ts_makkink[iii] = np.mean(near_clip_makkink[iii,:,:])
+            near_daily_clip_ts_oudin[iii] = np.mean(near_clip_oudin[iii,:,:])
+            near_daily_clip_ts_penman[iii] = np.mean(near_clip_penman[iii,:,:])
+            near_daily_clip_ts_penman_monteith[iii] = np.mean(near_clip_penman_monteith[iii,:,:])
+            near_daily_clip_ts_pri_tay[iii] = np.mean(near_clip_pri_tay[iii,:,:])
+            near_daily_clip_ts_turc[iii] = np.mean(near_clip_turc[iii,:,:])
+            #Mid
+            mid_daily_clip_ts_hamon[iii] = np.mean(mid_clip_hamon[iii,:,:])
+            mid_daily_clip_ts_har_sam[iii] = np.mean(mid_clip_har_sam[iii,:,:])
+            mid_daily_clip_ts_hargreaves[iii] = np.mean(mid_clip_hargreaves[iii,:,:])
+            mid_daily_clip_ts_jen_hai[iii] = np.mean(mid_clip_jen_hai[iii,:,:])
+            mid_daily_clip_ts_makkink[iii] = np.mean(mid_clip_makkink[iii,:,:])
+            mid_daily_clip_ts_oudin[iii] = np.mean(mid_clip_oudin[iii,:,:])
+            mid_daily_clip_ts_penman[iii] = np.mean(mid_clip_penman[iii,:,:])
+            mid_daily_clip_ts_penman_monteith[iii] = np.mean(mid_clip_penman_monteith[iii,:,:])
+            mid_daily_clip_ts_pri_tay[iii] = np.mean(mid_clip_pri_tay[iii,:,:])
+            mid_daily_clip_ts_turc[iii] = np.mean(mid_clip_turc[iii,:,:])
+            #Far
+            far_daily_clip_ts_hamon[iii] = np.mean(far_clip_hamon[iii,:,:])
+            far_daily_clip_ts_har_sam[iii] = np.mean(far_clip_har_sam[iii,:,:])
+            far_daily_clip_ts_hargreaves[iii] = np.mean(far_clip_hargreaves[iii,:,:])
+            far_daily_clip_ts_jen_hai[iii] = np.mean(far_clip_jen_hai[iii,:,:])
+            far_daily_clip_ts_makkink[iii] = np.mean(far_clip_makkink[iii,:,:])
+            far_daily_clip_ts_oudin[iii] = np.mean(far_clip_oudin[iii,:,:])
+            far_daily_clip_ts_penman[iii] = np.mean(far_clip_penman[iii,:,:])
+            far_daily_clip_ts_penman_monteith[iii] = np.mean(far_clip_penman_monteith[iii,:,:])
+            far_daily_clip_ts_pri_tay[iii] = np.mean(far_clip_pri_tay[iii,:,:])
+            far_daily_clip_ts_turc[iii] = np.mean(far_clip_turc[iii,:,:])
+            """
+        for yy in np.arange(1976,2006):
+            #Ref
+            pet_annual_bch_sum_all_cms_hamon_reference[yy-1976,ii]=np.sum(bch_daily_clip_ts_hamon[bch_year_clip==yy])
+            pet_annual_bch_sum_all_cms_har_sam_reference[yy-1976,ii]=np.sum(bch_daily_clip_ts_har_sam[bch_year_clip==yy])
+            pet_annual_bch_sum_all_cms_hargreaves_reference[yy-1976,ii]=np.sum(bch_daily_clip_ts_hargreaves[bch_year_clip==yy])
+            pet_annual_bch_sum_all_cms_jen_hai_reference[yy-1976,ii]=np.sum(bch_daily_clip_ts_jen_hai[bch_year_clip==yy])
+            pet_annual_bch_sum_all_cms_makkink_reference[yy-1976,ii]=np.sum(bch_daily_clip_ts_makkink[bch_year_clip==yy])
+            pet_annual_bch_sum_all_cms_oudin_reference[yy-1976,ii]=np.sum(bch_daily_clip_ts_oudin[bch_year_clip==yy])
+            pet_annual_bch_sum_all_cms_penman_reference[yy-1976,ii]=np.sum(bch_daily_clip_ts_penman[bch_year_clip==yy])
+            pet_annual_bch_sum_all_cms_penman_monteith_reference[yy-1976,ii]=np.sum(bch_daily_clip_ts_penman_monteith[bch_year_clip==yy])
+            pet_annual_bch_sum_all_cms_pri_tay_reference[yy-1976,ii]=np.sum(bch_daily_clip_ts_pri_tay[bch_year_clip==yy])
+            pet_annual_bch_sum_all_cms_turc_reference[yy-1976,ii]=np.sum(bch_daily_clip_ts_turc[bch_year_clip==yy])
+            """
+            #near
+            pet_annual_near_sum_all_cms_hamon_reference[yy-1976,ii]=np.sum(near_daily_clip_ts_hamon[near_year_clip==yy])
+            pet_annual_near_sum_all_cms_har_sam_reference[yy-1976,ii]=np.sum(near_daily_clip_ts_har_sam[near_year_clip==yy])
+            pet_annual_near_sum_all_cms_hargreaves_reference[yy-1976,ii]=np.sum(near_daily_clip_ts_hargreaves[near_year_clip==yy])
+            pet_annual_near_sum_all_cms_jen_hai_reference[yy-1976,ii]=np.sum(near_daily_clip_ts_jen_hai[near_year_clip==yy])
+            pet_annual_near_sum_all_cms_makkink_reference[yy-1976,ii]=np.sum(near_daily_clip_ts_makkink[near_year_clip==yy])
+            pet_annual_near_sum_all_cms_oudin_reference[yy-1976,ii]=np.sum(near_daily_clip_ts_oudin[near_year_clip==yy])
+            pet_annual_near_sum_all_cms_penman_reference[yy-1976,ii]=np.sum(near_daily_clip_ts_penman[near_year_clip==yy])
+            pet_annual_near_sum_all_cms_penman_monteith_reference[yy-1976,ii]=np.sum(near_daily_clip_ts_penman_monteith[near_year_clip==yy])
+            pet_annual_near_sum_all_cms_pri_tay_reference[yy-1976,ii]=np.sum(near_daily_clip_ts_pri_tay[near_year_clip==yy])
+            pet_annual_near_sum_all_cms_turc_reference[yy-1976,ii]=np.sum(near_daily_clip_ts_turc[near_year_clip==yy])
+            #mid
+            pet_annual_mid_sum_all_cms_hamon_reference[yy-1976,ii]=np.sum(mid_daily_clip_ts_hamon[mid_year_clip==yy])
+            pet_annual_mid_sum_all_cms_har_sam_reference[yy-1976,ii]=np.sum(mid_daily_clip_ts_har_sam[mid_year_clip==yy])
+            pet_annual_mid_sum_all_cms_hargreaves_reference[yy-1976,ii]=np.sum(mid_daily_clip_ts_hargreaves[mid_year_clip==yy])
+            pet_annual_mid_sum_all_cms_jen_hai_reference[yy-1976,ii]=np.sum(mid_daily_clip_ts_jen_hai[mid_year_clip==yy])
+            pet_annual_mid_sum_all_cms_makkink_reference[yy-1976,ii]=np.sum(mid_daily_clip_ts_makkink[mid_year_clip==yy])
+            pet_annual_mid_sum_all_cms_oudin_reference[yy-1976,ii]=np.sum(mid_daily_clip_ts_oudin[mid_year_clip==yy])
+            pet_annual_mid_sum_all_cms_penman_reference[yy-1976,ii]=np.sum(mid_daily_clip_ts_penman[mid_year_clip==yy])
+            pet_annual_mid_sum_all_cms_penman_monteith_reference[yy-1976,ii]=np.sum(mid_daily_clip_ts_penman_monteith[mid_year_clip==yy])
+            pet_annual_mid_sum_all_cms_pri_tay_reference[yy-1976,ii]=np.sum(mid_daily_clip_ts_pri_tay[mid_year_clip==yy])
+            pet_annual_mid_sum_all_cms_turc_reference[yy-1976,ii]=np.sum(mid_daily_clip_ts_turc[mid_year_clip==yy])
+            #far
+            pet_annual_far_sum_all_cms_hamon_reference[yy-1976,ii]=np.sum(far_daily_clip_ts_hamon[far_year_clip==yy])
+            pet_annual_far_sum_all_cms_har_sam_reference[yy-1976,ii]=np.sum(far_daily_clip_ts_har_sam[far_year_clip==yy])
+            pet_annual_far_sum_all_cms_hargreaves_reference[yy-1976,ii]=np.sum(far_daily_clip_ts_hargreaves[far_year_clip==yy])
+            pet_annual_far_sum_all_cms_jen_hai_reference[yy-1976,ii]=np.sum(far_daily_clip_ts_jen_hai[far_year_clip==yy])
+            pet_annual_far_sum_all_cms_makkink_reference[yy-1976,ii]=np.sum(far_daily_clip_ts_makkink[far_year_clip==yy])
+            pet_annual_far_sum_all_cms_oudin_reference[yy-1976,ii]=np.sum(far_daily_clip_ts_oudin[far_year_clip==yy])
+            pet_annual_far_sum_all_cms_penman_reference[yy-1976,ii]=np.sum(far_daily_clip_ts_penman[far_year_clip==yy])
+            pet_annual_far_sum_all_cms_penman_monteith_reference[yy-1976,ii]=np.sum(far_daily_clip_ts_penman_monteith[far_year_clip==yy])
+            pet_annual_far_sum_all_cms_pri_tay_reference[yy-1976,ii]=np.sum(far_daily_clip_ts_pri_tay[far_year_clip==yy])
+            pet_annual_far_sum_all_cms_turc_reference[yy-1976,ii]=np.sum(far_daily_clip_ts_turc[far_year_clip==yy])
+            
+            
+    else:
+        ref_clip_hamon = ref_file_hamon[(year_noleap >= 1976) & (year_noleap <= 2005)]  
+        ref_year_clip=year_noleap[(year_noleap >= 1976) & (year_noleap <= 2005)]  
+        len_clip=len(ref_clip_hamon)
+        daily_clip_ts = np.zeros([len_clip])
+        for iii in np.arange(0,len_clip):
+            daily_clip_ts[iii] = np.mean(ref_clip_hamon[iii,:,:])
+        for yy in np.arange(1976,2006):
+            pet_annual_ref_sum_all_cms_hamon_reference[yy-1976,ii]=np.sum(daily_clip_ts[ref_year_clip==yy])
         
+        
+    for 
+        
+       
+            
+                
+        
+        
+        
+        
+
+        ref_file_har_sam = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_ref_list_har_sam[ii])
+        ref_file_hargreaves = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_ref_list_hargreaves[ii])
+        ref_file_jen_hai = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_ref_list_jen_hai[ii])
+        ref_file_makkink = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_ref_list_makkink[ii])
+        ref_file_oudin = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_ref_list_oudin[ii])
+        ref_file_penman = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_ref_list_penman[ii])
+        ref_file_penman_monteith = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_ref_list_penman_monteith[ii])
+        ref_file_pri_tay = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_ref_list_pri_tay[ii])
+        ref_file_turc = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/raw/'+file_ref_list_turc[ii])
+
+        
+                
+                
+                
+            df_yy = df.loc[df.Year==yy]
+            df_cm=df_yy.loc[df_yy.CM==unique_CMs[ii]]
+            pet_annual_ref_sum_all_cms_hamon[yy-1971,ii] = np.sum(df_cm.Hamon)
+            
     
+        pet_annual_ref_sum_all_cms_hamon_reference
+
+    #Reference period 
+    for yy in np.arange(1971,1972): ## yy as in year
+        
+        #Plotting the time series to check that bias-correction did not produce artifacts
         for iii in np.arange(0,90):
-            cor_file = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_hamon[iii])
+            cor_file_hamon = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_hamon[iii])
             font = {'family' : 'normal',
             'weight' : 'normal',
             'size'   : 22}
@@ -91,12 +413,228 @@ for i in np.arange(0,10):
                     data_mean[nn]=np.mean(data[nn,:,:])
                 plt.plot(data_mean)
                 plt.title('Daily PET estimation timeseries - Delta BC, Hamon - '+site_n)
-                plt.ylim(0,25)
+                plt.ylim(0,15)
                 plt.ylabel('Monthly PET (mm/month)')
                 plt.xlabel('Days since 1971')
                 plt.legend()
-                       
-            [(year >= 1976) & (year <= 2005)])    
+            plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/daily_pet_timeseries_hamon_'+site_n+'.png')
+                
+            cor_file_har_sam = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_har_sam[iii])
+            font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+            
+            fig, ax = plt.subplots()
+            fig= plt.figure(figsize=(40,20))
+            fontsize=20
+            plt.rc('font', **font)
+            for n in np.arange(0,10): # Har-sam files
+                data = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_har_sam[n])
+                data_mean = np.zeros([len(data),])
+                for nn in np.arange(0,len(data)):
+                    data_mean[nn]=np.mean(data[nn,:,:])
+                plt.plot(data_mean)
+                plt.title('Daily PET estimation timeseries - Delta BC, Hargreaves-Samani - '+site_n)
+                plt.ylim(0,15)
+                plt.ylabel('Monthly PET (mm/month)')
+                plt.xlabel('Days since 1971')
+                plt.legend()
+            plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/daily_pet_timeseries_har_sam_'+site_n+'.png')
+            
+            cor_file_hargreaves = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_hargreaves[iii])
+            font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+            
+            fig, ax = plt.subplots()
+            fig= plt.figure(figsize=(40,20))
+            fontsize=20
+            plt.rc('font', **font)
+            for n in np.arange(0,10): # Hargreaves files
+                data = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_hargreaves[n])
+                data_mean = np.zeros([len(data),])
+                for nn in np.arange(0,len(data)):
+                    data_mean[nn]=np.mean(data[nn,:,:])
+                plt.plot(data_mean)
+                plt.title('Daily PET estimation timeseries - Delta BC, Hargreaves - '+site_n)
+                plt.ylim(0,15)
+                plt.ylabel('Monthly PET (mm/month)')
+                plt.xlabel('Days since 1971')
+                plt.legend()
+            plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/daily_pet_timeseries_hargreaves_'+site_n+'.png')
+            
+            cor_file_jen_hai = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_jen_hai[iii])
+            font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+            
+            fig, ax = plt.subplots()
+            fig= plt.figure(figsize=(40,20))
+            fontsize=20
+            plt.rc('font', **font)
+            for n in np.arange(0,10): # Jensen-Haise files
+                data = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_jen_hai[n])
+                data_mean = np.zeros([len(data),])
+                for nn in np.arange(0,len(data)):
+                    data_mean[nn]=np.mean(data[nn,:,:])
+                plt.plot(data_mean)
+                plt.title('Daily PET estimation timeseries - Delta BC, Jensen-Haise - '+site_n)
+                plt.ylim(0,15)
+                plt.ylabel('Monthly PET (mm/month)')
+                plt.xlabel('Days since 1971')
+                plt.legend()
+            plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/daily_pet_timeseries_jen_hai_'+site_n+'.png')
+            
+            cor_file_makkink = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_makkink[iii])
+            font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+            
+            fig, ax = plt.subplots()
+            fig= plt.figure(figsize=(40,20))
+            fontsize=20
+            plt.rc('font', **font)
+            for n in np.arange(0,10): # Makkink files
+                data = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_makkink[n])
+                data_mean = np.zeros([len(data),])
+                for nn in np.arange(0,len(data)):
+                    data_mean[nn]=np.mean(data[nn,:,:])
+                plt.plot(data_mean)
+                plt.title('Daily PET estimation timeseries - Delta BC, Makkink - '+site_n)
+                plt.ylim(0,15)
+                plt.ylabel('Monthly PET (mm/month)')
+                plt.xlabel('Days since 1971')
+                plt.legend()
+            plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/daily_pet_timeseries_makkink_'+site_n+'.png')
+            
+            cor_file_oudin = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_oudin[iii])
+            font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+            
+            fig, ax = plt.subplots()
+            fig= plt.figure(figsize=(40,20))
+            fontsize=20
+            plt.rc('font', **font)
+            for n in np.arange(0,10): # Oudin files
+                data = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_oudin[n])
+                data_mean = np.zeros([len(data),])
+                for nn in np.arange(0,len(data)):
+                    data_mean[nn]=np.mean(data[nn,:,:])
+                plt.plot(data_mean)
+                plt.title('Daily PET estimation timeseries - Delta BC, Oudin - '+site_n)
+                plt.ylim(0,15)
+                plt.ylabel('Monthly PET (mm/month)')
+                plt.xlabel('Days since 1971')
+                plt.legend()
+            plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/daily_pet_timeseries_oudin_'+site_n+'.png')
+            
+            cor_file_penman = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_penman[iii])
+            font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+            
+            fig, ax = plt.subplots()
+            fig= plt.figure(figsize=(40,20))
+            fontsize=20
+            plt.rc('font', **font)
+            for n in np.arange(0,10): # Penman files
+                data = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_penman[n])
+                data_mean = np.zeros([len(data),])
+                for nn in np.arange(0,len(data)):
+                    data_mean[nn]=np.mean(data[nn,:,:])
+                plt.plot(data_mean)
+                plt.title('Daily PET estimation timeseries - Delta BC, Penman - '+site_n)
+                plt.ylim(0,15)
+                plt.ylabel('Monthly PET (mm/month)')
+                plt.xlabel('Days since 1971')
+                plt.legend()
+            plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/daily_pet_timeseries_penman_'+site_n+'.png')
+            
+            cor_file_penman_montheit = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_penman_monteith[iii])
+            font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+            
+            fig, ax = plt.subplots()
+            fig= plt.figure(figsize=(40,20))
+            fontsize=20
+            plt.rc('font', **font)
+            for n in np.arange(0,10): # penman_monteith files
+                data = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_penman_monteith[n])
+                data_mean = np.zeros([len(data),])
+                for nn in np.arange(0,len(data)):
+                    data_mean[nn]=np.mean(data[nn,:,:])
+                plt.plot(data_mean)
+                plt.title('Daily PET estimation timeseries - Delta BC, Penman-Monteith - '+site_n)
+                plt.ylim(0,15)
+                plt.ylabel('Monthly PET (mm/month)')
+                plt.xlabel('Days since 1971')
+                plt.legend()
+            plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/daily_pet_timeseries_penman_monteith_'+site_n+'.png')
+            
+            cor_file_penman_montheit = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_pri_tay[iii])
+            font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+            
+            fig, ax = plt.subplots()
+            fig= plt.figure(figsize=(40,20))
+            fontsize=20
+            plt.rc('font', **font)
+            for n in np.arange(0,10): # Priestly-Taylor files
+                data = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_pri_tay[n])
+                data_mean = np.zeros([len(data),])
+                for nn in np.arange(0,len(data)):
+                    data_mean[nn]=np.mean(data[nn,:,:])
+                plt.plot(data_mean)
+                plt.title('Daily PET estimation timeseries - Delta BC, Priestly-Taylor - '+site_n)
+                plt.ylim(0,15)
+                plt.ylabel('Monthly PET (mm/month)')
+                plt.xlabel('Days since 1971')
+                plt.legend()
+            plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/daily_pet_timeseries_pri_tay_'+site_n+'.png')
+            
+            cor_file_penman_montheit = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_turc[iii])
+            font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 22}
+            
+            fig, ax = plt.subplots()
+            fig= plt.figure(figsize=(40,20))
+            fontsize=20
+            plt.rc('font', **font)
+            for n in np.arange(0,10): # Turc files
+                data = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_turc[n])
+                data_mean = np.zeros([len(data),])
+                for nn in np.arange(0,len(data)):
+                    data_mean[nn]=np.mean(data[nn,:,:])
+                plt.plot(data_mean)
+                plt.title('Daily PET estimation timeseries - Delta BC, Turc - '+site_n)
+                plt.ylim(0,15)
+                plt.ylabel('Monthly PET (mm/month)')
+                plt.xlabel('Days since 1971')
+                plt.legend()
+            plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/daily_pet_timeseries_turc_'+site_n+'.png')
+            
+            
+           
+            
+           
+            
+           
+            
+           
+            
+           
+            
+           
+            
+           
+            
+           
+            
+           
         
         
             
@@ -1263,3 +1801,4 @@ for df_list_n in df_list:
     df_climate_model_snr_far.to_excel('C:/Users/erpasten/Documents/UEF/PET/CMs/'+df_list_n[7:9]+'/pet/raw/df_climate_model_snr_'+df_list_n[7:9]+'.xlsx', sheet_name='Far')
     df_climate_model_snr_near.to_excel('C:/Users/erpasten/Documents/UEF/PET/CMs/'+df_list_n[7:9]+'/pet/raw/df_climate_model_snr_'+df_list_n[7:9]+'.xlsx', sheet_name='Near')
     df_climate_model_snr_mid.to_excel('C:/Users/erpasten/Documents/UEF/PET/CMs/'+df_list_n[7:9]+'/pet/raw/df_climate_model_snr_'+df_list_n[7:9]+'.xlsx', sheet_name='Mid')    
+    """
