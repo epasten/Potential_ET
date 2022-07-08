@@ -587,6 +587,17 @@ for i in np.arange(0,10):
     #For the corrected models
     #Index of noleap models in the corrected list
     noleap_index = [6,7,8,15,16,17,24,25,26,33,34,35,42,43,44,51,52,53,60,61,62,70,71,79,80,88,89]
+    
+    pet_annual_all_yrs_cms_hamon_corrected = np.zeros([125,90])
+    pet_annual_all_yrs_cms_har_sam_corrected = np.zeros([125,90])
+    pet_annual_all_yrs_cms_hargreaves_corrected = np.zeros([125,90])
+    pet_annual_all_yrs_cms_jen_hai_corrected = np.zeros([125,90])
+    pet_annual_all_yrs_cms_makkink_corrected = np.zeros([125,90])
+    pet_annual_all_yrs_cms_oudin_corrected = np.zeros([125,90])
+    pet_annual_all_yrs_cms_penman_corrected = np.zeros([125,90])
+    pet_annual_all_yrs_cms_penman_monteith_corrected = np.zeros([125,90])
+    pet_annual_all_yrs_cms_pri_tay_corrected = np.zeros([125,90])
+    pet_annual_all_yrs_cms_turc_corrected = np.zeros([125,90])
 
     for cc in np.arange(0,90):
         if cc in noleap_index:
@@ -600,8 +611,45 @@ for i in np.arange(0,10):
             cor_file_penman_monteith = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_cor_list_penman_monteith[cc])
             cor_file_pri_tay = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_cor_list_pri_tay[cc])
             cor_file_turc = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_cor_list_turc[cc])
+            len_clip_all=len(cor_file_hamon)
+            
+            cor_daily_clip_ts_hamon_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_har_sam_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_hargreaves_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_jen_hai_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_makkink_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_oudin_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_penman_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_penman_monteith_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_pri_tay_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_turc_all = np.zeros([len_clip_all])
             
             
+            for ccc in np.arange(0,len_clip_all):
+                cor_daily_clip_ts_hamon_all[ccc] = np.mean(cor_file_hamon[ccc,:,:])
+                cor_daily_clip_ts_har_sam_all[ccc] = np.mean(cor_file_har_sam[ccc,:,:])
+                cor_daily_clip_ts_hargreaves_all[ccc] = np.mean(cor_file_hargreaves[ccc,:,:])
+                cor_daily_clip_ts_jen_hai_all[ccc] = np.mean(cor_file_jen_hai[ccc,:,:])
+                cor_daily_clip_ts_makkink_all[ccc] = np.mean(cor_file_makkink[ccc,:,:])
+                cor_daily_clip_ts_oudin_all[ccc] = np.mean(cor_file_oudin[ccc,:,:])
+                cor_daily_clip_ts_penman_all[ccc] = np.mean(cor_file_penman[ccc,:,:])
+                cor_daily_clip_ts_penman_monteith_all[ccc] = np.mean(cor_file_penman_monteith[ccc,:,:])
+                cor_daily_clip_ts_pri_tay_all[ccc] = np.mean(cor_file_pri_tay[ccc,:,:])
+                cor_daily_clip_ts_turc_all[ccc] = np.mean(cor_file_turc[ccc,:,:])
+            
+            
+            for yy in np.arange(1976,2101):
+                #All annual years
+                pet_annual_all_yrs_cms_hamon_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_hamon_all[year_noleap==yy])
+                pet_annual_all_yrs_cms_har_sam_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_har_sam_all[year_noleap==yy])
+                pet_annual_all_yrs_cms_hargreaves_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_hargreaves_all[year_noleap==yy])
+                pet_annual_all_yrs_cms_jen_hai_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_jen_hai_all[year_noleap==yy])
+                pet_annual_all_yrs_cms_makkink_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_makkink_all[year_noleap==yy])
+                pet_annual_all_yrs_cms_oudin_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_oudin_all[year_noleap==yy])
+                pet_annual_all_yrs_cms_penman_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_penman_all[year_noleap==yy])
+                pet_annual_all_yrs_cms_penman_monteith_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_penman_monteith_all[year_noleap==yy])
+                pet_annual_all_yrs_cms_pri_tay_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_pri_tay_all[year_noleap==yy])
+                pet_annual_all_yrs_cms_turc_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_turc_all[year_noleap==yy])
             
             print(file_cor_list_hamon[cc])
         else: 
@@ -616,8 +664,54 @@ for i in np.arange(0,10):
             cor_file_penman_monteith = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_cor_list_penman_monteith[cc])
             cor_file_pri_tay = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_cor_list_pri_tay[cc])
             cor_file_turc = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_cor_list_turc[cc])
+            len_clip_all=len(cor_file_hamon)
+            
+            cor_daily_clip_ts_hamon_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_har_sam_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_hargreaves_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_jen_hai_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_makkink_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_oudin_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_penman_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_penman_monteith_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_pri_tay_all = np.zeros([len_clip_all])
+            cor_daily_clip_ts_turc_all = np.zeros([len_clip_all])
+            
+            for ccc in np.arange(0,len_clip_all):
+                cor_daily_clip_ts_hamon_all[ccc] = np.mean(cor_file_hamon[ccc,:,:])
+                cor_daily_clip_ts_har_sam_all[ccc] = np.mean(cor_file_har_sam[ccc,:,:])
+                cor_daily_clip_ts_hargreaves_all[ccc] = np.mean(cor_file_hargreaves[ccc,:,:])
+                cor_daily_clip_ts_jen_hai_all[ccc] = np.mean(cor_file_jen_hai[ccc,:,:])
+                cor_daily_clip_ts_makkink_all[ccc] = np.mean(cor_file_makkink[ccc,:,:])
+                cor_daily_clip_ts_oudin_all[ccc] = np.mean(cor_file_oudin[ccc,:,:])
+                cor_daily_clip_ts_penman_all[ccc] = np.mean(cor_file_penman[ccc,:,:])
+                cor_daily_clip_ts_penman_monteith_all[ccc] = np.mean(cor_file_penman_monteith[ccc,:,:])
+                cor_daily_clip_ts_pri_tay_all[ccc] = np.mean(cor_file_pri_tay[ccc,:,:])
+                cor_daily_clip_ts_turc_all[ccc] = np.mean(cor_file_turc[ccc,:,:])
+            
+            
+            for yy in np.arange(1976,2101):
+                #All annual years
+                pet_annual_all_yrs_cms_hamon_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_hamon_all[year==yy])
+                pet_annual_all_yrs_cms_har_sam_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_har_sam_all[year==yy])
+                pet_annual_all_yrs_cms_hargreaves_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_hargreaves_all[year==yy])
+                pet_annual_all_yrs_cms_jen_hai_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_jen_hai_all[year==yy])
+                pet_annual_all_yrs_cms_makkink_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_makkink_all[year==yy])
+                pet_annual_all_yrs_cms_oudin_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_oudin_all[year==yy])
+                pet_annual_all_yrs_cms_penman_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_penman_all[year==yy])
+                pet_annual_all_yrs_cms_penman_monteith_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_penman_monteith_all[year==yy])
+                pet_annual_all_yrs_cms_pri_tay_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_pri_tay_all[year==yy])
+                pet_annual_all_yrs_cms_turc_corrected[yy-1976,cc]=np.sum(cor_daily_clip_ts_turc_all[year==yy])
+            
             
             print(file_cor_list_hamon[cc])
+    
+    
+    
+    
+    
+    for jj in np.arange(0,10):
+        pet_annual_ref_sum_all_cms_hamon_corrected = np.zeros([30,10,10])#yrs,#models for that benchmark model,benchmark step
         
 
 """   
