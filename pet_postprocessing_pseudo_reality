@@ -30,6 +30,7 @@ df_list = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/
 site_list = ['at','dk','dl','fi','fr','gr','it','ro','sp','uk']
 for i in np.arange(0,10): 
     site_n=site_list[i]
+    print(site_n)
     # Extraction of the corrected files
     file_cor_list_hamon = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_hamon') and filename.endswith('.npy')]
     file_cor_list_har_sam = [filename for filename in os.listdir('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/') if filename.startswith('delta_har_sam') and filename.endswith('.npy')]
@@ -147,6 +148,30 @@ for i in np.arange(0,10):
     pet_annual_mid_sum_all_cms_turc_benchmark = np.zeros([30,10])
     pet_annual_far_sum_all_cms_turc_corrected = np.zeros([30,10,10])
     pet_annual_far_sum_all_cms_turc_benchmark = np.zeros([30,10])
+    
+    pet_annual_entire_sum_all_cms_hamon_benchmark = np.zeros([125,10])
+    pet_annual_entire_sum_all_cms_har_sam_benchmark = np.zeros([125,10])
+    pet_annual_entire_sum_all_cms_hargreaves_benchmark = np.zeros([125,10])
+    pet_annual_entire_sum_all_cms_jen_hai_benchmark = np.zeros([125,10])
+    pet_annual_entire_sum_all_cms_makkink_benchmark = np.zeros([125,10])
+    pet_annual_entire_sum_all_cms_oudin_benchmark = np.zeros([125,10])
+    pet_annual_entire_sum_all_cms_penman_benchmark = np.zeros([125,10])
+    pet_annual_entire_sum_all_cms_penman_monteith_benchmark = np.zeros([125,10])
+    pet_annual_entire_sum_all_cms_pri_tay_benchmark = np.zeros([125,10])
+    pet_annual_entire_sum_all_cms_turc_benchmark = np.zeros([125,10])
+    
+    #Year, model, benchmark model
+    pet_annual_entire_sum_all_cms_hamon_both = np.zeros([125,10,10])
+    pet_annual_entire_sum_all_cms_har_sam_both = np.zeros([125,10,10])
+    pet_annual_entire_sum_all_cms_hargreaves_both = np.zeros([125,10,10])
+    pet_annual_entire_sum_all_cms_jen_hai_both = np.zeros([125,10,10])
+    pet_annual_entire_sum_all_cms_makkink_both = np.zeros([125,10,10])
+    pet_annual_entire_sum_all_cms_oudin_both = np.zeros([125,10,10])
+    pet_annual_entire_sum_all_cms_penman_both = np.zeros([125,10,10])
+    pet_annual_entire_sum_all_cms_penman_monteith_both = np.zeros([125,10,10])
+    pet_annual_entire_sum_all_cms_pri_tay_both = np.zeros([125,10,10])
+    pet_annual_entire_sum_all_cms_turc_both = np.zeros([125,10,10])
+    
         
 
     #For the benchmark models
@@ -219,6 +244,19 @@ for i in np.arange(0,10):
             bch_year_clip_far = year[(year >= 2071) & (year <= 2100)]
             len_clip_far=len(bch_clip_hamon_far)
            
+            #Entire
+            len_entire = len(bch_file_hamon)
+            bch_daily_clip_ts_hamon_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_har_sam_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_hargreaves_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_jen_hai_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_makkink_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_oudin_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_penman_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_penman_monteith_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_pri_tay_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_turc_entire = np.zeros([len_entire])
+            
             #Ref
             bch_daily_clip_ts_hamon_ref = np.zeros([len_clip_ref])
             bch_daily_clip_ts_har_sam_ref = np.zeros([len_clip_ref])
@@ -267,6 +305,20 @@ for i in np.arange(0,10):
             bch_daily_clip_ts_pri_tay_far = np.zeros([len_clip_far])
             bch_daily_clip_ts_turc_far = np.zeros([len_clip_far])
             
+            for iii in np.arange(0,len_entire):
+                #Entire
+                bch_daily_clip_ts_hamon_entire[iii] = np.mean(bch_file_hamon[iii,:,:])
+                bch_daily_clip_ts_har_sam_entire[iii] = np.mean(bch_file_har_sam[iii,:,:])
+                bch_daily_clip_ts_hargreaves_entire[iii] = np.mean(bch_file_hargreaves[iii,:,:])
+                bch_daily_clip_ts_jen_hai_entire[iii] = np.mean(bch_file_jen_hai[iii,:,:])
+                bch_daily_clip_ts_makkink_entire[iii] = np.mean(bch_file_makkink[iii,:,:])
+                bch_daily_clip_ts_oudin_entire[iii] = np.mean(bch_file_oudin[iii,:,:])
+                bch_daily_clip_ts_penman_entire[iii] = np.mean(bch_file_penman[iii,:,:])
+                bch_daily_clip_ts_penman_monteith_entire[iii] = np.mean(bch_file_penman_monteith[iii,:,:])
+                bch_daily_clip_ts_pri_tay_entire[iii] = np.mean(bch_file_pri_tay[iii,:,:])
+                bch_daily_clip_ts_turc_entire[iii] = np.mean(bch_file_turc[iii,:,:])
+                
+                
             for iii in np.arange(0,len_clip_ref):
                 #Ref
                 bch_daily_clip_ts_hamon_ref[iii] = np.mean(bch_clip_hamon_ref[iii,:,:])
@@ -319,6 +371,20 @@ for i in np.arange(0,10):
                 bch_daily_clip_ts_pri_tay_far[iii] = np.mean(bch_clip_pri_tay_far[iii,:,:])
                 bch_daily_clip_ts_turc_far[iii] = np.mean(bch_clip_turc_far[iii,:,:])
                 
+            for yy in np.arange(1976,2101):
+                #Entire
+                pet_annual_entire_sum_all_cms_hamon_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_hamon_entire[year==yy])
+                pet_annual_entire_sum_all_cms_har_sam_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_har_sam_entire[year==yy])
+                pet_annual_entire_sum_all_cms_hargreaves_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_hargreaves_entire[year==yy])
+                pet_annual_entire_sum_all_cms_jen_hai_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_jen_hai_entire[year==yy])
+                pet_annual_entire_sum_all_cms_makkink_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_makkink_entire[year==yy])
+                pet_annual_entire_sum_all_cms_oudin_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_oudin_entire[year==yy])
+                pet_annual_entire_sum_all_cms_penman_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_penman_entire[year==yy])
+                pet_annual_entire_sum_all_cms_penman_monteith_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_penman_monteith_entire[year==yy])
+                pet_annual_entire_sum_all_cms_pri_tay_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_pri_tay_entire[year==yy])
+                pet_annual_entire_sum_all_cms_turc_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_turc_entire[year==yy])
+            
+            
             for yy in np.arange(1976,2006):
                 #Ref
                 pet_annual_ref_sum_all_cms_hamon_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_hamon_ref[bch_year_clip_ref==yy])
@@ -370,13 +436,12 @@ for i in np.arange(0,10):
                 pet_annual_far_sum_all_cms_penman_monteith_benchmark[yy-2071,ii]=np.sum(bch_daily_clip_ts_penman_monteith_far[bch_year_clip_far==yy])
                 pet_annual_far_sum_all_cms_pri_tay_benchmark[yy-2071,ii]=np.sum(bch_daily_clip_ts_pri_tay_far[bch_year_clip_far==yy])
                 pet_annual_far_sum_all_cms_turc_benchmark[yy-2071,ii]=np.sum(bch_daily_clip_ts_turc_far[bch_year_clip_far==yy])
-        
-        pet_annual_entire_sum_all_cms_hamon_benchmark = np.concatenate(pet_annual_ref_sum_all_cms_hamon_benchmark,pet_annual_near_sum_all_cms_hamon_benchmark
+
         
             
         #For no-leap models                   
         else:
-    
+       
             #Reference
             bch_clip_hamon_ref = bch_file_hamon[(year_noleap >= 1976) & (year_noleap <= 2005)]  
             bch_clip_har_sam_ref = bch_file_har_sam[(year_noleap >= 1976) & (year_noleap <= 2005)]
@@ -432,6 +497,19 @@ for i in np.arange(0,10):
             bch_clip_turc_far = bch_file_turc[(year_noleap >= 2071) & (year_noleap <= 2100)]
             bch_year_noleap_clip_far = year_noleap[(year_noleap >= 2071) & (year_noleap <= 2100)]
             len_clip_far=len(bch_clip_hamon_far)
+            
+            #Entire
+            len_entire = len(bch_file_hamon)
+            bch_daily_clip_ts_hamon_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_har_sam_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_hargreaves_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_jen_hai_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_makkink_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_oudin_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_penman_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_penman_monteith_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_pri_tay_entire = np.zeros([len_entire])
+            bch_daily_clip_ts_turc_entire = np.zeros([len_entire])
            
             #Ref
             bch_daily_clip_ts_hamon_ref = np.zeros([len_clip_ref])
@@ -480,6 +558,19 @@ for i in np.arange(0,10):
             bch_daily_clip_ts_penman_monteith_far = np.zeros([len_clip_far])
             bch_daily_clip_ts_pri_tay_far = np.zeros([len_clip_far])
             bch_daily_clip_ts_turc_far = np.zeros([len_clip_far])
+            
+            for iii in np.arange(0,len_entire):
+                #Entire
+                bch_daily_clip_ts_hamon_entire[iii] = np.mean(bch_file_hamon[iii,:,:])
+                bch_daily_clip_ts_har_sam_entire[iii] = np.mean(bch_file_har_sam[iii,:,:])
+                bch_daily_clip_ts_hargreaves_entire[iii] = np.mean(bch_file_hargreaves[iii,:,:])
+                bch_daily_clip_ts_jen_hai_entire[iii] = np.mean(bch_file_jen_hai[iii,:,:])
+                bch_daily_clip_ts_makkink_entire[iii] = np.mean(bch_file_makkink[iii,:,:])
+                bch_daily_clip_ts_oudin_entire[iii] = np.mean(bch_file_oudin[iii,:,:])
+                bch_daily_clip_ts_penman_entire[iii] = np.mean(bch_file_penman[iii,:,:])
+                bch_daily_clip_ts_penman_monteith_entire[iii] = np.mean(bch_file_penman_monteith[iii,:,:])
+                bch_daily_clip_ts_pri_tay_entire[iii] = np.mean(bch_file_pri_tay[iii,:,:])
+                bch_daily_clip_ts_turc_entire[iii] = np.mean(bch_file_turc[iii,:,:])
             
             for iii in np.arange(0,len_clip_ref):
                 #Ref
@@ -532,6 +623,20 @@ for i in np.arange(0,10):
                 bch_daily_clip_ts_penman_monteith_far[iii] = np.mean(bch_clip_penman_monteith_far[iii,:,:])
                 bch_daily_clip_ts_pri_tay_far[iii] = np.mean(bch_clip_pri_tay_far[iii,:,:])
                 bch_daily_clip_ts_turc_far[iii] = np.mean(bch_clip_turc_far[iii,:,:])
+                
+                
+            for yy in np.arange(1976,2101):
+                #Entire
+                pet_annual_entire_sum_all_cms_hamon_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_hamon_entire[year_noleap==yy])
+                pet_annual_entire_sum_all_cms_har_sam_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_har_sam_entire[year_noleap==yy])
+                pet_annual_entire_sum_all_cms_hargreaves_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_hargreaves_entire[year_noleap==yy])
+                pet_annual_entire_sum_all_cms_jen_hai_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_jen_hai_entire[year_noleap==yy])
+                pet_annual_entire_sum_all_cms_makkink_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_makkink_entire[year_noleap==yy])
+                pet_annual_entire_sum_all_cms_oudin_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_oudin_entire[year_noleap==yy])
+                pet_annual_entire_sum_all_cms_penman_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_penman_entire[year_noleap==yy])
+                pet_annual_entire_sum_all_cms_penman_monteith_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_penman_monteith_entire[year_noleap==yy])
+                pet_annual_entire_sum_all_cms_pri_tay_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_pri_tay_entire[year_noleap==yy])
+                pet_annual_entire_sum_all_cms_turc_benchmark[yy-1976,ii]=np.sum(bch_daily_clip_ts_turc_entire[year_noleap==yy])
                 
             for yy in np.arange(1976,2006):
                 #Ref
@@ -649,7 +754,7 @@ for i in np.arange(0,10):
             for yy in np.arange(1976,2101):
                 #Entire Period
                 pet_annual_entire_sum_all_cms_hamon_corrected[yy-1976,cc]=np.sum(cor_daily_entire_ts_hamon[year_noleap==yy])
-                pet_annual_entire_sum_all_cms_har_sam_corrected_corrected[yy-1976,cc]=np.sum(cor_daily_entire_ts_har_sam[year_noleap==yy])
+                pet_annual_entire_sum_all_cms_har_sam_corrected[yy-1976,cc]=np.sum(cor_daily_entire_ts_har_sam[year_noleap==yy])
                 pet_annual_entire_sum_all_cms_hargreaves_corrected[yy-1976,cc]=np.sum(cor_daily_entire_ts_hargreaves[year_noleap==yy])
                 pet_annual_entire_sum_all_cms_jen_hai_corrected[yy-1976,cc]=np.sum(cor_daily_entire_ts_jen_hai[year_noleap==yy])
                 pet_annual_entire_sum_all_cms_makkink_corrected[yy-1976,cc]=np.sum(cor_daily_entire_ts_makkink[year_noleap==yy])
@@ -719,9 +824,45 @@ for i in np.arange(0,10):
         
 
     
+    np.save('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/benchmark_annual_pet_hamon_all.npy',pet_annual_entire_sum_all_cms_hamon_benchmark)
+    np.save('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corected/pet/benchmark_annual_pet_har_sam_all.npy',pet_annual_entire_sum_all_cms_har_sam_benchmark)
+    np.save('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/benchmark_annual_pet_hargreaves_all.npy',pet_annual_entire_sum_all_cms_hargreaves_benchmark)
+    np.save('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/benchmark_annual_pet_jen_hai_all.npy',pet_annual_entire_sum_all_cms_jen_hai_benchmark)
+    np.save('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/benchmark_annual_pet_makkink_all.npy',pet_annual_entire_sum_all_cms_makkink_benchmark)
+    np.save('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/benchmark_annual_pet_oudin_all.npy',pet_annual_entire_sum_all_cms_oudin_benchmark)
+    np.save('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/benchmark_annual_pet_penman_all.npy',pet_annual_entire_sum_all_cms_penman_benchmark)
+    np.save('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/benchmark_annual_pet_penman_monteith_all.npy',pet_annual_entire_sum_all_cms_penman_monteith_benchmark)
+    np.save('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/benchmark_annual_pet_pri_tay_all.npy',pet_annual_entire_sum_all_cms_pri_tay_benchmark)
+    np.save('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/benchmark_annual_pet_turc_all.npy',pet_annual_entire_sum_all_cms_turc_benchmark)
+    
+    
+    for xx in np.arange(0,10):
+        pet_annual_entire_sum_all_cms_hamon_both[:,xx,xx] = pet_annual_entire_sum_all_cms_hamon_benchmark[:,xx]
+        pet_annual_entire_sum_all_cms_har_sam_both[:,xx,xx] = pet_annual_entire_sum_all_cms_har_sam_benchmark[:,xx]
+        pet_annual_entire_sum_all_cms_hargreaves_both[:,xx,xx] = pet_annual_entire_sum_all_cms_hargreaves_benchmark[:,xx]
+        pet_annual_entire_sum_all_cms_jen_hai_both[:,xx,xx] = pet_annual_entire_sum_all_cms_jen_hai_benchmark[:,xx]
+        pet_annual_entire_sum_all_cms_makkink_both[:,xx,xx] = pet_annual_entire_sum_all_cms_makkink_benchmark[:,xx]
+        pet_annual_entire_sum_all_cms_oudin_both[:,xx,xx] = pet_annual_entire_sum_all_cms_oudin_benchmark[:,xx]
+        pet_annual_entire_sum_all_cms_penman_both[:,xx,xx] = pet_annual_entire_sum_all_cms_penman_benchmark[:,xx]
+        pet_annual_entire_sum_all_cms_penman_monteith_both[:,xx,xx] = pet_annual_entire_sum_all_cms_penman_monteith_benchmark[:,xx]
+        pet_annual_entire_sum_all_cms_pri_tay_both[:,xx,xx] = pet_annual_entire_sum_all_cms_pri_tay_benchmark[:,xx]
+        pet_annual_entire_sum_all_cms_turc_both[:,xx,xx] = pet_annual_entire_sum_all_cms_turc_benchmark[:,xx]
+        
+        
+    
+        pet_annual_entire_sum_all_cms_hamon_both[:,1:10,0]=pet_annual_entire_sum_all_cms_hamon_corrected[:,0:9]
+        pet_annual_entire_sum_all_cms_hamon_both[:,0,1]=pet_annual_entire_sum_all_cms_hamon_corrected[:,10]
+        pet_annual_entire_sum_all_cms_hamon_both[:,2:10,1]=pet_annual_entire_sum_all_cms_hamon_corrected[:,11:19]
+        pet_annual_entire_sum_all_cms_hamon_both[:,0:2,2]=pet_annual_entire_sum_all_cms_hamon_corrected[:,20:22]
+        pet_annual_entire_sum_all_cms_hamon_both[:,3:10,2]=pet_annual_entire_sum_all_cms_hamon_corrected[:,22:29]
+        
+    np.save('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_hamon_all.npy',pet_annual_entire_sum_all_cms_hamon_both)
+        
+        
+    
+    
 
-
-"""   
+    """   
     for 
         
        
