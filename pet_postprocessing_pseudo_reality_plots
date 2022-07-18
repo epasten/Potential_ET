@@ -30,7 +30,7 @@ def rounddown(x):
 
 
 site_list = ['at','dk','dl','fi','fr','gr','it','ro','sp','uk']
-for i in np.arange(0,10): 
+for i in np.arange(1,10): 
     site_n=site_list[i]
     print(site_n)
 
@@ -45,6 +45,7 @@ for i in np.arange(0,10):
     pri_tay_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_pri_tay_all.npy')
     turc_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_turc_all.npy')
     
+    models = ['Cerfacs-Hirham','Cerfacs-RCA','ICHEC-RCA','ICHEC-Hirman','ICHEC-Racmo','MPI-Hirham','MPI-RCA','NorESM-Hirham','NorESM-Racmo','NorESM-RCA']
 
 
     yrs = np.arange(1976,2101)
@@ -96,6 +97,7 @@ for i in np.arange(0,10):
     plt.plot(yrs,hamon_annual[:,:,9])
     plt.ylim(ymin_hamon,ymax_hamon)
     plt.ylabel('Annual PET (mm)')
+    plt.legend(models)
     plt.figtext(0.15,0.85, 'BM - '+site_n+' - 1: Hamon')
     plt.figtext(0.58,0.85, 'BM - '+site_n+' - 2: Hamon')
     plt.figtext(0.15,0.68, 'BM - '+site_n+' - 3: Hamon')
@@ -158,6 +160,7 @@ for i in np.arange(0,10):
     plt.plot(yrs,har_sam_annual[:,:,9])
     plt.ylim(ymin_har_sam,ymax_har_sam)
     plt.ylabel('Annual PET (mm)')
+    plt.legend(models)
     plt.figtext(0.15,0.85, 'BM - '+site_n+' - 1: har_sam')
     plt.figtext(0.58,0.85, 'BM - '+site_n+' - 2: har_sam')
     plt.figtext(0.15,0.68, 'BM - '+site_n+' - 3: har_sam')
@@ -220,6 +223,7 @@ for i in np.arange(0,10):
     plt.plot(yrs,hargreaves_annual[:,:,9])
     plt.ylim(ymin_hargreaves,ymax_hargreaves)
     plt.ylabel('Annual PET (mm)')
+    plt.legend(models)
     plt.figtext(0.15,0.85, 'BM - '+site_n+' - 1: hargreaves')
     plt.figtext(0.58,0.85, 'BM - '+site_n+' - 2: hargreaves')
     plt.figtext(0.15,0.68, 'BM - '+site_n+' - 3: hargreaves')
@@ -282,6 +286,7 @@ for i in np.arange(0,10):
     plt.plot(yrs,jen_hai_annual[:,:,9])
     plt.ylim(ymin_jen_hai,ymax_jen_hai)
     plt.ylabel('Annual PET (mm)')
+    plt.legend(models)
     plt.figtext(0.15,0.85, 'BM - '+site_n+' - 1: jen_hai')
     plt.figtext(0.58,0.85, 'BM - '+site_n+' - 2: jen_hai')
     plt.figtext(0.15,0.68, 'BM - '+site_n+' - 3: jen_hai')
@@ -344,6 +349,7 @@ for i in np.arange(0,10):
     plt.plot(yrs,makkink_annual[:,:,9])
     plt.ylim(ymin_makkink,ymax_makkink)
     plt.ylabel('Annual PET (mm)')
+    plt.legend(models)
     plt.figtext(0.15,0.85, 'BM - '+site_n+' - 1: makkink')
     plt.figtext(0.58,0.85, 'BM - '+site_n+' - 2: makkink')
     plt.figtext(0.15,0.68, 'BM - '+site_n+' - 3: makkink')
@@ -405,6 +411,7 @@ for i in np.arange(0,10):
     plt.plot(yrs,oudin_annual[:,:,9])
     plt.ylim(ymin_oudin,ymax_oudin)
     plt.ylabel('Annual PET (mm)')
+    plt.legend(models)
     plt.figtext(0.15,0.85, 'BM - '+site_n+' - 1: oudin')
     plt.figtext(0.58,0.85, 'BM - '+site_n+' - 2: oudin')
     plt.figtext(0.15,0.68, 'BM - '+site_n+' - 3: oudin')
@@ -466,6 +473,7 @@ for i in np.arange(0,10):
     plt.plot(yrs,penman_annual[:,:,9])
     plt.ylim(ymin_penman,ymax_penman)
     plt.ylabel('Annual PET (mm)')
+    plt.legend(models)
     plt.figtext(0.15,0.85, 'BM - '+site_n+' - 1: penman')
     plt.figtext(0.58,0.85, 'BM - '+site_n+' - 2: penman')
     plt.figtext(0.15,0.68, 'BM - '+site_n+' - 3: penman')
@@ -527,6 +535,7 @@ for i in np.arange(0,10):
     plt.plot(yrs,penman_monteith_annual[:,:,9])
     plt.ylim(ymin_penman_monteith,ymax_penman_monteith)
     plt.ylabel('Annual PET (mm)')
+    plt.legend(models)
     plt.figtext(0.15,0.85, 'BM - '+site_n+' - 1: penman_monteith')
     plt.figtext(0.58,0.85, 'BM - '+site_n+' - 2: penman_monteith')
     plt.figtext(0.15,0.68, 'BM - '+site_n+' - 3: penman_monteith')
@@ -589,6 +598,7 @@ for i in np.arange(0,10):
     plt.plot(yrs,pri_tay_annual[:,:,9])
     plt.ylim(ymin_pri_tay,ymax_pri_tay)
     plt.ylabel('Annual PET (mm)')
+    plt.legend(models)
     plt.figtext(0.15,0.85, 'BM - '+site_n+' - 1: pri_tay')
     plt.figtext(0.58,0.85, 'BM - '+site_n+' - 2: pri_tay')
     plt.figtext(0.15,0.68, 'BM - '+site_n+' - 3: pri_tay')
@@ -650,6 +660,7 @@ for i in np.arange(0,10):
     plt.plot(yrs,turc_annual[:,:,9])
     plt.ylim(ymin_turc,ymax_turc)
     plt.ylabel('Annual PET (mm)')
+    plt.legend(models)
     plt.figtext(0.15,0.85, 'BM - '+site_n+' - 1: turc')
     plt.figtext(0.58,0.85, 'BM - '+site_n+' - 2: turc')
     plt.figtext(0.15,0.68, 'BM - '+site_n+' - 3: turc')
@@ -874,12 +885,61 @@ for i in np.arange(0,10):
             
     period_changes_hamon_bias = np.zeros([3,10,10])
     period_changes_hamon_bias[period_changes_hamon_bias==0]=-np.nan
+    for c in np.arange(0,10): # c represents the cth benchmark model
+        for cc in np.arange(0,10): # represents the models that were corrected to match the benchmark model
+            period_changes_hamon_bias[0,cc,c] = round((period_changes_hamon[0,c,c]-period_changes_hamon[0,cc,c]),1)
+            
+            period_changes_hamon_bias[1,cc,c] = round((period_changes_hamon[1,c,c]-period_changes_hamon[1,cc,c]),1)
+            
+            
+            period_changes_hamon_bias[2,cc,c] = round((period_changes_hamon[2,c,c]-period_changes_hamon[2,cc,c]),1)       
+    periods = ['Near','Mid','Far']
+    CMs = ['1','2','3','4','5','6','7','8','9','10']
+    
+    min_period_changes_hamon_bias = np.min(period_changes_hamon_bias)
+    max_period_changes_hamon_bias = np.max(period_changes_hamon_bias)
+    
+    for xx in np.arange(0,10):
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
+        
+        fig, ax = plt.subplots()
+       
+        fontsize=14
+        plt.imshow(period_changes_hamon_bias[:,:,xx],vmin=min_period_changes_hamon_bias, vmax=max_period_changes_hamon_bias)
+        
+        # Setting the labels
+        ax.set_xticks(np.arange(len(CMs)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(CMs)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for j in range(len(periods)):
+           for i in range(len(CMs)):
+              text = ax.text(i,j,period_changes_hamon_bias[j,i,xx],
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nHamon')
+               
+        plt.colorbar(orientation='horizontal')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_hamon_'+site_n+'.png')
+        plt.show()
+        
+
+    """
     for c in np.arange(0,10):
         for cc in np.arange(0,10):
             
             
 
-        
+     
         for n in np.arange(0,10): # Hamon files
         data = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_list[i]+'/pet/delta/corrected/pet/'+file_list_hamon[n])
         data_mean = np.zeros([len(data),])
