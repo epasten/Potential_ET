@@ -7,6 +7,12 @@ Per site:
 
 Five plots
 
+1. Mean annual pet timeseries
+2. Bias for corrected models compared to benchmarked model for each pet
+    2.1 Mean bias for each model considering all pet methods
+3. SNR for 2
+4. 
+
 
 """   
 
@@ -885,21 +891,84 @@ for i in np.arange(1,10):
             
     period_changes_hamon_bias = np.zeros([3,10,10])
     period_changes_hamon_bias[period_changes_hamon_bias==0]=-np.nan
+    period_changes_har_sam_bias = np.zeros([3,10,10])
+    period_changes_har_sam_bias[period_changes_har_sam_bias==0]=-np.nan
+    period_changes_hargreaves_bias = np.zeros([3,10,10])
+    period_changes_hargreaves_bias[period_changes_hargreaves_bias==0]=-np.nan
+    period_changes_jen_hai_bias = np.zeros([3,10,10])
+    period_changes_jen_hai_bias[period_changes_jen_hai_bias==0]=-np.nan
+    period_changes_makkink_bias = np.zeros([3,10,10])
+    period_changes_makkink_bias[period_changes_makkink_bias==0]=-np.nan
+    period_changes_oudin_bias = np.zeros([3,10,10])
+    period_changes_oudin_bias[period_changes_oudin_bias==0]=-np.nan
+    period_changes_penman_bias = np.zeros([3,10,10])
+    period_changes_penman_bias[period_changes_penman_bias==0]=-np.nan
+    period_changes_penman_monteith_bias = np.zeros([3,10,10])
+    period_changes_penman_monteith_bias[period_changes_penman_monteith_bias==0]=-np.nan
+    period_changes_pri_tay_bias = np.zeros([3,10,10])
+    period_changes_pri_tay_bias[period_changes_pri_tay_bias==0]=-np.nan
+    period_changes_turc_bias = np.zeros([3,10,10])
+    period_changes_turc_bias[period_changes_turc_bias==0]=-np.nan
+    
     for c in np.arange(0,10): # c represents the cth benchmark model
         for cc in np.arange(0,10): # represents the models that were corrected to match the benchmark model
             period_changes_hamon_bias[0,cc,c] = round((period_changes_hamon[0,c,c]-period_changes_hamon[0,cc,c]),1)
-            
             period_changes_hamon_bias[1,cc,c] = round((period_changes_hamon[1,c,c]-period_changes_hamon[1,cc,c]),1)
-            
-            
             period_changes_hamon_bias[2,cc,c] = round((period_changes_hamon[2,c,c]-period_changes_hamon[2,cc,c]),1)       
+            period_changes_har_sam_bias[0,cc,c] = round((period_changes_har_sam[0,c,c]-period_changes_har_sam[0,cc,c]),1)
+            period_changes_har_sam_bias[1,cc,c] = round((period_changes_har_sam[1,c,c]-period_changes_har_sam[1,cc,c]),1)
+            period_changes_har_sam_bias[2,cc,c] = round((period_changes_har_sam[2,c,c]-period_changes_har_sam[2,cc,c]),1) 
+            period_changes_hargreaves_bias[0,cc,c] = round((period_changes_hargreaves[0,c,c]-period_changes_hargreaves[0,cc,c]),1)
+            period_changes_hargreaves_bias[1,cc,c] = round((period_changes_hargreaves[1,c,c]-period_changes_hargreaves[1,cc,c]),1)
+            period_changes_hargreaves_bias[2,cc,c] = round((period_changes_hargreaves[2,c,c]-period_changes_hargreaves[2,cc,c]),1)             
+            period_changes_jen_hai_bias[0,cc,c] = round((period_changes_jen_hai[0,c,c]-period_changes_jen_hai[0,cc,c]),1)
+            period_changes_jen_hai_bias[1,cc,c] = round((period_changes_jen_hai[1,c,c]-period_changes_jen_hai[1,cc,c]),1)
+            period_changes_jen_hai_bias[2,cc,c] = round((period_changes_jen_hai[2,c,c]-period_changes_jen_hai[2,cc,c]),1)       
+            period_changes_makkink_bias[0,cc,c] = round((period_changes_makkink[0,c,c]-period_changes_makkink[0,cc,c]),1)
+            period_changes_makkink_bias[1,cc,c] = round((period_changes_makkink[1,c,c]-period_changes_makkink[1,cc,c]),1)
+            period_changes_makkink_bias[2,cc,c] = round((period_changes_makkink[2,c,c]-period_changes_makkink[2,cc,c]),1)       
+            period_changes_oudin_bias[0,cc,c] = round((period_changes_oudin[0,c,c]-period_changes_oudin[0,cc,c]),1)
+            period_changes_oudin_bias[1,cc,c] = round((period_changes_oudin[1,c,c]-period_changes_oudin[1,cc,c]),1)
+            period_changes_oudin_bias[2,cc,c] = round((period_changes_oudin[2,c,c]-period_changes_oudin[2,cc,c]),1)       
+            period_changes_penman_bias[0,cc,c] = round((period_changes_penman[0,c,c]-period_changes_penman[0,cc,c]),1)
+            period_changes_penman_bias[1,cc,c] = round((period_changes_penman[1,c,c]-period_changes_penman[1,cc,c]),1)
+            period_changes_penman_bias[2,cc,c] = round((period_changes_penman[2,c,c]-period_changes_penman[2,cc,c]),1)       
+            period_changes_penman_monteith_bias[0,cc,c] = round((period_changes_penman_monteith[0,c,c]-period_changes_penman_monteith[0,cc,c]),1)
+            period_changes_penman_monteith_bias[1,cc,c] = round((period_changes_penman_monteith[1,c,c]-period_changes_penman_monteith[1,cc,c]),1)
+            period_changes_penman_monteith_bias[2,cc,c] = round((period_changes_penman_monteith[2,c,c]-period_changes_penman_monteith[2,cc,c]),1)       
+            period_changes_pri_tay_bias[0,cc,c] = round((period_changes_pri_tay[0,c,c]-period_changes_pri_tay[0,cc,c]),1)
+            period_changes_pri_tay_bias[1,cc,c] = round((period_changes_pri_tay[1,c,c]-period_changes_pri_tay[1,cc,c]),1)
+            period_changes_pri_tay_bias[2,cc,c] = round((period_changes_pri_tay[2,c,c]-period_changes_pri_tay[2,cc,c]),1)       
+            period_changes_turc_bias[0,cc,c] = round((period_changes_turc[0,c,c]-period_changes_turc[0,cc,c]),1)
+            period_changes_turc_bias[1,cc,c] = round((period_changes_turc[1,c,c]-period_changes_turc[1,cc,c]),1)
+            period_changes_turc_bias[2,cc,c] = round((period_changes_turc[2,c,c]-period_changes_turc[2,cc,c]),1)       
+            
     periods = ['Near','Mid','Far']
     CMs = ['1','2','3','4','5','6','7','8','9','10']
     
     min_period_changes_hamon_bias = np.min(period_changes_hamon_bias)
     max_period_changes_hamon_bias = np.max(period_changes_hamon_bias)
+    min_period_changes_har_sam_bias = np.min(period_changes_har_sam_bias)
+    max_period_changes_har_sam_bias = np.max(period_changes_har_sam_bias)
+    min_period_changes_hargreaves_bias = np.min(period_changes_hargreaves_bias)
+    max_period_changes_hargreaves_bias = np.max(period_changes_hargreaves_bias)
+    min_period_changes_jen_hai_bias = np.min(period_changes_jen_hai_bias)
+    max_period_changes_jen_hai_bias = np.max(period_changes_jen_hai_bias)
+    min_period_changes_makkink_bias = np.min(period_changes_makkink_bias)
+    max_period_changes_makkink_bias = np.max(period_changes_makkink_bias)    
+    min_period_changes_oudin_bias = np.min(period_changes_oudin_bias)
+    max_period_changes_oudin_bias = np.max(period_changes_oudin_bias)
+    min_period_changes_penman_bias = np.min(period_changes_penman_bias)
+    max_period_changes_penman_bias = np.max(period_changes_penman_bias)
+    min_period_changes_penman_monteith_bias = np.min(period_changes_penman_monteith_bias)
+    max_period_changes_penman_monteith_bias = np.max(period_changes_penman_monteith_bias)
+    min_period_changes_pri_tay_bias = np.min(period_changes_pri_tay_bias)
+    max_period_changes_pri_tay_bias = np.max(period_changes_pri_tay_bias)
+    min_period_changes_turc_bias = np.min(period_changes_turc_bias)
+    max_period_changes_turc_bias = np.max(period_changes_turc_bias)
     
     for xx in np.arange(0,10):
+        #Hamon
         font = {'family' : 'normal',
         'weight' : 'normal',
         'size'   : 16}
@@ -932,6 +1001,308 @@ for i in np.arange(1,10):
         plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_hamon_'+site_n+'.png')
         plt.show()
         
+        #Har_sam
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
+        
+        fig, ax = plt.subplots()
+       
+        fontsize=14
+        plt.imshow(period_changes_har_sam_bias[:,:,xx],vmin=min_period_changes_har_sam_bias, vmax=max_period_changes_har_sam_bias)
+        
+        # Setting the labels
+        ax.set_xticks(np.arange(len(CMs)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(CMs)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for j in range(len(periods)):
+           for i in range(len(CMs)):
+              text = ax.text(i,j,period_changes_har_sam_bias[j,i,xx],
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nHar-Sam')
+               
+        plt.colorbar(orientation='horizontal')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_har_sam_'+site_n+'.png')
+        plt.show()
+        
+        #Hargreaves
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
+        
+        fig, ax = plt.subplots()
+       
+        fontsize=14
+        plt.imshow(period_changes_hargreaves_bias[:,:,xx],vmin=min_period_changes_hargreaves_bias, vmax=max_period_changes_hargreaves_bias)
+        
+        # Setting the labels
+        ax.set_xticks(np.arange(len(CMs)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(CMs)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for j in range(len(periods)):
+           for i in range(len(CMs)):
+              text = ax.text(i,j,period_changes_hargreaves_bias[j,i,xx],
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nhargreaves')
+               
+        plt.colorbar(orientation='horizontal')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_hargreaves_'+site_n+'.png')
+        plt.show()
+        
+        #Jensen-Haise
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
+        
+        fig, ax = plt.subplots()
+       
+        fontsize=14
+        plt.imshow(period_changes_jen_hai_bias[:,:,xx],vmin=min_period_changes_jen_hai_bias, vmax=max_period_changes_jen_hai_bias)
+        
+        # Setting the labels
+        ax.set_xticks(np.arange(len(CMs)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(CMs)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for j in range(len(periods)):
+           for i in range(len(CMs)):
+              text = ax.text(i,j,period_changes_jen_hai_bias[j,i,xx],
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \njen_hai')
+               
+        plt.colorbar(orientation='horizontal')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_jen_hai_'+site_n+'.png')
+        plt.show()
+        
+        #Makkink
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
+        
+        fig, ax = plt.subplots()
+       
+        fontsize=14
+        plt.imshow(period_changes_makkink_bias[:,:,xx],vmin=min_period_changes_makkink_bias, vmax=max_period_changes_makkink_bias)
+        
+        # Setting the labels
+        ax.set_xticks(np.arange(len(CMs)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(CMs)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for j in range(len(periods)):
+           for i in range(len(CMs)):
+              text = ax.text(i,j,period_changes_makkink_bias[j,i,xx],
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nmakkink')
+               
+        plt.colorbar(orientation='horizontal')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_makkink_'+site_n+'.png')
+        plt.show()
+        
+        #Oudin
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
+        
+        fig, ax = plt.subplots()
+       
+        fontsize=14
+        plt.imshow(period_changes_oudin_bias[:,:,xx],vmin=min_period_changes_oudin_bias, vmax=max_period_changes_oudin_bias)
+        
+        # Setting the labels
+        ax.set_xticks(np.arange(len(CMs)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(CMs)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for j in range(len(periods)):
+           for i in range(len(CMs)):
+              text = ax.text(i,j,period_changes_oudin_bias[j,i,xx],
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \noudin')
+               
+        plt.colorbar(orientation='horizontal')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_oudin_'+site_n+'.png')
+        plt.show()
+        
+        #Penman
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
+        
+        fig, ax = plt.subplots()
+       
+        fontsize=14
+        plt.imshow(period_changes_penman_bias[:,:,xx],vmin=min_period_changes_penman_bias, vmax=max_period_changes_penman_bias)
+        
+        # Setting the labels
+        ax.set_xticks(np.arange(len(CMs)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(CMs)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for j in range(len(periods)):
+           for i in range(len(CMs)):
+              text = ax.text(i,j,period_changes_penman_bias[j,i,xx],
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \npenman')
+               
+        plt.colorbar(orientation='horizontal')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_penman_'+site_n+'.png')
+        plt.show()
+        
+        #Penman-Monteith
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
+        
+        fig, ax = plt.subplots()
+       
+        fontsize=14
+        plt.imshow(period_changes_penman_monteith_bias[:,:,xx],vmin=min_period_changes_penman_monteith_bias, vmax=max_period_changes_penman_monteith_bias)
+        
+        # Setting the labels
+        ax.set_xticks(np.arange(len(CMs)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(CMs)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for j in range(len(periods)):
+           for i in range(len(CMs)):
+              text = ax.text(i,j,period_changes_penman_monteith_bias[j,i,xx],
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \npenman_monteith')
+               
+        plt.colorbar(orientation='horizontal')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_penman_monteith_'+site_n+'.png')
+        plt.show()
+        
+        #Priestley-Taylor
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
+        
+        fig, ax = plt.subplots()
+       
+        fontsize=14
+        plt.imshow(period_changes_pri_tay_bias[:,:,xx],vmin=min_period_changes_pri_tay_bias, vmax=max_period_changes_pri_tay_bias)
+        
+        # Setting the labels
+        ax.set_xticks(np.arange(len(CMs)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(CMs)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for j in range(len(periods)):
+           for i in range(len(CMs)):
+              text = ax.text(i,j,period_changes_pri_tay_bias[j,i,xx],
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \npri_tay')
+               
+        plt.colorbar(orientation='horizontal')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_pri_tay_'+site_n+'.png')
+        plt.show()
+
+        #Turc
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
+        
+        fig, ax = plt.subplots()
+       
+        fontsize=14
+        plt.imshow(period_changes_turc_bias[:,:,xx],vmin=min_period_changes_turc_bias, vmax=max_period_changes_turc_bias)
+        
+        # Setting the labels
+        ax.set_xticks(np.arange(len(CMs)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(CMs)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for j in range(len(periods)):
+           for i in range(len(CMs)):
+              text = ax.text(i,j,period_changes_turc_bias[j,i,xx],
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nturc')
+               
+        plt.colorbar(orientation='horizontal')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_turc_'+site_n+'.png')
+        plt.show()
+        
+        
+#Mean bias for each CM considerin all pseudo reality experiments for each Pet method
+
+
+
 
     """
     for c in np.arange(0,10):
