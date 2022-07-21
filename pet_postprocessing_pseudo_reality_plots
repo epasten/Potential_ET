@@ -9,8 +9,8 @@ Five plots
 
 1. Mean annual pet timeseries
 2. Bias for corrected models compared to benchmarked model for each pet
-    2.1 Mean bias for each model considering all pet methods
-3. SNR for 2
+    2.1 Mean bias for each model considering all pet methods sum of 9 divided by 9, axis 2
+3. SNR for each bch mark 
 4. 
 
 
@@ -967,6 +967,19 @@ for i in np.arange(1,10):
     min_period_changes_turc_bias = np.min(period_changes_turc_bias)
     max_period_changes_turc_bias = np.max(period_changes_turc_bias)
     
+    #Mean bias for each CM considering all pseudo reality experiments for each Pet method in each period
+    period_changes_hamon_all_cms_mean_bias = np.sum(period_changes_hamon_bias,axis=2)/9
+    period_changes_har_sam_all_cms_mean_bias = np.sum(period_changes_har_sam_bias,axis=2)/9
+    period_changes_hargreaves_all_cms_mean_bias = np.sum(period_changes_hargreaves_bias,axis=2)/9
+    period_changes_jen_hai_all_cms_mean_bias = np.sum(period_changes_jen_hai_bias,axis=2)/9
+    period_changes_makkink_all_cms_mean_bias = np.sum(period_changes_makkink_bias,axis=2)/9
+    period_changes_oudin_all_cms_mean_bias = np.sum(period_changes_oudin_bias,axis=2)/9
+    period_changes_penman_all_cms_mean_bias = np.sum(period_changes_penman_bias,axis=2)/9
+    period_changes_penman_monteith_all_cms_mean_bias = np.sum(period_changes_penman_monteith_bias,axis=2)/9
+    period_changes_pri_tay_all_cms_mean_bias = np.sum(period_changes_pri_tay_bias,axis=2)/9
+    period_changes_turc_all_cms_mean_bias = np.sum(period_changes_turc_bias,axis=2)/9
+    
+    
     for xx in np.arange(0,10):
         #Hamon
         font = {'family' : 'normal',
@@ -1299,7 +1312,10 @@ for i in np.arange(1,10):
         plt.show()
         
         
-#Mean bias for each CM considerin all pseudo reality experiments for each Pet method
+
+
+    
+
 
 
 
