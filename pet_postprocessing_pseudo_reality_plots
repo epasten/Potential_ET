@@ -1486,13 +1486,50 @@ for i in np.arange(0,1):
     mark_snr = ['s','o','^']
     fig= plt.figure(figsize=(10,10))
     for nnn in np.arange(0,3):
-        plt.scatter(period_changes_hamon_all_cms_mean_bias[nnn,:],period_changes_hamon_snr[nnn,:],marker=mark_snr[nnn],s=60)
-    plt.title('Hamon')
+        plt.scatter(period_changes_hamon_all_cms_mean_bias[nnn,:],period_changes_hamon_snr[nnn,:],marker=mark_snr[nnn],s=60,label='Hamon',color='r')
+        plt.scatter(period_changes_har_sam_all_cms_mean_bias[nnn,:],period_changes_har_sam_snr[nnn,:],marker=mark_snr[nnn],s=60,label='Har-Sam',color='b')
+        plt.scatter(period_changes_hargreaves_all_cms_mean_bias[nnn,:],period_changes_hargreaves_snr[nnn,:],marker=mark_snr[nnn],s=60,label='Hargreaves',color='m')
+        plt.scatter(period_changes_jen_hai_all_cms_mean_bias[nnn,:],period_changes_jen_hai_snr[nnn,:],marker=mark_snr[nnn],s=60,label='Jen-Hai',color='lime')
+        plt.scatter(period_changes_makkink_all_cms_mean_bias[nnn,:],period_changes_makkink_snr[nnn,:],marker=mark_snr[nnn],s=60, label='Makkink',color='orange')
+        plt.scatter(period_changes_oudin_all_cms_mean_bias[nnn,:],period_changes_oudin_snr[nnn,:],marker=mark_snr[nnn],s=60, label='Makkink',color='saddlebrown')
+        plt.scatter(period_changes_penman_all_cms_mean_bias[nnn,:],period_changes_penman_snr[nnn,:],marker=mark_snr[nnn],s=60, label='Makkink',color='teal')
+        plt.scatter(period_changes_penman_monteith_all_cms_mean_bias[nnn,:],period_changes_penman_monteith_snr[nnn,:],marker=mark_snr[nnn],s=60, label='Makkink',color='pink')
+        plt.scatter(period_changes_pri_tay_all_cms_mean_bias[nnn,:],period_changes_pri_tay_snr[nnn,:],marker=mark_snr[nnn],s=60, label='Makkink',color='purple')
+        plt.scatter(period_changes_turc_all_cms_mean_bias[nnn,:],period_changes_turc_snr[nnn,:],marker=mark_snr[nnn],s=60, label='Makkink',color='gold')
+    #plt.title('Hamon')
     plt.xlabel('Mean absolute bias')
     plt.ylabel('SNR')
     plt.grid()
+    legend_elements = [Line2D([0], [0], marker='^', color='w', label='Far Future',
+                      markerfacecolor='k', markersize=15),
+               Line2D([0], [0], marker='o', color='w', label='Mid Future',
+                      markerfacecolor='k', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Near Future',
+                      markerfacecolor='k', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Hamon',
+                      markerfacecolor='r', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Hargraves-Samani',
+                      markerfacecolor='b', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Hargreaves',
+                      markerfacecolor='m', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Jensen-Haise',
+                      markerfacecolor='lime', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Makkink',
+                      markerfacecolor='orange', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Oudin',
+                      markerfacecolor='saddlebrown', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Penman',
+                      markerfacecolor='teal', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Penman-Monteith',
+                      markerfacecolor='pink', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Priestly-Taylor',
+                      markerfacecolor='purple', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Turc',
+                      markerfacecolor='gold', markersize=15)]
+    plt.xlim(0,24)
+    plt.legend(handles=legend_elements, loc='lower right')
+    #plt.legend()
     plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_snr_hamon_'+site_n+'.png')
-    plt.legend()
     plt.show()
     
     
