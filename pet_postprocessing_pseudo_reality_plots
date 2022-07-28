@@ -1537,55 +1537,13 @@ for i in np.arange(0,1):
     plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_snr_hamon_'+site_n+'.png')
     plt.show()
 
-    
+##################################################################################    
     # Change projections based on the PET method (Using same bias corrected model)
-    # 1)3-Dimension matrix using change values [row,column,sheet] ==> [period,pet_method,BC_model]
-    # 2) then bias of the models compared to the reference pet method
-    # 3) average of the bias/deviation of each pet method compared to the others
-    # 4) SNR and bias plot
-    #Pet model order: Hamon,Har-Sam,Harg,Jen-Hai,Makkink,Oudin,Penman,Penman-Monteith,Pri-Tay,Turc
-    
-    period_means_all_bch = np.zeros([4,10,10])#Period,pet models,Bchmark model
-    
-    
-    period_means_cm1_all_pet = np.zeros([4,10,10])#Period, pet models, benchmark_model corrected to
-    
-    
-    
-    period_changes_bch_cm1_all_pet = np.zeros([3,10,10])
-    period_changes_bias_bch_cm1_all_pet = np.zeros([3,10,10])
-    
-    period_changes_cm2_all_pet = np.zeros([3,10,10])
-    period_changes_bias_cm2_all_pet = np.zeros([3,10,10])
-    
-    period_changes_cm3_all_pet = np.zeros([3,10,10])
-    period_changes_bias_cm3_all_pet = np.zeros([3,10,10])
-    
-    period_changes_cm4_all_pet = np.zeros([3,10,10])
-    period_changes_bias_cm4_all_pet = np.zeros([3,10,10])
-    
-    period_changes_cm5_all_pet = np.zeros([3,10,10])
-    period_changes_bias_cm5_all_pet = np.zeros([3,10,10])
-    
-    period_changes_cm6_all_pet = np.zeros([3,10,10])
-    period_changes_bias_cm6_all_pet = np.zeros([3,10,10])
-    
-    period_changes_cm7_all_pet = np.zeros([3,10,10])
-    period_changes_bias_cm7_all_pet = np.zeros([3,10,10])
-    
-    period_changes_cm8_all_pet = np.zeros([3,10,10])
-    period_changes_bias_cm8_all_pet = np.zeros([3,10,10])
-    
-    period_changes_cm9_all_pet = np.zeros([3,10,10])
-    period_changes_bias_cm9_all_pet = np.zeros([3,10,10])
-    
-    period_changes_cm10_all_pet = np.zeros([3,10,10])
-    period_changes_bias_cm10_all_pet = np.zeros([3,10,10])
-    
-    #Input the values in a 3D array
+####################################################################################
     
     # Setting up the CM benchmark array for all pet methods
-    # [Period,pet method, benchmark model]
+    # [Period(4),pet method(10), benchmark model(10)]
+    period_means_all_bch = np.zeros([4,10,10])#Period,pet models,Bchmark model
     for xx in np.arange(0,10):
         #for xxx in np.arange(0,10):
         period_cm_hamon = hamon_annual[:,xx,xx]
@@ -1688,45 +1646,180 @@ for i in np.arange(0,1):
         period_cm_turc_ref=period_cm_turc[(yrs >= 2071) & (yrs <= 2100)] 
         period_means_all_bch[3,9,xx]=np.mean(period_cm_turc_ref)
         
-        
+    period_bias_means_all_bch = np.zeros([3,10,10])
+    for nn in np.arange(0,10):
+        for nnn in np.arange(0,10):
+            
+    #period_changes_hamon[0,xxx,xx] = 100*((period_means_hamon[1,xxx,xx]-period_means_hamon[0,xxx,xx])/period_means_hamon[0,xxx,xx])
+    
+    
+    # 1)3-Dimension matrix using change values [row,column,sheet] ==> [period,pet_method,BC_model]
+    # 2) then bias of the models compared to the reference pet method
+    # 3) average of the bias/deviation of each pet method compared to the others
+    # 4) SNR and bias plot
+    #Pet model order: Hamon,Har-Sam,Harg,Jen-Hai,Makkink,Oudin,Penman,Penman-Monteith,Pri-Tay,Turc
+    
+    
+    
+    
+    period_means_cm1_all_pet = np.zeros([4,10,10])#Period, pet models, benchmark_model corrected to
+    
+    
+    
+    period_changes_bch_cm1_all_cm_all_pet = np.zeros([3,10,10])# [Period (3), PET method (10), CM corrected to bechmark (10, 1 is the benchmark model)]
+    period_changes_bias_bch_cm1_all_cm_all_pet = np.zeros([3,10,10])
+    
+    period_changes_bch_cm2_all_cm_all_pet = np.zeros([3,10,10])# [Period (3), PET method (10), CM corrected to bechmark (10, 1 is the benchmark model)]
+    period_changes_bias_bch_cm2_all_cm_all_pet = np.zeros([3,10,10])
+    
+    period_changes_bch_cm3_all_cm_all_pet = np.zeros([3,10,10])# [Period (3), PET method (10), CM corrected to bechmark (10, 1 is the benchmark model)]
+    period_changes_bias_bch_cm3_all_cm_all_pet = np.zeros([3,10,10])
+    
+    period_changes_bch_cm4_all_cm_all_pet = np.zeros([3,10,10])# [Period (3), PET method (10), CM corrected to bechmark (10, 1 is the benchmark model)]
+    period_changes_bias_bch_cm4_all_cm_all_pet = np.zeros([3,10,10])
+    
+    period_changes_bch_cm5_all_cm_all_pet = np.zeros([3,10,10])# [Period (3), PET method (10), CM corrected to bechmark (10, 1 is the benchmark model)]
+    period_changes_bias_bch_cm5_all_cm_all_pet = np.zeros([3,10,10])
+    
+    period_changes_bch_cm6_all_cm_all_pet = np.zeros([3,10,10])# [Period (3), PET method (10), CM corrected to bechmark (10, 1 is the benchmark model)]
+    period_changes_bias_bch_cm6_all_cm_all_pet = np.zeros([3,10,10])
+    
+    period_changes_bch_cm7_all_cm_all_pet = np.zeros([3,10,10])# [Period (3), PET method (10), CM corrected to bechmark (10, 1 is the benchmark model)]
+    period_changes_bias_bch_cm7_all_cm_all_pet = np.zeros([3,10,10])
+    
+    period_changes_bch_cm8_all_cm_all_pet = np.zeros([3,10,10])# [Period (3), PET method (10), CM corrected to bechmark (10, 1 is the benchmark model)]
+    period_changes_bias_bch_cm8_all_cm_all_pet = np.zeros([3,10,10])
+    
+    period_changes_bch_cm9_all_cm_all_pet = np.zeros([3,10,10])# [Period (3), PET method (10), CM corrected to bechmark (10, 1 is the benchmark model)]
+    period_changes_bias_bch_cm9_all_cm_all_pet = np.zeros([3,10,10])
+    
+    period_changes_bch_cm10_all_cm_all_pet = np.zeros([3,10,10])# [Period (3), PET method (10), CM corrected to bechmark (10, 1 is the benchmark model)]
+    period_changes_bias_bch_cm10_all_cm_all_pet = np.zeros([3,10,10])
+
+
+    #Input the values in a 3D array
+    
     # Setting the array with all the pet values 
     # [period,pet models, benchmark model corrected to]
     # Gets the data from the period_changes_hamon etc., etc., arrays in line aprox. 820
-    period_changes_bch_cm1_all_pet[:,:,0]=np.nan
-    period_changes_cm2_all_pet[:,:,1]=np.nan
-    period_changes_cm3_all_pet[:,:,2]=np.nan
-    period_changes_cm4_all_pet[:,:,3]=np.nan
-    period_changes_cm5_all_pet[:,:,4]=np.nan
-    period_changes_cm6_all_pet[:,:,5]=np.nan
-    period_changes_cm7_all_pet[:,:,6]=np.nan
-    period_changes_cm8_all_pet[:,:,7]=np.nan
-    period_changes_cm9_all_pet[:,:,8]=np.nan
-    period_changes_cm10_all_pet[:,:,9]=np.nan
-    
-    
-  
-    for xx in np.arange(1,10):        
-        #Climate model 2, estimating all pet when BC to CM1
-        period_changes_bch_cm1_all_pet[:,0,xx]=period_changes_hamon[:,xx,0]
-        period_changes_bch_cm1_all_pet[:,1,xx]=period_changes_har_sam[:,xx,0]
-        period_changes_bch_cm1_all_pet[:,2,xx]=period_changes_hargreaves[:,xx,0]
-        period_changes_bch_cm1_all_pet[:,3,xx]=period_changes_jen_hai[:,xx,0]
-        period_changes_bch_cm1_all_pet[:,4,xx]=period_changes_makkink[:,xx,0]
-        period_changes_bch_cm1_all_pet[:,5,xx]=period_changes_oudin[:,xx,0]
-        period_changes_bch_cm1_all_pet[:,6,xx]=period_changes_penman[:,xx,0]
-        period_changes_bch_cm1_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,0]
-        period_changes_bch_cm1_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,0]
-        period_changes_bch_cm1_all_pet[:,9,xx]=period_changes_turc[:,xx,0]
-        #Climate model 3, estimating all pet when BC to CM1
-        period_changes_cm3_all_pet[:,0,xx]=period_changes_hamon[:,xx,0]
+    for xx in np.arange(0,10):        
+        #Estimation of all PET methods from all CMs when CM1 is the Benchmark model
+        period_changes_bch_cm1_all_cm_all_pet[:,0,xx]=period_changes_hamon[:,xx,0]
+        period_changes_bch_cm1_all_cm_all_pet[:,1,xx]=period_changes_har_sam[:,xx,0]
+        period_changes_bch_cm1_all_cm_all_pet[:,2,xx]=period_changes_hargreaves[:,xx,0]
+        period_changes_bch_cm1_all_cm_all_pet[:,3,xx]=period_changes_jen_hai[:,xx,0]
+        period_changes_bch_cm1_all_cm_all_pet[:,4,xx]=period_changes_makkink[:,xx,0]
+        period_changes_bch_cm1_all_cm_all_pet[:,5,xx]=period_changes_oudin[:,xx,0]
+        period_changes_bch_cm1_all_cm_all_pet[:,6,xx]=period_changes_penman[:,xx,0]
+        period_changes_bch_cm1_all_cm_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,0]
+        period_changes_bch_cm1_all_cm_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,0]
+        period_changes_bch_cm1_all_cm_all_pet[:,9,xx]=period_changes_turc[:,xx,0]
+        #Estimation of all PET methods from all CMs when CM2 is the Benchmark model
+        period_changes_bch_cm2_all_cm_all_pet[:,0,xx]=period_changes_hamon[:,xx,1]
+        period_changes_bch_cm2_all_cm_all_pet[:,1,xx]=period_changes_har_sam[:,xx,1]
+        period_changes_bch_cm2_all_cm_all_pet[:,2,xx]=period_changes_hargreaves[:,xx,1]
+        period_changes_bch_cm2_all_cm_all_pet[:,3,xx]=period_changes_jen_hai[:,xx,1]
+        period_changes_bch_cm2_all_cm_all_pet[:,4,xx]=period_changes_makkink[:,xx,1]
+        period_changes_bch_cm2_all_cm_all_pet[:,5,xx]=period_changes_oudin[:,xx,1]
+        period_changes_bch_cm2_all_cm_all_pet[:,6,xx]=period_changes_penman[:,xx,1]
+        period_changes_bch_cm2_all_cm_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,1]
+        period_changes_bch_cm2_all_cm_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,1]
+        period_changes_bch_cm2_all_cm_all_pet[:,9,xx]=period_changes_turc[:,xx,1]
+        #Estimation of all PET methods from all CMs when CM3 is the Benchmark model
+        period_changes_bch_cm3_all_cm_all_pet[:,0,xx]=period_changes_hamon[:,xx,2]
+        period_changes_bch_cm3_all_cm_all_pet[:,1,xx]=period_changes_har_sam[:,xx,2]
+        period_changes_bch_cm3_all_cm_all_pet[:,2,xx]=period_changes_hargreaves[:,xx,2]
+        period_changes_bch_cm3_all_cm_all_pet[:,3,xx]=period_changes_jen_hai[:,xx,2]
+        period_changes_bch_cm3_all_cm_all_pet[:,4,xx]=period_changes_makkink[:,xx,2]
+        period_changes_bch_cm3_all_cm_all_pet[:,5,xx]=period_changes_oudin[:,xx,2]
+        period_changes_bch_cm3_all_cm_all_pet[:,6,xx]=period_changes_penman[:,xx,2]
+        period_changes_bch_cm3_all_cm_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,2]
+        period_changes_bch_cm3_all_cm_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,2]
+        period_changes_bch_cm3_all_cm_all_pet[:,9,xx]=period_changes_turc[:,xx,2]
+        #Estimation of all PET methods from all CMs when CM4 is the Benchmark model
+        period_changes_bch_cm4_all_cm_all_pet[:,0,xx]=period_changes_hamon[:,xx,3]
+        period_changes_bch_cm4_all_cm_all_pet[:,1,xx]=period_changes_har_sam[:,xx,3]
+        period_changes_bch_cm4_all_cm_all_pet[:,2,xx]=period_changes_hargreaves[:,xx,3]
+        period_changes_bch_cm4_all_cm_all_pet[:,3,xx]=period_changes_jen_hai[:,xx,3]
+        period_changes_bch_cm4_all_cm_all_pet[:,4,xx]=period_changes_makkink[:,xx,3]
+        period_changes_bch_cm4_all_cm_all_pet[:,5,xx]=period_changes_oudin[:,xx,3]
+        period_changes_bch_cm4_all_cm_all_pet[:,6,xx]=period_changes_penman[:,xx,3]
+        period_changes_bch_cm4_all_cm_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,3]
+        period_changes_bch_cm4_all_cm_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,3]
+        period_changes_bch_cm4_all_cm_all_pet[:,9,xx]=period_changes_turc[:,xx,3]
+        #Estimation of all PET methods from all CMs when CM5 is the Benchmark model
+        period_changes_bch_cm5_all_cm_all_pet[:,0,xx]=period_changes_hamon[:,xx,4]
+        period_changes_bch_cm5_all_cm_all_pet[:,1,xx]=period_changes_har_sam[:,xx,4]
+        period_changes_bch_cm5_all_cm_all_pet[:,2,xx]=period_changes_hargreaves[:,xx,4]
+        period_changes_bch_cm5_all_cm_all_pet[:,3,xx]=period_changes_jen_hai[:,xx,4]
+        period_changes_bch_cm5_all_cm_all_pet[:,4,xx]=period_changes_makkink[:,xx,4]
+        period_changes_bch_cm5_all_cm_all_pet[:,5,xx]=period_changes_oudin[:,xx,4]
+        period_changes_bch_cm5_all_cm_all_pet[:,6,xx]=period_changes_penman[:,xx,4]
+        period_changes_bch_cm5_all_cm_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,4]
+        period_changes_bch_cm5_all_cm_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,4]
+        period_changes_bch_cm5_all_cm_all_pet[:,9,xx]=period_changes_turc[:,xx,4]
+        #Estimation of all PET methods from all CMs when CM6 is the Benchmark model
+        period_changes_bch_cm6_all_cm_all_pet[:,0,xx]=period_changes_hamon[:,xx,5]
+        period_changes_bch_cm6_all_cm_all_pet[:,1,xx]=period_changes_har_sam[:,xx,5]
+        period_changes_bch_cm6_all_cm_all_pet[:,2,xx]=period_changes_hargreaves[:,xx,5]
+        period_changes_bch_cm6_all_cm_all_pet[:,3,xx]=period_changes_jen_hai[:,xx,5]
+        period_changes_bch_cm6_all_cm_all_pet[:,4,xx]=period_changes_makkink[:,xx,5]
+        period_changes_bch_cm6_all_cm_all_pet[:,5,xx]=period_changes_oudin[:,xx,5]
+        period_changes_bch_cm6_all_cm_all_pet[:,6,xx]=period_changes_penman[:,xx,5]
+        period_changes_bch_cm6_all_cm_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,5]
+        period_changes_bch_cm6_all_cm_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,5]
+        period_changes_bch_cm6_all_cm_all_pet[:,9,xx]=period_changes_turc[:,xx,5]
+        #Estimation of all PET methods from all CMs when CM7 is the Benchmark model
+        period_changes_bch_cm7_all_cm_all_pet[:,0,xx]=period_changes_hamon[:,xx,6]
+        period_changes_bch_cm7_all_cm_all_pet[:,1,xx]=period_changes_har_sam[:,xx,6]
+        period_changes_bch_cm7_all_cm_all_pet[:,2,xx]=period_changes_hargreaves[:,xx,6]
+        period_changes_bch_cm7_all_cm_all_pet[:,3,xx]=period_changes_jen_hai[:,xx,6]
+        period_changes_bch_cm7_all_cm_all_pet[:,4,xx]=period_changes_makkink[:,xx,6]
+        period_changes_bch_cm7_all_cm_all_pet[:,5,xx]=period_changes_oudin[:,xx,6]
+        period_changes_bch_cm7_all_cm_all_pet[:,6,xx]=period_changes_penman[:,xx,6]
+        period_changes_bch_cm7_all_cm_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,6]
+        period_changes_bch_cm7_all_cm_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,6]
+        period_changes_bch_cm7_all_cm_all_pet[:,9,xx]=period_changes_turc[:,xx,6]
+        #Estimation of all PET methods from all CMs when CM8 is the Benchmark model
+        period_changes_bch_cm8_all_cm_all_pet[:,0,xx]=period_changes_hamon[:,xx,7]
+        period_changes_bch_cm8_all_cm_all_pet[:,1,xx]=period_changes_har_sam[:,xx,7]
+        period_changes_bch_cm8_all_cm_all_pet[:,2,xx]=period_changes_hargreaves[:,xx,7]
+        period_changes_bch_cm8_all_cm_all_pet[:,3,xx]=period_changes_jen_hai[:,xx,7]
+        period_changes_bch_cm8_all_cm_all_pet[:,4,xx]=period_changes_makkink[:,xx,7]
+        period_changes_bch_cm8_all_cm_all_pet[:,5,xx]=period_changes_oudin[:,xx,7]
+        period_changes_bch_cm8_all_cm_all_pet[:,6,xx]=period_changes_penman[:,xx,7]
+        period_changes_bch_cm8_all_cm_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,7]
+        period_changes_bch_cm8_all_cm_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,7]
+        period_changes_bch_cm8_all_cm_all_pet[:,9,xx]=period_changes_turc[:,xx,7]
+        #Estimation of all PET methods from all CMs when CM9 is the Benchmark model
+        period_changes_bch_cm9_all_cm_all_pet[:,0,xx]=period_changes_hamon[:,xx,8]
+        period_changes_bch_cm9_all_cm_all_pet[:,1,xx]=period_changes_har_sam[:,xx,8]
+        period_changes_bch_cm9_all_cm_all_pet[:,2,xx]=period_changes_hargreaves[:,xx,8]
+        period_changes_bch_cm9_all_cm_all_pet[:,3,xx]=period_changes_jen_hai[:,xx,8]
+        period_changes_bch_cm9_all_cm_all_pet[:,4,xx]=period_changes_makkink[:,xx,8]
+        period_changes_bch_cm9_all_cm_all_pet[:,5,xx]=period_changes_oudin[:,xx,8]
+        period_changes_bch_cm9_all_cm_all_pet[:,6,xx]=period_changes_penman[:,xx,8]
+        period_changes_bch_cm9_all_cm_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,8]
+        period_changes_bch_cm9_all_cm_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,8]
+        period_changes_bch_cm9_all_cm_all_pet[:,9,xx]=period_changes_turc[:,xx,8]
+        #Estimation of all PET methods from all CMs when CM10 is the Benchmark model
+        period_changes_bch_cm10_all_cm_all_pet[:,0,xx]=period_changes_hamon[:,xx,9]
+        period_changes_bch_cm10_all_cm_all_pet[:,1,xx]=period_changes_har_sam[:,xx,9]
+        period_changes_bch_cm10_all_cm_all_pet[:,2,xx]=period_changes_hargreaves[:,xx,9]
+        period_changes_bch_cm10_all_cm_all_pet[:,3,xx]=period_changes_jen_hai[:,xx,9]
+        period_changes_bch_cm10_all_cm_all_pet[:,4,xx]=period_changes_makkink[:,xx,9]
+        period_changes_bch_cm10_all_cm_all_pet[:,5,xx]=period_changes_oudin[:,xx,9]
+        period_changes_bch_cm10_all_cm_all_pet[:,6,xx]=period_changes_penman[:,xx,9]
+        period_changes_bch_cm10_all_cm_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,9]
+        period_changes_bch_cm10_all_cm_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,9]
+        period_changes_bch_cm10_all_cm_all_pet[:,9,xx]=period_changes_turc[:,xx,9]
         
-    
-    for xx in np.arange(0,10):
-        #for xxx in np.arange(0,10):
+    # ARRAY TO STORE THE BIASES FROM THE BENCHMARK MODEL/PET METHOD
+    period_bias_changes_bch_cm1_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    for c in np.arange(0,10): # c represents the cth benchmark model
+        for cc in np.arange(0,10): # represents the pet method set as reference
+            period_bias_changes_bch_cm1_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_hamon[0,c,c]-period_changes_hamon[0,cc,c]),1)
         
-    
-    
-    
     #Hamon
     font = {'family' : 'normal',
     'weight' : 'normal',
