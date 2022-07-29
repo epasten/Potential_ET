@@ -1538,7 +1538,7 @@ for i in np.arange(0,1):
     plt.show()
 
 ##################################################################################    
-    # Change projections based on the PET method (Using same bias corrected model)
+    # Change projections based on the (10 different) PET methods (Using same bias corrected model)
 ####################################################################################
     
     # Setting up the CM benchmark array for all pet methods
@@ -1646,9 +1646,12 @@ for i in np.arange(0,1):
         period_cm_turc_ref=period_cm_turc[(yrs >= 2071) & (yrs <= 2100)] 
         period_means_all_bch[3,9,xx]=np.mean(period_cm_turc_ref)
         
-    period_bias_means_all_bch = np.zeros([3,10,10])
+    period_change_all_bch = np.zeros([3,10,10])
     for nn in np.arange(0,10):
         for nnn in np.arange(0,10):
+            period_change_all_bch[0,nnn,nn]=100*(((period_means_all_bch[1,nnn,nn])-(period_means_all_bch[0,nnn,nn]))/(period_means_all_bch[0,nnn,nn]))
+            period_change_all_bch[1,nnn,nn]=100*(((period_means_all_bch[2,nnn,nn])-(period_means_all_bch[0,nnn,nn]))/(period_means_all_bch[0,nnn,nn]))
+            period_change_all_bch[2,nnn,nn]=100*(((period_means_all_bch[3,nnn,nn])-(period_means_all_bch[0,nnn,nn]))/(period_means_all_bch[0,nnn,nn]))
             
     #period_changes_hamon[0,xxx,xx] = 100*((period_means_hamon[1,xxx,xx]-period_means_hamon[0,xxx,xx])/period_means_hamon[0,xxx,xx])
     
@@ -1813,12 +1816,85 @@ for i in np.arange(0,1):
         period_changes_bch_cm10_all_cm_all_pet[:,7,xx]=period_changes_penman_monteith[:,xx,9]
         period_changes_bch_cm10_all_cm_all_pet[:,8,xx]=period_changes_pri_tay[:,xx,9]
         period_changes_bch_cm10_all_cm_all_pet[:,9,xx]=period_changes_turc[:,xx,9]
+                    
         
     # ARRAY TO STORE THE BIASES FROM THE BENCHMARK MODEL/PET METHOD
     period_bias_changes_bch_cm1_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm2_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm3_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm4_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm5_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm6_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm7_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm8_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm9_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm10_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    
     for c in np.arange(0,10): # c represents the cth benchmark model
         for cc in np.arange(0,10): # represents the pet method set as reference
-            period_bias_changes_bch_cm1_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_hamon[0,c,c]-period_changes_hamon[0,cc,c]),1)
+            period_bias_changes_bch_cm1_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm1_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
+            period_bias_changes_bch_cm1_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            
+            period_bias_changes_bch_cm2_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm2_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
+            period_bias_changes_bch_cm2_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            
+            period_bias_changes_bch_cm3_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm3_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
+            period_bias_changes_bch_cm3_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            
+            period_bias_changes_bch_cm4_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm4_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
+            period_bias_changes_bch_cm4_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+    
+            period_bias_changes_bch_cm5_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm5_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
+            period_bias_changes_bch_cm5_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+
+            period_bias_changes_bch_cm6_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm6_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
+            period_bias_changes_bch_cm6_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+
+            period_bias_changes_bch_cm7_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm7_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
+            period_bias_changes_bch_cm7_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+
+            period_bias_changes_bch_cm8_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm8_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
+            period_bias_changes_bch_cm8_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+
+            period_bias_changes_bch_cm9_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm9_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
+            period_bias_changes_bch_cm9_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+
+            period_bias_changes_bch_cm10_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm10_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
+            period_bias_changes_bch_cm10_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+    
+    period_bias_changes_hamon_all =  np.zeros([3,10,10])
+"""#######################
+En period_bias_changes_hamon_all
+Promedio de cm1 en z=0
+Promedio de cm2 en Z=1
+...
+We can plot all these promedios or make a promedio of them
+Try first the plot
+
+
+
+"""
+    period_bias_changes_bch_cm1_hamon_all_cm_all_pet[:,0,:]=np.nan
+    period_bias_changes_bch_cm2_hamon_all_cm_all_pet[:,0,:]=np.nan
+    period_bias_changes_bch_cm3_hamon_all_cm_all_pet[:,0,:]=np.nan
+    period_bias_changes_bch_cm4_hamon_all_cm_all_pet[:,0,:]=np.nan
+    period_bias_changes_bch_cm5_hamon_all_cm_all_pet[:,0,:]=np.nan
+    period_bias_changes_bch_cm6_hamon_all_cm_all_pet[:,0,:]=np.nan
+    period_bias_changes_bch_cm7_hamon_all_cm_all_pet[:,0,:]=np.nan
+    period_bias_changes_bch_cm8_hamon_all_cm_all_pet[:,0,:]=np.nan
+    period_bias_changes_bch_cm9_hamon_all_cm_all_pet[:,0,:]=np.nan
+    period_bias_changes_bch_cm10_hamon_all_cm_all_pet[:,0,:]=np.nan
+        
         
     #Hamon
     font = {'family' : 'normal',
