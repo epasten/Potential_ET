@@ -1872,18 +1872,7 @@ for i in np.arange(0,1):
             period_bias_changes_bch_cm10_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
             period_bias_changes_bch_cm10_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
     
-    period_bias_changes_hamon_all =  np.zeros([3,10,10])
-"""#######################
-En period_bias_changes_hamon_all
-Promedio de cm1 en z=0
-Promedio de cm2 en Z=1
-...
-We can plot all these promedios or make a promedio of them
-Try first the plot
-
-
-
-"""
+        
     period_bias_changes_bch_cm1_hamon_all_cm_all_pet[:,0,:]=np.nan
     period_bias_changes_bch_cm2_hamon_all_cm_all_pet[:,0,:]=np.nan
     period_bias_changes_bch_cm3_hamon_all_cm_all_pet[:,0,:]=np.nan
@@ -1894,8 +1883,95 @@ Try first the plot
     period_bias_changes_bch_cm8_hamon_all_cm_all_pet[:,0,:]=np.nan
     period_bias_changes_bch_cm9_hamon_all_cm_all_pet[:,0,:]=np.nan
     period_bias_changes_bch_cm10_hamon_all_cm_all_pet[:,0,:]=np.nan
+    
+    
+
+    
+    period_bias_changes_hamon_all =  np.zeros([3,10,10])
+    period_bias_changes_hamon_all[:,:,0]=np.nanmean((abs(period_bias_changes_bch_cm1_hamon_all_cm_all_pet)),axis=2)
+    period_bias_changes_hamon_all[:,:,1]=np.nanmean((abs(period_bias_changes_bch_cm2_hamon_all_cm_all_pet)),axis=2)
+    period_bias_changes_hamon_all[:,:,2]=np.nanmean((abs(period_bias_changes_bch_cm3_hamon_all_cm_all_pet)),axis=2)
+    period_bias_changes_hamon_all[:,:,3]=np.nanmean((abs(period_bias_changes_bch_cm4_hamon_all_cm_all_pet)),axis=2)
+    period_bias_changes_hamon_all[:,:,4]=np.nanmean((abs(period_bias_changes_bch_cm5_hamon_all_cm_all_pet)),axis=2)
+    period_bias_changes_hamon_all[:,:,5]=np.nanmean((abs(period_bias_changes_bch_cm6_hamon_all_cm_all_pet)),axis=2)
+    period_bias_changes_hamon_all[:,:,6]=np.nanmean((abs(period_bias_changes_bch_cm7_hamon_all_cm_all_pet)),axis=2)
+    period_bias_changes_hamon_all[:,:,7]=np.nanmean((abs(period_bias_changes_bch_cm8_hamon_all_cm_all_pet)),axis=2)
+    period_bias_changes_hamon_all[:,:,8]=np.nanmean((abs(period_bias_changes_bch_cm9_hamon_all_cm_all_pet)),axis=2)
+    period_bias_changes_hamon_all[:,:,9]=np.nanmean((abs(period_bias_changes_bch_cm10_hamon_all_cm_all_pet)),axis=2)
+    
+    for r in np.arange(0,3): # c represents the cth benchmark model
+        for c in np.arange(0,10): # represents the models that were corrected to match the benchmark model
+            if period_bias_changes_hamon_all[r,c] != np.nan:
+                period_bias_changes_hamon_all[r,c] = round(period_bias_changes_hamon_all[r,c],1)
+                
+            else:
+                period_bias_changes_hamon_all[r,c] = np.nan
+
+    
+    
+    pet_methods = ['Hamon','Har-Sam','Hargreaves','Jen-Hai','Makkink','Oudin','Penman','Penman-Monteith','Pristley-Taylor','Turc']
+    font = {'family' : 'normal',
+    'weight' : 'normal',
+    'size'   : 16}
+    fig= plt.figure(figsize=(40,20))      
+    plt.rc('font', **font)
+    
+    fig, ax = plt.subplots()
+   
+    fontsize=14
+    
+    for xx in np.arange(0,10):
+        #Hamon
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
         
+        fig, ax = plt.subplots()
+       
+        fontsize=14
+        min_period_changes_hamon_bias_all = np.nanmin(period_bias_changes_hamon_all[:,:,xx])
+        max_period_changes_hamon_bias_all = np.nanmax(period_bias_changes_hamon_all[:,:,xx])
+        plt.imshow(period_bias_changes_hamon_all[:,:,xx],vmin=min_period_changes_hamon_bias_all, vmax=max_period_changes_hamon_bias_all)
         
+        # Setting the labels
+        ax.set_xticks(np.arange(len(pet_methods)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(pet_methods)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for j in range(len(periods)):
+           for i in range(len(pet_methods)):
+              text = ax.text(i,j,period_bias_changes_hamon_all[j,i,xx],
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected change bias (in %) relative\n to Hamon in ' +site_n)
+               
+        plt.colorbar(orientation='horizontal')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_all_hamon_'+site_n+'.png')
+        plt.show()
+    
+    
+    
+"""#######################
+
+
+En period_bias_changes_hamon_all
+Promedio de cm1 en z=0
+Promedio de cm2 en Z=1
+...
+We can plot all these promedios or make a promedio of them
+Try first the plot
+
+
+
+"""
+
     #Hamon
     font = {'family' : 'normal',
     'weight' : 'normal',
