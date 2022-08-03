@@ -40,16 +40,16 @@ for i in np.arange(0,1):
     site_n=site_list[i]
     print(site_n)
 
-    hamon_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_hamon_all.npy')
-    har_sam_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_har_sam_all.npy')
-    hargreaves_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_hargreaves_all.npy')
-    jen_hai_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_jen_hai_all.npy')
-    makkink_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_makkink_all.npy')
-    oudin_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_oudin_all.npy')
-    penman_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_penman_all.npy')
-    penman_monteith_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_penman_monteith_all.npy')
-    pri_tay_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_pri_tay_all.npy')
-    turc_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_turc_all.npy')
+    hamon_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_hamon_all.npy')
+    har_sam_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_har_sam_all.npy')
+    hargreaves_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_hargreaves_all.npy')
+    jen_hai_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_jen_hai_all.npy')
+    makkink_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_makkink_all.npy')
+    oudin_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_oudin_all.npy')
+    penman_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_penman_all.npy')
+    penman_monteith_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_penman_monteith_all.npy')
+    pri_tay_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_pri_tay_all.npy')
+    turc_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_turc_all.npy')
     
     models = ['Cerfacs-Hirham','Cerfacs-RCA','ICHEC-RCA','ICHEC-Hirman','ICHEC-Racmo','MPI-Hirham','MPI-RCA','NorESM-Hirham','NorESM-Racmo','NorESM-RCA']
 
@@ -114,7 +114,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: Hamon')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: Hamon')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: Hamon')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_hamon_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_hamon_'+site_n+'.png')
     
     
     yrs = np.arange(1976,2101)
@@ -177,7 +177,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: har_sam')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: har_sam')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: har_sam')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_har_sam_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_har_sam_'+site_n+'.png')
     
     
     yrs = np.arange(1976,2101)
@@ -240,7 +240,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: hargreaves')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: hargreaves')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: hargreaves')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_hargreaves_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_hargreaves_'+site_n+'.png')
     
     
     yrs = np.arange(1976,2101)
@@ -303,7 +303,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: jen_hai')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: jen_hai')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: jen_hai')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_jen_hai_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_jen_hai_'+site_n+'.png')
     
     
     yrs = np.arange(1976,2101)
@@ -366,7 +366,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: makkink')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: makkink')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: makkink')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_makkink_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_makkink_'+site_n+'.png')
     
     yrs = np.arange(1976,2101)
     font = {'family' : 'normal',
@@ -428,7 +428,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: oudin')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: oudin')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: oudin')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_oudin_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_oudin_'+site_n+'.png')
     
     yrs = np.arange(1976,2101)
     font = {'family' : 'normal',
@@ -490,7 +490,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: penman')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: penman')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: penman')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_penman_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_penman_'+site_n+'.png')
     
     yrs = np.arange(1976,2101)
     font = {'family' : 'normal',
@@ -552,7 +552,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: penman_monteith')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: penman_monteith')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: penman_monteith')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_penman_monteith_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_penman_monteith_'+site_n+'.png')
     
     
     yrs = np.arange(1976,2101)
@@ -615,7 +615,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: pri_tay')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: pri_tay')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: pri_tay')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_pri_tay_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_pri_tay_'+site_n+'.png')
     
     yrs = np.arange(1976,2101)
     font = {'family' : 'normal',
@@ -677,7 +677,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: turc')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: turc')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: turc')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_turc_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_turc_'+site_n+'.png')
     
 
 
@@ -1003,7 +1003,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Hamon')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_hamon_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_hamon_'+site_n+'.png')
     plt.show()
     
     #Har_sam mean bias
@@ -1036,7 +1036,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Hargreaves-Samani')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_har_sam_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_har_sam_'+site_n+'.png')
     plt.show()
     
     #hargreaves mean bias
@@ -1069,7 +1069,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Hargreaves')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_hargreaves_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_hargreaves_'+site_n+'.png')
     plt.show()
     
     #jen_hai mean bias
@@ -1102,7 +1102,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Jensen-Haise')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_jen_hai_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_jen_hai_'+site_n+'.png')
     plt.show()
     
     #makkink mean bias
@@ -1135,7 +1135,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Makkink')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_makkink_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_makkink_'+site_n+'.png')
     plt.show()
     
     #oudin mean bias
@@ -1168,7 +1168,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Oudin')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_oudin_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_oudin_'+site_n+'.png')
     plt.show()
     
     #penman mean bias
@@ -1201,7 +1201,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Penman')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_penman_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_penman_'+site_n+'.png')
     plt.show()
     
     
@@ -1235,7 +1235,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Penman-Monteith')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_penman_monteith_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_penman_monteith_'+site_n+'.png')
     plt.show()
     
     
@@ -1269,7 +1269,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Priestley-Taylor')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_pri_tay_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_pri_tay_'+site_n+'.png')
     plt.show()
         
     #turc mean bias
@@ -1302,7 +1302,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Turc')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_turc_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_turc_'+site_n+'.png')
     plt.show()
     
     #All PET methods mean bias
@@ -1413,7 +1413,7 @@ for i in np.arange(0,1):
     plt.title('Turc; Mean absolute bias for each model (%)')
     plt.xlim(0,15)
     plt.grid()
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_all_pseudo'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_all_pseudo'+site_n+'.png')
     
     #SIGNAL TO NOISE RATIO
     #MATRIX WITH SNR
@@ -1534,7 +1534,7 @@ for i in np.arange(0,1):
     plt.ylim(0,16)
     plt.legend(handles=legend_elements, loc='lower right')
     #plt.legend()
-    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_snr_hamon_'+site_n+'.png')
+    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_snr_hamon_'+site_n+'.png')
     plt.show()
 
 ##################################################################################    
@@ -1898,16 +1898,8 @@ for i in np.arange(0,1):
     period_bias_changes_hamon_all[:,:,7]=np.nanmean((abs(period_bias_changes_bch_cm8_hamon_all_cm_all_pet)),axis=2)
     period_bias_changes_hamon_all[:,:,8]=np.nanmean((abs(period_bias_changes_bch_cm9_hamon_all_cm_all_pet)),axis=2)
     period_bias_changes_hamon_all[:,:,9]=np.nanmean((abs(period_bias_changes_bch_cm10_hamon_all_cm_all_pet)),axis=2)
-    
-    for r in np.arange(0,3): # c represents the cth benchmark model
-        for c in np.arange(0,10): # represents the models that were corrected to match the benchmark model
-            if period_bias_changes_hamon_all[r,c] != np.nan:
-                period_bias_changes_hamon_all[r,c] = round(period_bias_changes_hamon_all[r,c],1)
-                
-            else:
-                period_bias_changes_hamon_all[r,c] = np.nan
 
-    
+    period_bias_changes_hamon_all_mean = np.round(np.nanmean(period_bias_changes_hamon_all,axis=2),1)
     
     pet_methods = ['Hamon','Har-Sam','Hargreaves','Jen-Hai','Makkink','Oudin','Penman','Penman-Monteith','Pristley-Taylor','Turc']
     font = {'family' : 'normal',
@@ -1943,9 +1935,9 @@ for i in np.arange(0,1):
         ax.set_yticklabels(periods)
         
         # Creating text annotations by using for loop
-        for j in range(len(periods)):
-           for i in range(len(pet_methods)):
-              text = ax.text(i,j,period_bias_changes_hamon_all[j,i,xx],
+        for i in range(len(periods)):
+           for j in range(len(pet_methods)):
+              text = ax.text(i,j,period_bias_changes_hamon_all[i,j,xx],
                             ha="center", va="center", color="w",fontsize=10)
         
         clim_mod = xx+1
@@ -1953,25 +1945,10 @@ for i in np.arange(0,1):
         ax.set_title('Projected change bias (in %) relative\n to Hamon in ' +site_n)
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_all_hamon_'+site_n+'.png')
+        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_all_hamon_'+site_n+'.png')
         plt.show()
     
     
-    
-"""#######################
-
-
-En period_bias_changes_hamon_all
-Promedio de cm1 en z=0
-Promedio de cm2 en Z=1
-...
-We can plot all these promedios or make a promedio of them
-Try first the plot
-
-
-
-"""
-
     #Hamon
     font = {'family' : 'normal',
     'weight' : 'normal',
@@ -2016,7 +1993,7 @@ Try first the plot
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nHamon')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_hamon_'+site_n+'.png')
+        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_hamon_'+site_n+'.png')
         plt.show()
         
         #Har_sam
@@ -2051,7 +2028,7 @@ Try first the plot
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nHargreaves-Samani')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_har_sam_'+site_n+'.png')
+        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_har_sam_'+site_n+'.png')
         plt.show()
         
         #Hargreaves
@@ -2086,7 +2063,7 @@ Try first the plot
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nHargreaves')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_hargreaves_'+site_n+'.png')
+        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_hargreaves_'+site_n+'.png')
         plt.show()
         
         #Jensen-Haise
@@ -2121,7 +2098,7 @@ Try first the plot
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nJensen-Haise')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_jen_hai_'+site_n+'.png')
+        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_jen_hai_'+site_n+'.png')
         plt.show()
         
         #Makkink
@@ -2156,7 +2133,7 @@ Try first the plot
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nMakkink')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_makkink_'+site_n+'.png')
+        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_makkink_'+site_n+'.png')
         plt.show()
         
         #Oudin
@@ -2191,7 +2168,7 @@ Try first the plot
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nOudin')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_oudin_'+site_n+'.png')
+        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_oudin_'+site_n+'.png')
         plt.show()
         
         #Penman
@@ -2226,7 +2203,7 @@ Try first the plot
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nPenman')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_penman_'+site_n+'.png')
+        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_penman_'+site_n+'.png')
         plt.show()
         
         #Penman-Monteith
@@ -2261,7 +2238,7 @@ Try first the plot
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nPenman-Monteith')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_penman_monteith_'+site_n+'.png')
+        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_penman_monteith_'+site_n+'.png')
         plt.show()
         
         #Priestley-Taylor
@@ -2296,7 +2273,7 @@ Try first the plot
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nPriestley-Taylor')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_pri_tay_'+site_n+'.png')
+        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_pri_tay_'+site_n+'.png')
         plt.show()
 
         #Turc
@@ -2331,5 +2308,5 @@ Try first the plot
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nTurc')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_turc_'+site_n+'.png')
+        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_turc_'+site_n+'.png')
         plt.show()
