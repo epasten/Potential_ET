@@ -40,16 +40,16 @@ for i in np.arange(0,1):
     site_n=site_list[i]
     print(site_n)
 
-    hamon_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_hamon_all.npy')
-    har_sam_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_har_sam_all.npy')
-    hargreaves_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_hargreaves_all.npy')
-    jen_hai_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_jen_hai_all.npy')
-    makkink_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_makkink_all.npy')
-    oudin_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_oudin_all.npy')
-    penman_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_penman_all.npy')
-    penman_monteith_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_penman_monteith_all.npy')
-    pri_tay_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_pri_tay_all.npy')
-    turc_annual = np.load('C:/Users/epz/Desktop/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_turc_all.npy')
+    hamon_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_hamon_all.npy')
+    har_sam_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_har_sam_all.npy')
+    hargreaves_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_hargreaves_all.npy')
+    jen_hai_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_jen_hai_all.npy')
+    makkink_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_makkink_all.npy')
+    oudin_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_oudin_all.npy')
+    penman_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_penman_all.npy')
+    penman_monteith_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_penman_monteith_all.npy')
+    pri_tay_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_pri_tay_all.npy')
+    turc_annual = np.load('C:/Users/erpasten/Documents/UEF/PET/CMs/'+site_n+'/pet/delta/corrected/pet/both_annual_pet_turc_all.npy')
     
     models = ['Cerfacs-Hirham','Cerfacs-RCA','ICHEC-RCA','ICHEC-Hirman','ICHEC-Racmo','MPI-Hirham','MPI-RCA','NorESM-Hirham','NorESM-Racmo','NorESM-RCA']
 
@@ -114,7 +114,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: Hamon')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: Hamon')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: Hamon')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_hamon_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_hamon_'+site_n+'.png')
     
     
     yrs = np.arange(1976,2101)
@@ -177,7 +177,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: har_sam')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: har_sam')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: har_sam')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_har_sam_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_har_sam_'+site_n+'.png')
     
     
     yrs = np.arange(1976,2101)
@@ -240,7 +240,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: hargreaves')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: hargreaves')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: hargreaves')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_hargreaves_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_hargreaves_'+site_n+'.png')
     
     
     yrs = np.arange(1976,2101)
@@ -303,7 +303,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: jen_hai')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: jen_hai')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: jen_hai')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_jen_hai_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_jen_hai_'+site_n+'.png')
     
     
     yrs = np.arange(1976,2101)
@@ -366,7 +366,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: makkink')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: makkink')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: makkink')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_makkink_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_makkink_'+site_n+'.png')
     
     yrs = np.arange(1976,2101)
     font = {'family' : 'normal',
@@ -428,7 +428,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: oudin')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: oudin')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: oudin')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_oudin_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_oudin_'+site_n+'.png')
     
     yrs = np.arange(1976,2101)
     font = {'family' : 'normal',
@@ -490,7 +490,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: penman')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: penman')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: penman')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_penman_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_penman_'+site_n+'.png')
     
     yrs = np.arange(1976,2101)
     font = {'family' : 'normal',
@@ -552,7 +552,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: penman_monteith')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: penman_monteith')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: penman_monteith')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_penman_monteith_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_penman_monteith_'+site_n+'.png')
     
     
     yrs = np.arange(1976,2101)
@@ -615,7 +615,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: pri_tay')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: pri_tay')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: pri_tay')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_pri_tay_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_pri_tay_'+site_n+'.png')
     
     yrs = np.arange(1976,2101)
     font = {'family' : 'normal',
@@ -677,7 +677,7 @@ for i in np.arange(0,1):
     plt.figtext(0.58,0.37, 'BM - '+site_n+' - 8: turc')
     plt.figtext(0.15,0.21, 'BM - '+site_n+' - 9: turc')
     plt.figtext(0.58,0.21, 'BM - '+site_n+' - 10: turc')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_turc_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/annual_timeseries_pseudo_turc_'+site_n+'.png')
     
 
 
@@ -1003,7 +1003,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Hamon')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_hamon_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_hamon_'+site_n+'.png')
     plt.show()
     
     #Har_sam mean bias
@@ -1036,7 +1036,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Hargreaves-Samani')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_har_sam_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_har_sam_'+site_n+'.png')
     plt.show()
     
     #hargreaves mean bias
@@ -1069,7 +1069,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Hargreaves')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_hargreaves_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_hargreaves_'+site_n+'.png')
     plt.show()
     
     #jen_hai mean bias
@@ -1102,7 +1102,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Jensen-Haise')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_jen_hai_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_jen_hai_'+site_n+'.png')
     plt.show()
     
     #makkink mean bias
@@ -1135,7 +1135,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Makkink')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_makkink_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_makkink_'+site_n+'.png')
     plt.show()
     
     #oudin mean bias
@@ -1168,7 +1168,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Oudin')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_oudin_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_oudin_'+site_n+'.png')
     plt.show()
     
     #penman mean bias
@@ -1201,7 +1201,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Penman')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_penman_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_penman_'+site_n+'.png')
     plt.show()
     
     
@@ -1235,7 +1235,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Penman-Monteith')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_penman_monteith_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_penman_monteith_'+site_n+'.png')
     plt.show()
     
     
@@ -1269,7 +1269,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Priestley-Taylor')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_pri_tay_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_pri_tay_'+site_n+'.png')
     plt.show()
         
     #turc mean bias
@@ -1302,7 +1302,7 @@ for i in np.arange(0,1):
     ax.set_title('Mean change bias (%) in ' +site_n+'\nusing Turc')
            
     plt.colorbar(orientation='horizontal')
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_turc_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_matrix_bch_turc_'+site_n+'.png')
     plt.show()
     
     #All PET methods mean bias
@@ -1413,7 +1413,7 @@ for i in np.arange(0,1):
     plt.title('Turc; Mean absolute bias for each model (%)')
     plt.xlim(0,15)
     plt.grid()
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/mean_change_bias_all_pseudo'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/mean_change_bias_all_pseudo'+site_n+'.png')
     
     #SIGNAL TO NOISE RATIO
     #MATRIX WITH SNR
@@ -1534,7 +1534,7 @@ for i in np.arange(0,1):
     plt.ylim(0,16)
     plt.legend(handles=legend_elements, loc='lower right')
     #plt.legend()
-    plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_snr_hamon_'+site_n+'.png')
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_snr_hamon_'+site_n+'.png')
     plt.show()
 
 ##################################################################################    
@@ -1658,8 +1658,8 @@ for i in np.arange(0,1):
     
     # 1)3-Dimension matrix using change values [row,column,sheet] ==> [period,pet_method,BC_model]
     # 2) then bias of the models compared to the reference pet method
-    # 3) average of the bias/deviation of each pet method compared to the others
-    # 4) SNR and bias plot
+    # 3) average of the bias/deviation of each pet method compared to the others when each CM is used as benchmark
+    # 4) Average and plotting of the mean of the models PET
     #Pet model order: Hamon,Har-Sam,Harg,Jen-Hai,Makkink,Oudin,Penman,Penman-Monteith,Pri-Tay,Turc
     
     
@@ -1830,48 +1830,189 @@ for i in np.arange(0,1):
     period_bias_changes_bch_cm9_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
     period_bias_changes_bch_cm10_hamon_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
     
+    period_bias_changes_bch_cm1_har_sam_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm2_har_sam_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm3_har_sam_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm4_har_sam_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm5_har_sam_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm6_har_sam_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm7_har_sam_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm8_har_sam_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm9_har_sam_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm10_har_sam_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    
+    period_bias_changes_bch_cm1_hargreaves_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm2_hargreaves_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm3_hargreaves_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm4_hargreaves_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm5_hargreaves_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm6_hargreaves_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm7_hargreaves_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm8_hargreaves_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm9_hargreaves_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm10_hargreaves_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+
+    period_bias_changes_bch_cm1_jen_hai_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm2_jen_hai_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm3_jen_hai_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm4_jen_hai_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm5_jen_hai_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm6_jen_hai_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm7_jen_hai_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm8_jen_hai_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm9_jen_hai_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm10_jen_hai_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+
+    period_bias_changes_bch_cm1_makkink_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm2_makkink_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm3_makkink_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm4_makkink_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm5_makkink_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm6_makkink_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm7_makkink_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm8_makkink_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm9_makkink_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm10_makkink_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+
+    period_bias_changes_bch_cm1_oudin_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm2_oudin_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm3_oudin_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm4_oudin_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm5_oudin_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm6_oudin_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm7_oudin_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm8_oudin_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm9_oudin_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm10_oudin_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+
+    period_bias_changes_bch_cm1_penman_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm2_penman_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm3_penman_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm4_penman_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm5_penman_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm6_penman_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm7_penman_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm8_penman_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm9_penman_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm10_penman_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+
+    period_bias_changes_bch_cm1_penman_monteith_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm2_penman_monteith_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm3_penman_monteith_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm4_penman_monteith_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm5_penman_monteith_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm6_penman_monteith_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm7_penman_monteith_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm8_penman_monteith_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm9_penman_monteith_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm10_penman_monteith_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+
+    period_bias_changes_bch_cm1_pri_tay_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm2_pri_tay_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm3_pri_tay_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm4_pri_tay_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm5_pri_tay_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm6_pri_tay_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm7_pri_tay_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm8_pri_tay_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm9_pri_tay_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm10_pri_tay_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+
+    period_bias_changes_bch_cm1_turc_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm2_turc_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm3_turc_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm4_turc_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm5_turc_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm6_turc_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm7_turc_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm8_turc_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm9_turc_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    period_bias_changes_bch_cm10_turc_all_cm_all_pet =np.zeros([3,10,10])#[period,PET Method nan will be one column,model (nan will be one sheet) ]
+    
+    
+    # Stores the change bias for each pet method in comparison with the other methods when using the different CM as benchmark
     for c in np.arange(0,10): # c represents the cth benchmark model
         for cc in np.arange(0,10): # represents the pet method set as reference
             period_bias_changes_bch_cm1_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
             period_bias_changes_bch_cm1_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
-            period_bias_changes_bch_cm1_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm1_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,0,c]),1)
             
             period_bias_changes_bch_cm2_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
             period_bias_changes_bch_cm2_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
-            period_bias_changes_bch_cm2_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm2_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,0,c]),1)
             
             period_bias_changes_bch_cm3_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
             period_bias_changes_bch_cm3_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
-            period_bias_changes_bch_cm3_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm3_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,0,c]),1)
             
             period_bias_changes_bch_cm4_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
             period_bias_changes_bch_cm4_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
-            period_bias_changes_bch_cm4_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm4_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,0,c]),1)
     
             period_bias_changes_bch_cm5_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
             period_bias_changes_bch_cm5_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
-            period_bias_changes_bch_cm5_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm5_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,0,c]),1)
 
             period_bias_changes_bch_cm6_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
             period_bias_changes_bch_cm6_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
-            period_bias_changes_bch_cm6_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm6_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,0,c]),1)
 
             period_bias_changes_bch_cm7_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
             period_bias_changes_bch_cm7_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
-            period_bias_changes_bch_cm7_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm7_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,0,c]),1)
 
             period_bias_changes_bch_cm8_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
             period_bias_changes_bch_cm8_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
-            period_bias_changes_bch_cm8_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm8_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,0,c]),1)
 
             period_bias_changes_bch_cm9_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
             period_bias_changes_bch_cm9_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
-            period_bias_changes_bch_cm9_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm9_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,0,c]),1)
 
             period_bias_changes_bch_cm10_hamon_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,0,c]),1)
             period_bias_changes_bch_cm10_hamon_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,0,c]),1)
-            period_bias_changes_bch_cm10_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[0,0,c]),1)
+            period_bias_changes_bch_cm10_hamon_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,0,c]),1)
     
+            period_bias_changes_bch_cm1_har_sam_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,1,c]),1)
+            period_bias_changes_bch_cm1_har_sam_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,1,c]),1)
+            period_bias_changes_bch_cm1_har_sam_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,1,c]),1)
+            
+            period_bias_changes_bch_cm2_har_sam_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,1,c]),1)
+            period_bias_changes_bch_cm2_har_sam_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,1,c]),1)
+            period_bias_changes_bch_cm2_har_sam_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,1,c]),1)
+            
+            period_bias_changes_bch_cm3_har_sam_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,1,c]),1)
+            period_bias_changes_bch_cm3_har_sam_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,1,c]),1)
+            period_bias_changes_bch_cm3_har_sam_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,1,c]),1)
+            
+            period_bias_changes_bch_cm4_har_sam_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,1,c]),1)
+            period_bias_changes_bch_cm4_har_sam_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,1,c]),1)
+            period_bias_changes_bch_cm4_har_sam_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,1,c]),1)
+            
+            period_bias_changes_bch_cm5_har_sam_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,1,c]),1)
+            period_bias_changes_bch_cm5_har_sam_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,1,c]),1)
+            period_bias_changes_bch_cm5_har_sam_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,1,c]),1)
+            
+            period_bias_changes_bch_cm6_har_sam_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,1,c]),1)
+            period_bias_changes_bch_cm6_har_sam_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,1,c]),1)
+            period_bias_changes_bch_cm6_har_sam_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,1,c]),1)
+            
+            period_bias_changes_bch_cm7_har_sam_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,1,c]),1)
+            period_bias_changes_bch_cm7_har_sam_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,1,c]),1)
+            period_bias_changes_bch_cm7_har_sam_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,1,c]),1)
+            
+            period_bias_changes_bch_cm8_har_sam_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,1,c]),1)
+            period_bias_changes_bch_cm8_har_sam_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,1,c]),1)
+            period_bias_changes_bch_cm8_har_sam_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,1,c]),1)
+            
+            period_bias_changes_bch_cm9_har_sam_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,1,c]),1)
+            period_bias_changes_bch_cm9_har_sam_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,1,c]),1)
+            period_bias_changes_bch_cm9_har_sam_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,1,c]),1)
+            
+            period_bias_changes_bch_cm10_har_sam_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,1,c]),1)
+            period_bias_changes_bch_cm10_har_sam_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,1,c]),1)
+            period_bias_changes_bch_cm10_har_sam_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,1,c]),1)
+            
         
     period_bias_changes_bch_cm1_hamon_all_cm_all_pet[:,0,:]=np.nan
     period_bias_changes_bch_cm2_hamon_all_cm_all_pet[:,0,:]=np.nan
@@ -1885,8 +2026,20 @@ for i in np.arange(0,1):
     period_bias_changes_bch_cm10_hamon_all_cm_all_pet[:,0,:]=np.nan
     
     
-
+    period_bias_changes_bch_cm1_har_sam_all_cm_all_pet[:,1,:]=np.nan
+    period_bias_changes_bch_cm2_har_sam_all_cm_all_pet[:,1,:]=np.nan
+    period_bias_changes_bch_cm3_har_sam_all_cm_all_pet[:,1,:]=np.nan
+    period_bias_changes_bch_cm4_har_sam_all_cm_all_pet[:,1,:]=np.nan
+    period_bias_changes_bch_cm5_har_sam_all_cm_all_pet[:,1,:]=np.nan
+    period_bias_changes_bch_cm6_har_sam_all_cm_all_pet[:,1,:]=np.nan
+    period_bias_changes_bch_cm7_har_sam_all_cm_all_pet[:,1,:]=np.nan
+    period_bias_changes_bch_cm8_har_sam_all_cm_all_pet[:,1,:]=np.nan
+    period_bias_changes_bch_cm9_har_sam_all_cm_all_pet[:,1,:]=np.nan
+    period_bias_changes_bch_cm10_har_sam_all_cm_all_pet[:,1,:]=np.nan
     
+    
+
+    """
     period_bias_changes_hamon_all =  np.zeros([3,10,10])
     period_bias_changes_hamon_all[:,:,0]=np.nanmean((abs(period_bias_changes_bch_cm1_hamon_all_cm_all_pet)),axis=2)
     period_bias_changes_hamon_all[:,:,1]=np.nanmean((abs(period_bias_changes_bch_cm2_hamon_all_cm_all_pet)),axis=2)
@@ -1898,33 +2051,57 @@ for i in np.arange(0,1):
     period_bias_changes_hamon_all[:,:,7]=np.nanmean((abs(period_bias_changes_bch_cm8_hamon_all_cm_all_pet)),axis=2)
     period_bias_changes_hamon_all[:,:,8]=np.nanmean((abs(period_bias_changes_bch_cm9_hamon_all_cm_all_pet)),axis=2)
     period_bias_changes_hamon_all[:,:,9]=np.nanmean((abs(period_bias_changes_bch_cm10_hamon_all_cm_all_pet)),axis=2)
-
+    """
+    period_bias_changes_hamon_all =  np.zeros([3,10,10])
+    period_bias_changes_hamon_all[:,:,0]=np.nanmean(period_bias_changes_bch_cm1_hamon_all_cm_all_pet,axis=2)
+    period_bias_changes_hamon_all[:,:,1]=np.nanmean(period_bias_changes_bch_cm2_hamon_all_cm_all_pet,axis=2)
+    period_bias_changes_hamon_all[:,:,2]=np.nanmean(period_bias_changes_bch_cm3_hamon_all_cm_all_pet,axis=2)
+    period_bias_changes_hamon_all[:,:,3]=np.nanmean(period_bias_changes_bch_cm4_hamon_all_cm_all_pet,axis=2)
+    period_bias_changes_hamon_all[:,:,4]=np.nanmean(period_bias_changes_bch_cm5_hamon_all_cm_all_pet,axis=2)
+    period_bias_changes_hamon_all[:,:,5]=np.nanmean(period_bias_changes_bch_cm6_hamon_all_cm_all_pet,axis=2)
+    period_bias_changes_hamon_all[:,:,6]=np.nanmean(period_bias_changes_bch_cm7_hamon_all_cm_all_pet,axis=2)
+    period_bias_changes_hamon_all[:,:,7]=np.nanmean(period_bias_changes_bch_cm8_hamon_all_cm_all_pet,axis=2)
+    period_bias_changes_hamon_all[:,:,8]=np.nanmean(period_bias_changes_bch_cm9_hamon_all_cm_all_pet,axis=2)
+    period_bias_changes_hamon_all[:,:,9]=np.nanmean(period_bias_changes_bch_cm10_hamon_all_cm_all_pet,axis=2)
+    
+    
+    period_bias_changes_har_sam_all =  np.zeros([3,10,10])
+    period_bias_changes_har_sam_all[:,:,0]=np.nanmean(period_bias_changes_bch_cm1_har_sam_all_cm_all_pet,axis=2)
+    period_bias_changes_har_sam_all[:,:,1]=np.nanmean(period_bias_changes_bch_cm2_har_sam_all_cm_all_pet,axis=2)
+    period_bias_changes_har_sam_all[:,:,2]=np.nanmean(period_bias_changes_bch_cm3_har_sam_all_cm_all_pet,axis=2)
+    period_bias_changes_har_sam_all[:,:,3]=np.nanmean(period_bias_changes_bch_cm4_har_sam_all_cm_all_pet,axis=2)
+    period_bias_changes_har_sam_all[:,:,4]=np.nanmean(period_bias_changes_bch_cm5_har_sam_all_cm_all_pet,axis=2)
+    period_bias_changes_har_sam_all[:,:,5]=np.nanmean(period_bias_changes_bch_cm6_har_sam_all_cm_all_pet,axis=2)
+    period_bias_changes_har_sam_all[:,:,6]=np.nanmean(period_bias_changes_bch_cm7_har_sam_all_cm_all_pet,axis=2)
+    period_bias_changes_har_sam_all[:,:,7]=np.nanmean(period_bias_changes_bch_cm8_har_sam_all_cm_all_pet,axis=2)
+    period_bias_changes_har_sam_all[:,:,8]=np.nanmean(period_bias_changes_bch_cm9_har_sam_all_cm_all_pet,axis=2)
+    period_bias_changes_har_sam_all[:,:,9]=np.nanmean(period_bias_changes_bch_cm10_har_sam_all_cm_all_pet,axis=2)
+    
+    
+    
     period_bias_changes_hamon_all_mean = np.round(np.nanmean(period_bias_changes_hamon_all,axis=2),1)
     
-    pet_methods = ['Hamon','Har-Sam','Hargreaves','Jen-Hai','Makkink','Oudin','Penman','Penman-Monteith','Pristley-Taylor','Turc']
+    
     font = {'family' : 'normal',
     'weight' : 'normal',
     'size'   : 16}
-    fig= plt.figure(figsize=(40,20))      
+    fig= plt.figure(figsize=(80,40))      
     plt.rc('font', **font)
-    
     fig, ax = plt.subplots()
-   
     fontsize=14
     
     for xx in np.arange(0,10):
         #Hamon
+        pet_methods = ['Hamon','Hargreaves-Samani','Hargreaves','Jensen-Haise','Makkink','Oudin','Penman','Penman-Monteith','Pristley-Taylor','Turc']
         font = {'family' : 'normal',
         'weight' : 'normal',
         'size'   : 16}
         fig= plt.figure(figsize=(40,20))      
         plt.rc('font', **font)
-        
         fig, ax = plt.subplots()
-       
         fontsize=14
-        min_period_changes_hamon_bias_all = np.nanmin(period_bias_changes_hamon_all[:,:,xx])
-        max_period_changes_hamon_bias_all = np.nanmax(period_bias_changes_hamon_all[:,:,xx])
+        min_period_changes_hamon_bias_all = np.nanmin(abs(period_bias_changes_hamon_all[:,:,xx]))
+        max_period_changes_hamon_bias_all = np.nanmax(abs(period_bias_changes_hamon_all[:,:,xx]))
         plt.imshow(period_bias_changes_hamon_all[:,:,xx],vmin=min_period_changes_hamon_bias_all, vmax=max_period_changes_hamon_bias_all)
         
         # Setting the labels
@@ -1937,15 +2114,56 @@ for i in np.arange(0,1):
         # Creating text annotations by using for loop
         for i in range(len(periods)):
            for j in range(len(pet_methods)):
-              text = ax.text(i,j,period_bias_changes_hamon_all[i,j,xx],
+              text = ax.text(j,i,np.round(abs(period_bias_changes_hamon_all[i,j,xx]),1),
                             ha="center", va="center", color="w",fontsize=10)
         
         clim_mod = xx+1
         clim_mod = str(clim_mod)
-        ax.set_title('Projected change bias (in %) relative\n to Hamon in ' +site_n)
+        ax.set_title('Projected abs. change bias (in %) relative\n to Hamon in ' +site_n+ '\n when CM' +clim_mod+' is set as benchmark')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_all_hamon_'+site_n+'.png')
+        plt.tick_params(top=True, bottom=False)
+        plt.tick_params(labeltop=True, labelbottom=False)
+        plt.xticks(rotation=90)
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/pet_method_change_bias_matrix_bch_'+clim_mod+'_hamon_'+site_n+'.png',bbox_inches='tight')
+        plt.show()
+    for xx in np.arange(0,10):
+        
+        #Har_Sam
+        pet_methods = ['Hamon','Hargreaves-Samani','Hargreaves','Jensen-Haise','Makkink','Oudin','Penman','Penman-Monteith','Pristley-Taylor','Turc']
+        font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 16}
+        fig= plt.figure(figsize=(40,20))      
+        plt.rc('font', **font)
+        fig, ax = plt.subplots()
+        fontsize=14
+        min_period_changes_har_sam_bias_all = np.nanmin(abs(period_bias_changes_har_sam_all[:,:,xx]))
+        max_period_changes_har_sam_bias_all = np.nanmax(abs(period_bias_changes_har_sam_all[:,:,xx]))
+        plt.imshow(period_bias_changes_har_sam_all[:,:,xx],vmin=min_period_changes_har_sam_bias_all, vmax=max_period_changes_har_sam_bias_all)
+        
+        # Setting the labels
+        ax.set_xticks(np.arange(len(pet_methods)))
+        ax.set_yticks(np.arange(len(periods)))
+        # labeling respective list entries
+        ax.set_xticklabels(pet_methods)
+        ax.set_yticklabels(periods)
+        
+        # Creating text annotations by using for loop
+        for i in range(len(periods)):
+           for j in range(len(pet_methods)):
+              text = ax.text(j,i,np.round(abs(period_bias_changes_har_sam_all[i,j,xx]),1),
+                            ha="center", va="center", color="w",fontsize=10)
+        
+        clim_mod = xx+1
+        clim_mod = str(clim_mod)
+        ax.set_title('Projected abs. change bias (in %) relative\n to Hargreaves-Samani in ' +site_n+ '\n when CM' +clim_mod+' is set as benchmark')
+               
+        plt.colorbar(orientation='horizontal')
+        plt.tick_params(top=True, bottom=False)
+        plt.tick_params(labeltop=True, labelbottom=False)
+        plt.xticks(rotation=90)
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/pet_method_change_bias_matrix_bch_'+clim_mod+'_har_sam_'+site_n+'.png',bbox_inches='tight')
         plt.show()
     
     
@@ -1993,7 +2211,7 @@ for i in np.arange(0,1):
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nHamon')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_hamon_'+site_n+'.png')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_hamon_'+site_n+'.png')
         plt.show()
         
         #Har_sam
@@ -2028,7 +2246,7 @@ for i in np.arange(0,1):
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nHargreaves-Samani')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_har_sam_'+site_n+'.png')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_har_sam_'+site_n+'.png')
         plt.show()
         
         #Hargreaves
@@ -2063,7 +2281,7 @@ for i in np.arange(0,1):
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nHargreaves')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_hargreaves_'+site_n+'.png')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_hargreaves_'+site_n+'.png')
         plt.show()
         
         #Jensen-Haise
@@ -2098,7 +2316,7 @@ for i in np.arange(0,1):
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nJensen-Haise')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_jen_hai_'+site_n+'.png')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_jen_hai_'+site_n+'.png')
         plt.show()
         
         #Makkink
@@ -2133,7 +2351,7 @@ for i in np.arange(0,1):
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nMakkink')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_makkink_'+site_n+'.png')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_makkink_'+site_n+'.png')
         plt.show()
         
         #Oudin
@@ -2168,7 +2386,7 @@ for i in np.arange(0,1):
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nOudin')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_oudin_'+site_n+'.png')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_oudin_'+site_n+'.png')
         plt.show()
         
         #Penman
@@ -2203,7 +2421,7 @@ for i in np.arange(0,1):
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nPenman')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_penman_'+site_n+'.png')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_penman_'+site_n+'.png')
         plt.show()
         
         #Penman-Monteith
@@ -2238,7 +2456,7 @@ for i in np.arange(0,1):
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nPenman-Monteith')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_penman_monteith_'+site_n+'.png')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_penman_monteith_'+site_n+'.png')
         plt.show()
         
         #Priestley-Taylor
@@ -2273,7 +2491,7 @@ for i in np.arange(0,1):
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nPriestley-Taylor')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_pri_tay_'+site_n+'.png')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_pri_tay_'+site_n+'.png')
         plt.show()
 
         #Turc
@@ -2308,5 +2526,5 @@ for i in np.arange(0,1):
         ax.set_title('Projected change bias (%) relative\n to benchmark CM' +clim_mod+' in ' +site_n+' using \nTurc')
                
         plt.colorbar(orientation='horizontal')
-        plt.savefig('C:/Users/epz/Desktop/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_turc_'+site_n+'.png')
+        plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/change_bias_matrix_bch_'+clim_mod+'_turc_'+site_n+'.png')
         plt.show()
