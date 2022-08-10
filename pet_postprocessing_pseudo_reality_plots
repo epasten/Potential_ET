@@ -1501,12 +1501,12 @@ for i in np.arange(0,1):
     plt.xlabel('Mean absolute bias (change %)')
     plt.ylabel('SNR')
     plt.grid()
-    legend_elements = [Line2D([0], [0], marker='s', color='w', label='Far Future',
-                      markerfacecolor='g', markersize=15),
+    legend_elements = [Line2D([0], [0], marker='s', color='w', label='Near Future',
+                      markerfacecolor='r', markersize=15),
                Line2D([0], [0], marker='s', color='w', label='Mid Future',
                       markerfacecolor='b', markersize=15),
-               Line2D([0], [0], marker='s', color='w', label='Near Future',
-                      markerfacecolor='r', markersize=15),
+               Line2D([0], [0], marker='s', color='w', label='Far Future',
+                      markerfacecolor='g', markersize=15),
                Line2D([0], [0], marker='X', color='w', label='Hamon',
                       markerfacecolor='k', markersize=15),
                Line2D([0], [0], marker='s', color='w', label='Hargraves-Samani',
@@ -2174,165 +2174,165 @@ for i in np.arange(0,1):
             period_bias_changes_bch_cm10_oudin_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,5,c]),1)
             period_bias_changes_bch_cm10_oudin_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,5,c]),1)
 
-            period_bias_changes_bch_cm1_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm1_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm1_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm1_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,6,c]),1)
+            period_bias_changes_bch_cm1_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,6,c]),1)
+            period_bias_changes_bch_cm1_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,6,c]),1)
             
-            period_bias_changes_bch_cm2_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm2_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm2_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm2_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,6,c]),1)
+            period_bias_changes_bch_cm2_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,6,c]),1)
+            period_bias_changes_bch_cm2_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,6,c]),1)
             
-            period_bias_changes_bch_cm3_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm3_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm3_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm3_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,6,c]),1)
+            period_bias_changes_bch_cm3_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,6,c]),1)
+            period_bias_changes_bch_cm3_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,6,c]),1)
             
-            period_bias_changes_bch_cm4_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm4_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm4_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm4_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,6,c]),1)
+            period_bias_changes_bch_cm4_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,6,c]),1)
+            period_bias_changes_bch_cm4_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,6,c]),1)
             
-            period_bias_changes_bch_cm5_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm5_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm5_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm5_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,6,c]),1)
+            period_bias_changes_bch_cm5_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,6,c]),1)
+            period_bias_changes_bch_cm5_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,6,c]),1)
             
-            period_bias_changes_bch_cm6_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm6_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm6_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm6_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,6,c]),1)
+            period_bias_changes_bch_cm6_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,6,c]),1)
+            period_bias_changes_bch_cm6_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,6,c]),1)
             
-            period_bias_changes_bch_cm7_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm7_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm7_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm7_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,6,c]),1)
+            period_bias_changes_bch_cm7_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,6,c]),1)
+            period_bias_changes_bch_cm7_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,6,c]),1)
             
-            period_bias_changes_bch_cm8_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm8_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm8_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm8_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,6,c]),1)
+            period_bias_changes_bch_cm8_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,6,c]),1)
+            period_bias_changes_bch_cm8_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,6,c]),1)
             
-            period_bias_changes_bch_cm9_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm9_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm9_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm9_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,6,c]),1)
+            period_bias_changes_bch_cm9_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,6,c]),1)
+            period_bias_changes_bch_cm9_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,6,c]),1)
             
-            period_bias_changes_bch_cm10_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm10_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm10_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm10_penman_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,6,c]),1)
+            period_bias_changes_bch_cm10_penman_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,6,c]),1)
+            period_bias_changes_bch_cm10_penman_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,6,c]),1)
 
-            period_bias_changes_bch_cm1_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm1_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm1_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm1_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,7,c]),1)
+            period_bias_changes_bch_cm1_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,7,c]),1)
+            period_bias_changes_bch_cm1_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,7,c]),1)
             
-            period_bias_changes_bch_cm2_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm2_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm2_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm2_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,7,c]),1)
+            period_bias_changes_bch_cm2_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,7,c]),1)
+            period_bias_changes_bch_cm2_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,7,c]),1)
             
-            period_bias_changes_bch_cm3_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm3_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm3_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm3_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,7,c]),1)
+            period_bias_changes_bch_cm3_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,7,c]),1)
+            period_bias_changes_bch_cm3_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,7,c]),1)
             
-            period_bias_changes_bch_cm4_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm4_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm4_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm4_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,7,c]),1)
+            period_bias_changes_bch_cm4_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,7,c]),1)
+            period_bias_changes_bch_cm4_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,7,c]),1)
             
-            period_bias_changes_bch_cm5_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm5_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm5_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm5_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,7,c]),1)
+            period_bias_changes_bch_cm5_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,7,c]),1)
+            period_bias_changes_bch_cm5_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,7,c]),1)
             
-            period_bias_changes_bch_cm6_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm6_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm6_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm6_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,7,c]),1)
+            period_bias_changes_bch_cm6_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,7,c]),1)
+            period_bias_changes_bch_cm6_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,7,c]),1)
             
-            period_bias_changes_bch_cm7_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm7_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm7_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm7_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,7,c]),1)
+            period_bias_changes_bch_cm7_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,7,c]),1)
+            period_bias_changes_bch_cm7_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,7,c]),1)
             
-            period_bias_changes_bch_cm8_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm8_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm8_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm8_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,7,c]),1)
+            period_bias_changes_bch_cm8_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,7,c]),1)
+            period_bias_changes_bch_cm8_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,7,c]),1)
             
-            period_bias_changes_bch_cm9_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm9_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm9_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm9_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,7,c]),1)
+            period_bias_changes_bch_cm9_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,7,c]),1)
+            period_bias_changes_bch_cm9_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,7,c]),1)
             
-            period_bias_changes_bch_cm10_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm10_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm10_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm10_penman_monteith_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,7,c]),1)
+            period_bias_changes_bch_cm10_penman_monteith_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,7,c]),1)
+            period_bias_changes_bch_cm10_penman_monteith_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,7,c]),1)
 
-            period_bias_changes_bch_cm1_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm1_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm1_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm1_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,8,c]),1)
+            period_bias_changes_bch_cm1_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,8,c]),1)
+            period_bias_changes_bch_cm1_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,8,c]),1)
             
-            period_bias_changes_bch_cm2_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm2_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm2_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm2_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,8,c]),1)
+            period_bias_changes_bch_cm2_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,8,c]),1)
+            period_bias_changes_bch_cm2_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,8,c]),1)
             
-            period_bias_changes_bch_cm3_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm3_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm3_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm3_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,8,c]),1)
+            period_bias_changes_bch_cm3_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,8,c]),1)
+            period_bias_changes_bch_cm3_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,8,c]),1)
             
-            period_bias_changes_bch_cm4_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm4_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm4_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm4_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,8,c]),1)
+            period_bias_changes_bch_cm4_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,8,c]),1)
+            period_bias_changes_bch_cm4_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,8,c]),1)
             
-            period_bias_changes_bch_cm5_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm5_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm5_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm5_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,8,c]),1)
+            period_bias_changes_bch_cm5_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,8,c]),1)
+            period_bias_changes_bch_cm5_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,8,c]),1)
             
-            period_bias_changes_bch_cm6_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm6_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm6_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm6_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,8,c]),1)
+            period_bias_changes_bch_cm6_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,8,c]),1)
+            period_bias_changes_bch_cm6_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,8,c]),1)
             
-            period_bias_changes_bch_cm7_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm7_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm7_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm7_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,8,c]),1)
+            period_bias_changes_bch_cm7_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,8,c]),1)
+            period_bias_changes_bch_cm7_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,8,c]),1)
             
-            period_bias_changes_bch_cm8_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm8_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm8_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm8_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,8,c]),1)
+            period_bias_changes_bch_cm8_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,8,c]),1)
+            period_bias_changes_bch_cm8_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,8,c]),1)
             
-            period_bias_changes_bch_cm9_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm9_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm9_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm9_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,8,c]),1)
+            period_bias_changes_bch_cm9_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,8,c]),1)
+            period_bias_changes_bch_cm9_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,8,c]),1)
             
-            period_bias_changes_bch_cm10_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm10_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm10_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm10_pri_tay_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,8,c]),1)
+            period_bias_changes_bch_cm10_pri_tay_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,8,c]),1)
+            period_bias_changes_bch_cm10_pri_tay_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,8,c]),1)
 
-            period_bias_changes_bch_cm1_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm1_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm1_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm1_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,9,c]),1)
+            period_bias_changes_bch_cm1_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,9,c]),1)
+            period_bias_changes_bch_cm1_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm1_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,9,c]),1)
             
-            period_bias_changes_bch_cm2_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm2_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm2_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm2_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,9,c]),1)
+            period_bias_changes_bch_cm2_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,9,c]),1)
+            period_bias_changes_bch_cm2_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm2_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,9,c]),1)
             
-            period_bias_changes_bch_cm3_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm3_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm3_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm3_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,9,c]),1)
+            period_bias_changes_bch_cm3_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,9,c]),1)
+            period_bias_changes_bch_cm3_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm3_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,9,c]),1)
             
-            period_bias_changes_bch_cm4_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm4_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm4_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm4_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,9,c]),1)
+            period_bias_changes_bch_cm4_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,9,c]),1)
+            period_bias_changes_bch_cm4_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm4_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,9,c]),1)
             
-            period_bias_changes_bch_cm5_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm5_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm5_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm5_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,9,c]),1)
+            period_bias_changes_bch_cm5_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,9,c]),1)
+            period_bias_changes_bch_cm5_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm5_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,9,c]),1)
             
-            period_bias_changes_bch_cm6_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm6_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm6_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm6_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,9,c]),1)
+            period_bias_changes_bch_cm6_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,9,c]),1)
+            period_bias_changes_bch_cm6_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm6_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,9,c]),1)
             
-            period_bias_changes_bch_cm7_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm7_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm7_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm7_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,9,c]),1)
+            period_bias_changes_bch_cm7_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,9,c]),1)
+            period_bias_changes_bch_cm7_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm7_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,9,c]),1)
             
-            period_bias_changes_bch_cm8_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm8_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm8_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm8_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,9,c]),1)
+            period_bias_changes_bch_cm8_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,9,c]),1)
+            period_bias_changes_bch_cm8_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm8_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,9,c]),1)
             
-            period_bias_changes_bch_cm9_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm9_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm9_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm9_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,9,c]),1)
+            period_bias_changes_bch_cm9_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,9,c]),1)
+            period_bias_changes_bch_cm9_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm9_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,9,c]),1)
             
-            period_bias_changes_bch_cm10_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,4,c]),1)
-            period_bias_changes_bch_cm10_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,4,c]),1)
-            period_bias_changes_bch_cm10_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,4,c]),1)
+            period_bias_changes_bch_cm10_turc_all_cm_all_pet[0,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[0,cc,c]-period_change_all_bch[0,9,c]),1)
+            period_bias_changes_bch_cm10_turc_all_cm_all_pet[1,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[1,cc,c]-period_change_all_bch[1,9,c]),1)
+            period_bias_changes_bch_cm10_turc_all_cm_all_pet[2,cc,c] = round((period_changes_bch_cm10_all_cm_all_pet[2,cc,c]-period_change_all_bch[2,9,c]),1)
 
         
     period_bias_changes_bch_cm1_hamon_all_cm_all_pet[:,0,:]=np.nan
@@ -2596,62 +2596,83 @@ for i in np.arange(0,1):
     font = {'family' : 'normal',
     'weight' : 'normal',
     'size'   : 16}
-    fig= plt.figure(figsize=(80,40))      
+    fig= plt.figure(figsize=(100,80))      
     plt.rc('font', **font)
     fig, ax = plt.subplots()
     fontsize=14
     
     pet_methods = ['Hamon','Hargreaves-Samani','Hargreaves','Jensen-Haise','Makkink','Oudin','Penman','Penman-Monteith','Pristley-Taylor','Turc']
-    pet_marker = ['s','o','^','v','*','p','x','<','>','8']
-    for aa in np.arange(0,3):
-        for a in np.arange(0,10):
-            plt.scatter(pet_methods[a],period_bias_changes_hamon_all_mean[0,a],color='r',marker=pet_marker[a],s=10)
-            plt.scatter(pet_methods[a],period_bias_changes_hamon_all_mean[1,a],color='b',marker=pet_marker[a],s=10)
-        plt.xticks(rotation=90)
-            
-            
-            plt.scatter(1,period_bias_changes_hamon_all_mean[2,a],color='g',marker=pet_marker[a],s=10)
-            plt.scatter(2,period_bias_changes_har_sam_all_mean[0,a],color='r',marker=pet_marker[a],s=10)
-            plt.scatter(2,period_bias_changes_har_sam_all_mean[1,a],color='b',marker=pet_marker[a],s=10)
-            plt.scatter(2,period_bias_changes_har_sam_all_mean[2,a],color='g',marker=pet_marker[a],s=10)
-            plt.scatter(3,period_bias_changes_hargreaves_all_mean[0,a],color='r',marker=pet_marker[a],s=10)
-            plt.scatter(3,period_bias_changes_hargreaves_all_mean[1,a],color='b',marker=pet_marker[a],s=10)
-            plt.scatter(3,period_bias_changes_hargreaves_all_mean[2,a],color='g',marker=pet_marker[a],s=10)
-            plt.scatter(4,period_bias_changes_jen_hai_all_mean[0,a],color='r',marker=pet_marker[a],s=10)
-            plt.scatter(4,period_bias_changes_jen_hai_all_mean[1,a],color='b',marker=pet_marker[a],s=10)
-            plt.scatter(4,period_bias_changes_jen_hai_all_mean[2,a],color='g',marker=pet_marker[a],s=10)
-            plt.scatter(5,period_bias_changes_makkink_all_mean[0,a],color='r',marker=pet_marker[a],s=10)
-            plt.scatter(5,period_bias_changes_makkink_all_mean[1,a],color='b',marker=pet_marker[a],s=10)
-            plt.scatter(5,period_bias_changes_makkink_all_mean[2,a],color='g',marker=pet_marker[a],s=10)
-            plt.scatter(6,period_bias_changes_oudin_all_mean[0,a],color='r',marker=pet_marker[a],s=10)
-            plt.scatter(6,period_bias_changes_oudin_all_mean[1,a],color='b',marker=pet_marker[a],s=10)
-            plt.scatter(6,period_bias_changes_oudin_all_mean[2,a],color='g',marker=pet_marker[a],s=10)
-            plt.scatter(7,period_bias_changes_penman_all_mean[0,a],color='r',marker=pet_marker[a],s=10)
-            plt.scatter(7,period_bias_changes_penman_all_mean[1,a],color='b',marker=pet_marker[a],s=10)
-            plt.scatter(7,period_bias_changes_penman_all_mean[2,a],color='g',marker=pet_marker[a],s=10)
-            plt.scatter(8,period_bias_changes_penman_monteith_all_mean[0,a],color='r',marker=pet_marker[a],s=10)
-            plt.scatter(8,period_bias_changes_penman_monteith_all_mean[1,a],color='b',marker=pet_marker[a],s=10)
-            plt.scatter(8,period_bias_changes_penman_monteith_all_mean[2,a],color='g',marker=pet_marker[a],s=10)
-            plt.scatter(9,period_bias_changes_pri_tay_all_mean[0,a],color='r',marker=pet_marker[a],s=10)
-            plt.scatter(9,period_bias_changes_pri_tay_all_mean[1,a],color='b',marker=pet_marker[a],s=10)
-            plt.scatter(9,period_bias_changes_pri_tay_all_mean[2,a],color='g',marker=pet_marker[a],s=10)
-            plt.scatter(10,period_bias_changes_turc_all_mean[0,a],color='r',marker=pet_marker[a],s=10)
-            plt.scatter(10,period_bias_changes_turc_all_mean[1,a],color='b',marker=pet_marker[a],s=10)
-            plt.scatter(10,period_bias_changes_turc_all_mean[2,a],color='g',marker=pet_marker[a],s=10)                
-        plt.xticks(rotation=90)
-        
-        
+    pet_marker = ['x','s','o','h','^','v','p','D','<','*']
+    for a in np.arange(0,10):
+        plt.scatter(0.8,period_bias_changes_hamon_all_mean[0,a],color='r',marker=pet_marker[a],s=30)
+        plt.scatter(1,period_bias_changes_hamon_all_mean[1,a],color='b',marker=pet_marker[a],s=30)      
+        plt.scatter(1.2,period_bias_changes_hamon_all_mean[2,a],color='g',marker=pet_marker[a],s=30)
+        plt.scatter(1.8,period_bias_changes_har_sam_all_mean[0,a],color='r',marker=pet_marker[a],s=30)
+        plt.scatter(2,period_bias_changes_har_sam_all_mean[1,a],color='b',marker=pet_marker[a],s=30)
+        plt.scatter(2.2,period_bias_changes_har_sam_all_mean[2,a],color='g',marker=pet_marker[a],s=30)
+        plt.scatter(2.8,period_bias_changes_hargreaves_all_mean[0,a],color='r',marker=pet_marker[a],s=30)
+        plt.scatter(3,period_bias_changes_hargreaves_all_mean[1,a],color='b',marker=pet_marker[a],s=30)
+        plt.scatter(3.2,period_bias_changes_hargreaves_all_mean[2,a],color='g',marker=pet_marker[a],s=30)
+        plt.scatter(3.8,period_bias_changes_jen_hai_all_mean[0,a],color='r',marker=pet_marker[a],s=30)
+        plt.scatter(4,period_bias_changes_jen_hai_all_mean[1,a],color='b',marker=pet_marker[a],s=30)
+        plt.scatter(4.2,period_bias_changes_jen_hai_all_mean[2,a],color='g',marker=pet_marker[a],s=30)
+        plt.scatter(4.8,period_bias_changes_makkink_all_mean[0,a],color='r',marker=pet_marker[a],s=30)
+        plt.scatter(5,period_bias_changes_makkink_all_mean[1,a],color='b',marker=pet_marker[a],s=30)
+        plt.scatter(5.2,period_bias_changes_makkink_all_mean[2,a],color='g',marker=pet_marker[a],s=30)
+        plt.scatter(5.8,period_bias_changes_oudin_all_mean[0,a],color='r',marker=pet_marker[a],s=30)
+        plt.scatter(6,period_bias_changes_oudin_all_mean[1,a],color='b',marker=pet_marker[a],s=30)
+        plt.scatter(6.2,period_bias_changes_oudin_all_mean[2,a],color='g',marker=pet_marker[a],s=30)
+        plt.scatter(6.8,period_bias_changes_penman_all_mean[0,a],color='r',marker=pet_marker[a],s=30)
+        plt.scatter(7,period_bias_changes_penman_all_mean[1,a],color='b',marker=pet_marker[a],s=30)
+        plt.scatter(7.2,period_bias_changes_penman_all_mean[2,a],color='g',marker=pet_marker[a],s=30)
+        plt.scatter(7.8,period_bias_changes_penman_monteith_all_mean[0,a],color='r',marker=pet_marker[a],s=30)
+        plt.scatter(8,period_bias_changes_penman_monteith_all_mean[1,a],color='b',marker=pet_marker[a],s=30)
+        plt.scatter(8.2,period_bias_changes_penman_monteith_all_mean[2,a],color='g',marker=pet_marker[a],s=30)
+        plt.scatter(8.8,period_bias_changes_pri_tay_all_mean[0,a],color='r',marker=pet_marker[a],s=30)
+        plt.scatter(9,period_bias_changes_pri_tay_all_mean[1,a],color='b',marker=pet_marker[a],s=30)
+        plt.scatter(9.2,period_bias_changes_pri_tay_all_mean[2,a],color='g',marker=pet_marker[a],s=30)
+        plt.scatter(9.8,period_bias_changes_turc_all_mean[0,a],color='r',marker=pet_marker[a],s=30)
+        plt.scatter(10,period_bias_changes_turc_all_mean[1,a],color='b',marker=pet_marker[a],s=30)
+        plt.scatter(10.2,period_bias_changes_turc_all_mean[2,a],color='g',marker=pet_marker[a],s=30)                
+    ax.set_xticks([1,2,3,4,5,6,7,8,9,10])
+    ax.set_xticklabels(pet_methods)
+    plt.xticks(rotation=90)
+    legend_elements = [Line2D([0], [0], marker='s', color='w', label='Near Future',
+                      markerfacecolor='r', markersize=10),
+               Line2D([0], [0], marker='s', color='w', label='Mid Future',
+                      markerfacecolor='b', markersize=10),
+               Line2D([0], [0], marker='s', color='w', label='Far Future',
+                      markerfacecolor='g', markersize=10),
+               Line2D([0], [0], marker='x', color='w', label='Hamon',
+                      markerfacecolor='k', markersize=10),
+               Line2D([0], [0], marker='s', color='w', label='Hargraves-Samani',
+                      markerfacecolor='k', markersize=10),
+               Line2D([0], [0], marker='o', color='w', label='Hargreaves',
+                      markerfacecolor='k', markersize=10),
+               Line2D([0], [0], marker='h', color='w', label='Jensen-Haise',
+                      markerfacecolor='k', markersize=10),
+               Line2D([0], [0], marker='^', color='w', label='Makkink',
+                      markerfacecolor='k', markersize=10),
+               Line2D([0], [0], marker='v', color='w', label='Oudin',
+                      markerfacecolor='k', markersize=10),
+               Line2D([0], [0], marker='p', color='w', label='Penman',
+                      markerfacecolor='k', markersize=10),
+               Line2D([0], [0], marker='D', color='w', label='Penman-Monteith',
+                      markerfacecolor='k', markersize=10),
+               Line2D([0], [0], marker='<', color='w', label='Priestly-Taylor',
+                      markerfacecolor='k', markersize=10),
+               Line2D([0], [0], marker='*', color='w', label='Turc',
+                      markerfacecolor='k', markersize=10)]
+    plt.legend(handles=legend_elements, loc='lower right',fontsize=12,bbox_to_anchor=(1.5,-0.3))
+    #plt.ylim(-40,40)
+    plt.ylabel('Mean biases (mm/year)')
+    plt.title('Mean biases using each PET method as reference for '+site_n)
+    plt.savefig('C:/Users/erpasten/Documents/UEF/PET/Figures/PET/delta/pet_method_as_ref_change_bias_matrix_'+site_n+'.png',bbox_inches='tight')
+    plt.show()
     
-    plt.scatter(period_bias_changes_hamon_all_mean[0,:],pet_methods,color='r')
-    plt.scatter(period_bias_changes_hamon_all_mean[1,:],pet_methods,color='b')
-    plt.scatter(period_bias_changes_hamon_all_mean[2,:],pet_methods,color='g')
+        
+        
 
-    
-    
-    
-    
-    
-    
     
     
     
