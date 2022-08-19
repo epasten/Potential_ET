@@ -1,0 +1,19 @@
+from r_functions import create, run
+
+# create Python functions bound to R functions
+add = create('C:/Users/epz/Desktop/UEF/PET/Python/test.R', 'add')
+greet = create('C:/Users/epz/Desktop/UEF/PET/Python/test.R', 'greet')
+
+
+sum = run('C:/Users/epz/Desktop/UEF/PET/Python/test.R', 'add', [2, 3])
+
+
+# we can use named parameters or positional parameters, but not both
+greeting = greet(name='John', adjective='Wise')
+print(greeting) #
+
+
+
+sum = add(2, 3)
+print(sum)
+
